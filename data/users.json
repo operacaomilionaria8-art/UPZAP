@@ -1,0 +1,13 @@
+[
+  {
+    "id": "usr_1789512126878_admin",
+    "name": "Administrador UpZap",
+    "username": "admin",
+    "email": "admin@upzap.com.br",
+    "role": "admin",
+    "passwordHash": "3cbc1092e29657d8d8675e5827ed08ab6bf2a28b3c1ce575c176ebba9c695f38fcbddd1b983e6c4dc11418e76b8e047b20176e587c9ca9405a00025eeead91c0",
+    "salt": "06616e80f1d38b48e62b4d12bc8822f6",
+    "createdAt": "2026-09-15T22:42:06.878Z",
+    "lastLoginAt": "2026-10-17T14:07:36.367Z"
+  }
+]

@@ -1,0 +1,803 @@
+[
+  {
+    "id": "upz_ord_1793922612852_uhtn",
+    "logzzOrderId": "LOGZZ_AUDIT_1793922612848",
+    "brizexOrderId": "BRZ_1793922612851",
+    "cliente": {
+      "nome": "Renata Vasconcelos",
+      "telefone": "5511977776655",
+      "cpf": "123.456.789-00"
+    },
+    "endereco": {
+      "logradouro": "Av Paulista",
+      "numero": "1000",
+      "bairro": "Bela Vista",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "cep": "01310-100"
+    },
+    "itens": [
+      {
+        "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+        "quantidade": 2,
+        "valorUnitario": 83.95,
+        "valorTotal": 0
+      }
+    ],
+    "valorTotal": 167.9,
+    "valorFrete": 0,
+    "metodoPagamento": "Logzz Entrega",
+    "dataCriacao": "2026-11-05T23:50:12.852Z",
+    "status": "Agendado",
+    "statusHistory": [
+      {
+        "status": "Em Separação",
+        "data": "2026-11-05T23:50:12.852Z",
+        "origem": "brizex",
+        "observacao": "Pedido recebido via integração Brizex"
+      },
+      {
+        "status": "Em Separação",
+        "data": "2026-11-05T23:50:12.853Z",
+        "origem": "brizex",
+        "observacao": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+      },
+      {
+        "status": "Agendado",
+        "data": "2026-11-05T23:50:12.855Z",
+        "origem": "brizex",
+        "observacao": "Transição de Em Separação para Agendado via Brizex"
+      }
+    ],
+    "ultimaAtualizacao": "2026-11-05T23:50:12.855Z",
+    "observacoesInternas": [
+      {
+        "id": "note_warn_1793922612854",
+        "autor": "Auditoria Brizex",
+        "texto": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+        "data": "2026-11-05T23:50:12.853Z"
+      }
+    ],
+    "origem": "brizex",
+    "rawPayload": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793922612848",
+      "brizexOrderId": "BRZ_1793922612851",
+      "cliente": {
+        "nome": "Renata Vasconcelos",
+        "telefone": "5511977776655",
+        "cpf": "123.456.789-00"
+      },
+      "endereco": {
+        "rua": "Av Paulista",
+        "numero": "1000",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01310-100"
+      },
+      "itens": [
+        {
+          "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+          "quantidade": 2,
+          "valorUnitario": 83.95
+        }
+      ],
+      "valorTotal": 167.9,
+      "status": "Agendado"
+    },
+    "alertaAtraso": false,
+    "precisaAcompanhamentoHumano": false
+  },
+  {
+    "id": "upz_ord_1793844888281_qdcu",
+    "logzzOrderId": "LOGZZ_AUDIT_1793844888273",
+    "brizexOrderId": "BRZ_1793844888280",
+    "cliente": {
+      "nome": "Renata Vasconcelos",
+      "telefone": "5511977776655",
+      "cpf": "123.456.789-00"
+    },
+    "endereco": {
+      "logradouro": "Av Paulista",
+      "numero": "1000",
+      "bairro": "Bela Vista",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "cep": "01310-100"
+    },
+    "itens": [
+      {
+        "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+        "quantidade": 2,
+        "valorUnitario": 83.95,
+        "valorTotal": 0
+      }
+    ],
+    "valorTotal": 167.9,
+    "valorFrete": 0,
+    "metodoPagamento": "Logzz Entrega",
+    "dataCriacao": "2026-11-05T02:14:48.281Z",
+    "status": "Agendado",
+    "statusHistory": [
+      {
+        "status": "Em Separação",
+        "data": "2026-11-05T02:14:48.281Z",
+        "origem": "brizex",
+        "observacao": "Pedido recebido via integração Brizex"
+      },
+      {
+        "status": "Em Separação",
+        "data": "2026-11-05T02:14:48.282Z",
+        "origem": "brizex",
+        "observacao": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+      },
+      {
+        "status": "Agendado",
+        "data": "2026-11-05T02:14:48.284Z",
+        "origem": "brizex",
+        "observacao": "Transição de Em Separação para Agendado via Brizex"
+      }
+    ],
+    "ultimaAtualizacao": "2026-11-05T02:14:48.284Z",
+    "observacoesInternas": [
+      {
+        "id": "note_warn_1793844888283",
+        "autor": "Auditoria Brizex",
+        "texto": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+        "data": "2026-11-05T02:14:48.282Z"
+      }
+    ],
+    "origem": "brizex",
+    "rawPayload": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793844888273",
+      "brizexOrderId": "BRZ_1793844888280",
+      "cliente": {
+        "nome": "Renata Vasconcelos",
+        "telefone": "5511977776655",
+        "cpf": "123.456.789-00"
+      },
+      "endereco": {
+        "rua": "Av Paulista",
+        "numero": "1000",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01310-100"
+      },
+      "itens": [
+        {
+          "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+          "quantidade": 2,
+          "valorUnitario": 83.95
+        }
+      ],
+      "valorTotal": 167.9,
+      "status": "Agendado"
+    },
+    "alertaAtraso": false,
+    "precisaAcompanhamentoHumano": false
+  },
+  {
+    "id": "upz_ord_1793841735623_8c7k",
+    "logzzOrderId": "LOGZZ_AUDIT_1793841735620",
+    "brizexOrderId": "BRZ_1793841735623",
+    "cliente": {
+      "nome": "Renata Vasconcelos",
+      "telefone": "5511977776655",
+      "cpf": "123.456.789-00"
+    },
+    "endereco": {
+      "logradouro": "Av Paulista",
+      "numero": "1000",
+      "bairro": "Bela Vista",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "cep": "01310-100"
+    },
+    "itens": [
+      {
+        "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+        "quantidade": 2,
+        "valorUnitario": 83.95,
+        "valorTotal": 0
+      }
+    ],
+    "valorTotal": 167.9,
+    "valorFrete": 0,
+    "metodoPagamento": "Logzz Entrega",
+    "dataCriacao": "2026-11-05T01:22:15.623Z",
+    "status": "Agendado",
+    "statusHistory": [
+      {
+        "status": "Em Separação",
+        "data": "2026-11-05T01:22:15.623Z",
+        "origem": "brizex",
+        "observacao": "Pedido recebido via integração Brizex"
+      },
+      {
+        "status": "Em Separação",
+        "data": "2026-11-05T01:22:15.625Z",
+        "origem": "brizex",
+        "observacao": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+      },
+      {
+        "status": "Agendado",
+        "data": "2026-11-05T01:22:15.626Z",
+        "origem": "brizex",
+        "observacao": "Transição de Em Separação para Agendado via Brizex"
+      }
+    ],
+    "ultimaAtualizacao": "2026-11-05T01:22:15.626Z",
+    "observacoesInternas": [
+      {
+        "id": "note_warn_1793841735625",
+        "autor": "Auditoria Brizex",
+        "texto": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+        "data": "2026-11-05T01:22:15.625Z"
+      }
+    ],
+    "origem": "brizex",
+    "rawPayload": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793841735620",
+      "brizexOrderId": "BRZ_1793841735623",
+      "cliente": {
+        "nome": "Renata Vasconcelos",
+        "telefone": "5511977776655",
+        "cpf": "123.456.789-00"
+      },
+      "endereco": {
+        "rua": "Av Paulista",
+        "numero": "1000",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01310-100"
+      },
+      "itens": [
+        {
+          "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+          "quantidade": 2,
+          "valorUnitario": 83.95
+        }
+      ],
+      "valorTotal": 167.9,
+      "status": "Agendado"
+    },
+    "alertaAtraso": false,
+    "precisaAcompanhamentoHumano": false
+  },
+  {
+    "id": "upz_ord_1793841720528_4p3c",
+    "logzzOrderId": "LOGZZ_AUDIT_1793841720525",
+    "brizexOrderId": "BRZ_1793841720527",
+    "cliente": {
+      "nome": "Renata Vasconcelos",
+      "telefone": "5511977776655",
+      "cpf": "123.456.789-00"
+    },
+    "endereco": {
+      "logradouro": "Av Paulista",
+      "numero": "1000",
+      "bairro": "Bela Vista",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "cep": "01310-100"
+    },
+    "itens": [
+      {
+        "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+        "quantidade": 2,
+        "valorUnitario": 83.95,
+        "valorTotal": 0
+      }
+    ],
+    "valorTotal": 167.9,
+    "valorFrete": 0,
+    "metodoPagamento": "Logzz Entrega",
+    "dataCriacao": "2026-11-05T01:22:00.528Z",
+    "status": "Agendado",
+    "statusHistory": [
+      {
+        "status": "Em Separação",
+        "data": "2026-11-05T01:22:00.528Z",
+        "origem": "brizex",
+        "observacao": "Pedido recebido via integração Brizex"
+      },
+      {
+        "status": "Em Separação",
+        "data": "2026-11-05T01:22:00.529Z",
+        "origem": "brizex",
+        "observacao": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+      },
+      {
+        "status": "Agendado",
+        "data": "2026-11-05T01:22:00.531Z",
+        "origem": "brizex",
+        "observacao": "Transição de Em Separação para Agendado via Brizex"
+      }
+    ],
+    "ultimaAtualizacao": "2026-11-05T01:22:00.531Z",
+    "observacoesInternas": [
+      {
+        "id": "note_warn_1793841720530",
+        "autor": "Auditoria Brizex",
+        "texto": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+        "data": "2026-11-05T01:22:00.529Z"
+      }
+    ],
+    "origem": "brizex",
+    "rawPayload": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793841720525",
+      "brizexOrderId": "BRZ_1793841720527",
+      "cliente": {
+        "nome": "Renata Vasconcelos",
+        "telefone": "5511977776655",
+        "cpf": "123.456.789-00"
+      },
+      "endereco": {
+        "rua": "Av Paulista",
+        "numero": "1000",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01310-100"
+      },
+      "itens": [
+        {
+          "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+          "quantidade": 2,
+          "valorUnitario": 83.95
+        }
+      ],
+      "valorTotal": 167.9,
+      "status": "Agendado"
+    },
+    "alertaAtraso": false,
+    "precisaAcompanhamentoHumano": false
+  },
+  {
+    "id": "upz_ord_1793757947726_z4qk",
+    "logzzOrderId": "LOGZZ_AUDIT_1793757947723",
+    "brizexOrderId": "BRZ_1793757947726",
+    "cliente": {
+      "nome": "Renata Vasconcelos",
+      "telefone": "5511977776655",
+      "cpf": "123.456.789-00"
+    },
+    "endereco": {
+      "logradouro": "Av Paulista",
+      "numero": "1000",
+      "bairro": "Bela Vista",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "cep": "01310-100"
+    },
+    "itens": [
+      {
+        "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+        "quantidade": 2,
+        "valorUnitario": 83.95,
+        "valorTotal": 0
+      }
+    ],
+    "valorTotal": 167.9,
+    "valorFrete": 0,
+    "metodoPagamento": "Logzz Entrega",
+    "dataCriacao": "2026-11-04T02:05:47.726Z",
+    "status": "Agendado",
+    "statusHistory": [
+      {
+        "status": "Em Separação",
+        "data": "2026-11-04T02:05:47.726Z",
+        "origem": "brizex",
+        "observacao": "Pedido recebido via integração Brizex"
+      },
+      {
+        "status": "Em Separação",
+        "data": "2026-11-04T02:05:47.727Z",
+        "origem": "brizex",
+        "observacao": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+      },
+      {
+        "status": "Agendado",
+        "data": "2026-11-04T02:05:47.729Z",
+        "origem": "brizex",
+        "observacao": "Transição de Em Separação para Agendado via Brizex"
+      }
+    ],
+    "ultimaAtualizacao": "2026-11-04T02:05:47.729Z",
+    "observacoesInternas": [
+      {
+        "id": "note_warn_1793757947727",
+        "autor": "Auditoria Brizex",
+        "texto": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+        "data": "2026-11-04T02:05:47.727Z"
+      }
+    ],
+    "origem": "brizex",
+    "rawPayload": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793757947723",
+      "brizexOrderId": "BRZ_1793757947726",
+      "cliente": {
+        "nome": "Renata Vasconcelos",
+        "telefone": "5511977776655",
+        "cpf": "123.456.789-00"
+      },
+      "endereco": {
+        "rua": "Av Paulista",
+        "numero": "1000",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01310-100"
+      },
+      "itens": [
+        {
+          "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+          "quantidade": 2,
+          "valorUnitario": 83.95
+        }
+      ],
+      "valorTotal": 167.9,
+      "status": "Agendado"
+    },
+    "alertaAtraso": false,
+    "precisaAcompanhamentoHumano": false
+  },
+  {
+    "id": "upz_ord_1793753964563_5126",
+    "logzzOrderId": "LOGZZ_AUDIT_1793753964560",
+    "brizexOrderId": "BRZ_1793753964563",
+    "cliente": {
+      "nome": "Renata Vasconcelos",
+      "telefone": "5511977776655",
+      "cpf": "123.456.789-00"
+    },
+    "endereco": {
+      "logradouro": "Av Paulista",
+      "numero": "1000",
+      "bairro": "Bela Vista",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "cep": "01310-100"
+    },
+    "itens": [
+      {
+        "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+        "quantidade": 2,
+        "valorUnitario": 83.95,
+        "valorTotal": 0
+      }
+    ],
+    "valorTotal": 167.9,
+    "valorFrete": 0,
+    "metodoPagamento": "Logzz Entrega",
+    "dataCriacao": "2026-11-04T00:59:24.563Z",
+    "status": "Agendado",
+    "statusHistory": [
+      {
+        "status": "Em Separação",
+        "data": "2026-11-04T00:59:24.563Z",
+        "origem": "brizex",
+        "observacao": "Pedido recebido via integração Brizex"
+      },
+      {
+        "status": "Em Separação",
+        "data": "2026-11-04T00:59:24.564Z",
+        "origem": "brizex",
+        "observacao": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+      },
+      {
+        "status": "Agendado",
+        "data": "2026-11-04T00:59:24.565Z",
+        "origem": "brizex",
+        "observacao": "Transição de Em Separação para Agendado via Brizex"
+      }
+    ],
+    "ultimaAtualizacao": "2026-11-04T00:59:24.565Z",
+    "observacoesInternas": [
+      {
+        "id": "note_warn_1793753964564",
+        "autor": "Auditoria Brizex",
+        "texto": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+        "data": "2026-11-04T00:59:24.564Z"
+      }
+    ],
+    "origem": "brizex",
+    "rawPayload": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793753964560",
+      "brizexOrderId": "BRZ_1793753964563",
+      "cliente": {
+        "nome": "Renata Vasconcelos",
+        "telefone": "5511977776655",
+        "cpf": "123.456.789-00"
+      },
+      "endereco": {
+        "rua": "Av Paulista",
+        "numero": "1000",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01310-100"
+      },
+      "itens": [
+        {
+          "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+          "quantidade": 2,
+          "valorUnitario": 83.95
+        }
+      ],
+      "valorTotal": 167.9,
+      "status": "Agendado"
+    },
+    "alertaAtraso": false,
+    "precisaAcompanhamentoHumano": false
+  },
+  {
+    "id": "upz_ord_1793753575727_gi5l",
+    "logzzOrderId": "LOGZZ_AUDIT_1793753575724",
+    "brizexOrderId": "BRZ_1793753575726",
+    "cliente": {
+      "nome": "Renata Vasconcelos",
+      "telefone": "5511977776655",
+      "cpf": "123.456.789-00"
+    },
+    "endereco": {
+      "logradouro": "Av Paulista",
+      "numero": "1000",
+      "bairro": "Bela Vista",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "cep": "01310-100"
+    },
+    "itens": [
+      {
+        "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+        "quantidade": 2,
+        "valorUnitario": 83.95,
+        "valorTotal": 0
+      }
+    ],
+    "valorTotal": 167.9,
+    "valorFrete": 0,
+    "metodoPagamento": "Logzz Entrega",
+    "dataCriacao": "2026-11-04T00:52:55.727Z",
+    "status": "Agendado",
+    "statusHistory": [
+      {
+        "status": "Em Separação",
+        "data": "2026-11-04T00:52:55.727Z",
+        "origem": "brizex",
+        "observacao": "Pedido recebido via integração Brizex"
+      },
+      {
+        "status": "Em Separação",
+        "data": "2026-11-04T00:52:55.728Z",
+        "origem": "brizex",
+        "observacao": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+      },
+      {
+        "status": "Agendado",
+        "data": "2026-11-04T00:52:55.729Z",
+        "origem": "brizex",
+        "observacao": "Transição de Em Separação para Agendado via Brizex"
+      }
+    ],
+    "ultimaAtualizacao": "2026-11-04T00:52:55.729Z",
+    "observacoesInternas": [
+      {
+        "id": "note_warn_1793753575728",
+        "autor": "Auditoria Brizex",
+        "texto": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+        "data": "2026-11-04T00:52:55.728Z"
+      }
+    ],
+    "origem": "brizex",
+    "rawPayload": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793753575724",
+      "brizexOrderId": "BRZ_1793753575726",
+      "cliente": {
+        "nome": "Renata Vasconcelos",
+        "telefone": "5511977776655",
+        "cpf": "123.456.789-00"
+      },
+      "endereco": {
+        "rua": "Av Paulista",
+        "numero": "1000",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01310-100"
+      },
+      "itens": [
+        {
+          "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+          "quantidade": 2,
+          "valorUnitario": 83.95
+        }
+      ],
+      "valorTotal": 167.9,
+      "status": "Agendado"
+    },
+    "alertaAtraso": false,
+    "precisaAcompanhamentoHumano": false
+  },
+  {
+    "id": "upz_ord_1793577027014_g0wt",
+    "logzzOrderId": "LOGZZ_AUDIT_1793577027010",
+    "brizexOrderId": "BRZ_1793577027013",
+    "cliente": {
+      "nome": "Renata Vasconcelos",
+      "telefone": "5511977776655",
+      "cpf": "123.456.789-00"
+    },
+    "endereco": {
+      "logradouro": "Av Paulista",
+      "numero": "1000",
+      "bairro": "Bela Vista",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "cep": "01310-100"
+    },
+    "itens": [
+      {
+        "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+        "quantidade": 2,
+        "valorUnitario": 83.95,
+        "valorTotal": 0
+      }
+    ],
+    "valorTotal": 167.9,
+    "valorFrete": 0,
+    "metodoPagamento": "Logzz Entrega",
+    "dataCriacao": "2026-11-01T23:50:27.014Z",
+    "status": "Agendado",
+    "statusHistory": [
+      {
+        "status": "Em Separação",
+        "data": "2026-11-01T23:50:27.014Z",
+        "origem": "brizex",
+        "observacao": "Pedido recebido via integração Brizex"
+      },
+      {
+        "status": "Em Separação",
+        "data": "2026-11-01T23:50:27.015Z",
+        "origem": "brizex",
+        "observacao": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+      },
+      {
+        "status": "Agendado",
+        "data": "2026-11-01T23:50:27.016Z",
+        "origem": "brizex",
+        "observacao": "Transição de Em Separação para Agendado via Brizex"
+      }
+    ],
+    "ultimaAtualizacao": "2026-11-01T23:50:27.016Z",
+    "observacoesInternas": [
+      {
+        "id": "note_warn_1793577027015",
+        "autor": "Auditoria Brizex",
+        "texto": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+        "data": "2026-11-01T23:50:27.015Z"
+      }
+    ],
+    "origem": "brizex",
+    "rawPayload": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793577027010",
+      "brizexOrderId": "BRZ_1793577027013",
+      "cliente": {
+        "nome": "Renata Vasconcelos",
+        "telefone": "5511977776655",
+        "cpf": "123.456.789-00"
+      },
+      "endereco": {
+        "rua": "Av Paulista",
+        "numero": "1000",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01310-100"
+      },
+      "itens": [
+        {
+          "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+          "quantidade": 2,
+          "valorUnitario": 83.95
+        }
+      ],
+      "valorTotal": 167.9,
+      "status": "Agendado"
+    },
+    "alertaAtraso": false,
+    "precisaAcompanhamentoHumano": false
+  },
+  {
+    "id": "upz_ord_1793573225878_1m0z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793573225876",
+    "brizexOrderId": "BRZ_1793573225878",
+    "cliente": {
+      "nome": "Renata Vasconcelos",
+      "telefone": "5511977776655",
+      "cpf": "123.456.789-00"
+    },
+    "endereco": {
+      "logradouro": "Av Paulista",
+      "numero": "1000",
+      "bairro": "Bela Vista",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "cep": "01310-100"
+    },
+    "itens": [
+      {
+        "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+        "quantidade": 2,
+        "valorUnitario": 83.95,
+        "valorTotal": 0
+      }
+    ],
+    "valorTotal": 167.9,
+    "valorFrete": 0,
+    "metodoPagamento": "Logzz Entrega",
+    "dataCriacao": "2026-11-01T22:47:05.878Z",
+    "status": "Agendado",
+    "statusHistory": [
+      {
+        "status": "Em Separação",
+        "data": "2026-11-01T22:47:05.878Z",
+        "origem": "brizex",
+        "observacao": "Pedido recebido via integração Brizex"
+      },
+      {
+        "status": "Em Separação",
+        "data": "2026-11-01T22:47:05.880Z",
+        "origem": "brizex",
+        "observacao": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+      },
+      {
+        "status": "Agendado",
+        "data": "2026-11-01T22:47:05.881Z",
+        "origem": "brizex",
+        "observacao": "Transição de Em Separação para Agendado via Brizex"
+      }
+    ],
+    "ultimaAtualizacao": "2026-11-01T22:47:05.881Z",
+    "observacoesInternas": [
+      {
+        "id": "note_warn_1793573225880",
+        "autor": "Auditoria Brizex",
+        "texto": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+        "data": "2026-11-01T22:47:05.880Z"
+      }
+    ],
+    "origem": "brizex",
+    "rawPayload": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793573225876",
+      "brizexOrderId": "BRZ_1793573225878",
+      "cliente": {
+        "nome": "Renata Vasconcelos",
+        "telefone": "5511977776655",
+        "cpf": "123.456.789-00"
+      },
+      "endereco": {
+        "rua": "Av Paulista",
+        "numero": "1000",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01310-100"
+      },
+      "itens": [
+        {
+          "nome": "Calcinha Cinta Modeladora Brizex - Bege G",
+          "quantidade": 2,
+          "valorUnitario": 83.95
+        }
+      ],
+      "valorTotal": 167.9,
+      "status": "Agendado"
+    },
+    "alertaAtraso": false,
+    "precisaAcompanhamentoHumano": false
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "name": "UpZap Base Oficial de Automação",
+  "description": "Base Oficial de Automação e Identidade da Atendente UpZap para Cinta Modeladora Premium",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

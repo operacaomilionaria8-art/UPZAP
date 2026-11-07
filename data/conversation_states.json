@@ -1,0 +1,1177 @@
+{
+  "5511999887766": {
+    "id": "5511999887766",
+    "phone": "5511999887766",
+    "senderNumber": "5511999887766",
+    "contactName": "Marina",
+    "senderName": "Marina",
+    "jid": "5511999887766@s.whatsapp.net",
+    "state": "closed",
+    "firstMessageAt": "2026-11-01T22:47:04.758Z",
+    "startedAt": "2026-11-01T22:47:04.758Z",
+    "createdAt": "2026-11-01T22:47:04.758Z",
+    "lastMessageAt": "2026-11-05T23:50:06.766Z",
+    "lastUserMessage": "Olá, quero saber do meu pedido",
+    "lastMessageText": "Olá, quero saber do meu pedido",
+    "messageCount": 11,
+    "currentFlow": "Encerrado (fluxo_encerramento)",
+    "welcomeSent": false,
+    "activeMenu": null,
+    "waitingForInput": false,
+    "selectedOption": null,
+    "selectedProduct": "Calcinha Cinta Modeladora Brizex",
+    "selectedKit": null,
+    "selectedColor": null,
+    "selectedSize": null,
+    "influencerCode": null,
+    "attendanceMode": "auto",
+    "automationPaused": false,
+    "modeChangedAt": "2026-11-01T22:47:04.758Z",
+    "modeChangedBy": "sistema",
+    "variables": {},
+    "updatedAt": "2026-11-05T23:50:06.792Z",
+    "currentFlowId": "flow_1793922606762_ajkr",
+    "currentFlowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "currentFlowStep": 0,
+    "lastRuleApplied": "Tag: cliente_brizex_agendado",
+    "reopenedAt": "2026-11-05T23:50:06.766Z",
+    "closedAt": "2026-11-05T23:50:06.791Z",
+    "closedReason": "fluxo_encerramento"
+  },
+  "5511999991111": {
+    "id": "5511999991111",
+    "phone": "5511999991111",
+    "senderNumber": "5511999991111",
+    "contactName": "Cliente Teste 1",
+    "senderName": "Cliente Teste 1",
+    "jid": "5511999991111@s.whatsapp.net",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T02:15:04.723Z",
+    "startedAt": "2026-11-05T02:15:04.723Z",
+    "createdAt": "2026-11-05T02:15:04.723Z",
+    "lastMessageAt": "2026-11-05T02:15:04.805Z",
+    "lastUserMessage": "xyzqwerty987",
+    "lastMessageText": "xyzqwerty987",
+    "messageCount": 9,
+    "currentFlow": "Fallback Amigável",
+    "welcomeSent": true,
+    "activeMenu": null,
+    "waitingForInput": false,
+    "selectedOption": "Escolher 2 unidades (R$ 167,90)",
+    "selectedProduct": "Calcinha Cinta Modeladora Brizex",
+    "selectedKit": "Escolher 2 unidades (R$ 167,90)",
+    "selectedColor": null,
+    "selectedSize": null,
+    "influencerCode": null,
+    "attendanceMode": "auto",
+    "automationPaused": false,
+    "modeChangedAt": "2026-11-05T02:15:04.802Z",
+    "modeChangedBy": "sistema",
+    "variables": {},
+    "updatedAt": "2026-11-05T02:15:04.809Z",
+    "lastWelcomeAt": "2026-11-05T02:15:04.759Z",
+    "currentFlowId": "flow_precos_kits",
+    "currentFlowName": "Preços e Kits",
+    "currentFlowStep": 0,
+    "lastBotReply": "Não entendi sua mensagem. Digite *menu* para ver as opções disponíveis ou *atendente* para falar com nossa equipe humana.",
+    "lastRuleApplied": "Fallback Amigável",
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_precos_kits",
+        "name": "Preços e Kits",
+        "timestamp": 1793844904776
+      }
+    ]
+  },
+  "5511999992222": {
+    "id": "5511999992222",
+    "phone": "5511999992222",
+    "senderNumber": "5511999992222",
+    "contactName": "Cliente Teste 2",
+    "senderName": "Cliente Teste 2",
+    "jid": "5511999992222@s.whatsapp.net",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T02:15:04.783Z",
+    "startedAt": "2026-11-05T02:15:04.783Z",
+    "createdAt": "2026-11-05T02:15:04.783Z",
+    "lastMessageAt": "2026-11-05T02:15:04.783Z",
+    "lastUserMessage": "Oi! Tenho interesse na cinta inf_0099",
+    "lastMessageText": "Oi! Tenho interesse na cinta inf_0099",
+    "messageCount": 1,
+    "currentFlow": "Fluxo Boas-vindas: Boas-vindas Principal",
+    "welcomeSent": true,
+    "activeMenu": {
+      "titulo": "Boas-vindas Principal",
+      "textoPrincipal": "Menu Principal",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Preços e kits",
+          "descricao": "Conferir ofertas especiais",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_precos_kits"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Tamanhos e cores",
+          "descricao": "Tabela de medidas M, G e GG",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_3",
+          "numero": 3,
+          "texto": "Pagamento e entrega",
+          "descricao": "PIX, Cartão e frete",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_pagamento_entrega"
+        },
+        {
+          "id": "opt_4",
+          "numero": 4,
+          "texto": "Finalizar compra",
+          "descricao": "Link de checkout Coinzz",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_finalizar_compra"
+        },
+        {
+          "id": "opt_5",
+          "numero": 5,
+          "texto": "Falar com atendente",
+          "descricao": "Transferência para equipe humana",
+          "acao": "transferir_humano"
+        }
+      ],
+      "createdAt": "2026-11-05T02:15:04.788Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "selectedOption": null,
+    "selectedProduct": "Calcinha Cinta Modeladora Brizex",
+    "selectedKit": null,
+    "selectedColor": null,
+    "selectedSize": null,
+    "influencerCode": null,
+    "attendanceMode": "auto",
+    "automationPaused": false,
+    "modeChangedAt": "2026-11-05T02:15:04.783Z",
+    "modeChangedBy": "sistema",
+    "variables": {},
+    "updatedAt": "2026-11-05T02:15:04.790Z",
+    "lastWelcomeAt": "2026-11-05T02:15:04.785Z",
+    "currentFlowId": "flow_boas_vindas",
+    "currentFlowName": "Boas-vindas Principal",
+    "currentFlowStep": 0,
+    "lastBotReply": "Olá! 💕 Seja muito bem-vinda à Brizex! Como posso te ajudar hoje?\n\n*Boas-vindas Principal*\n\nMenu Principal\n\n*1* - Preços e kits _(Conferir ofertas especiais)_\n*2* - Tamanhos e cores _(Tabela de medidas M, G e GG)_\n*3* - Pagamento e entrega _(PIX, Cartão e frete)_\n*4* - Finalizar compra _(Link de checkout Coinzz)_\n*5* - Falar com atendente _(Transferência para equipe humana)_\n\n_Digite o número da opção desejada._",
+    "lastRuleApplied": "Fluxo Boas-vindas: Boas-vindas Principal"
+  },
+  "5511999998888": {
+    "id": "5511999998888",
+    "phone": "5511999998888",
+    "senderNumber": "5511999998888",
+    "contactName": "Juliana Teste",
+    "senderName": "Juliana Teste",
+    "jid": "5511999998888@s.whatsapp.net",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T02:16:27.746Z",
+    "startedAt": "2026-11-05T02:16:27.746Z",
+    "createdAt": "2026-11-05T02:16:27.746Z",
+    "lastMessageAt": "2026-11-05T02:16:27.786Z",
+    "lastUserMessage": "1",
+    "lastMessageText": "1",
+    "messageCount": 5,
+    "currentFlow": "Menu ➔ Preços e Kits",
+    "welcomeSent": true,
+    "activeMenu": {
+      "titulo": "Preços e Kits",
+      "textoPrincipal": "Escolha seu kit",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Escolher 1 unidade (R$ 97,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Escolher 2 unidades (R$ 167,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_3",
+          "numero": 3,
+          "texto": "Escolher 3 unidades (R$ 197,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_4",
+          "numero": 4,
+          "texto": "Escolher 6 unidades (R$ 297,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_5",
+          "numero": 5,
+          "texto": "Voltar ao menu",
+          "acao": "voltar_menu",
+          "fluxoId": "flow_boas_vindas"
+        }
+      ],
+      "createdAt": "2026-11-05T02:16:27.789Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "selectedOption": "Preços e kits",
+    "selectedProduct": "Calcinha Cinta Modeladora Brizex",
+    "selectedKit": "Escolher 2 unidades (R$ 167,90)",
+    "selectedColor": null,
+    "selectedSize": null,
+    "influencerCode": null,
+    "attendanceMode": "auto",
+    "automationPaused": false,
+    "modeChangedAt": "2026-11-05T02:16:27.746Z",
+    "modeChangedBy": "sistema",
+    "variables": {},
+    "updatedAt": "2026-11-05T02:16:27.790Z",
+    "lastWelcomeAt": "2026-11-05T02:16:27.783Z",
+    "currentFlowId": "flow_precos_kits",
+    "currentFlowName": "Preços e Kits",
+    "currentFlowStep": 0,
+    "lastBotReply": "✨ *Ofertas Oficiais Calcinha Cinta Modeladora Brizex:*\n\n1️⃣ *1 unidade:* R$ 97,90 (R$ 97,90/un)\n2️⃣ *2 unidades:* R$ 167,90 (R$ 83,95/un - Mais vendida!)\n3️⃣ *3 unidades:* R$ 197,90 (R$ 65,96/un - Super desconto!)\n4️⃣ *6 unidades:* R$ 297,90 (R$ 49,65/un - Kit Família Econômico)\n\n*Preços e Kits*\n\nEscolha seu kit\n\n*1* - Escolher 1 unidade (R$ 97,90)\n*2* - Escolher 2 unidades (R$ 167,90)\n*3* - Escolher 3 unidades (R$ 197,90)\n*4* - Escolher 6 unidades (R$ 297,90)\n*5* - Voltar ao menu\n\n_Digite o número da opção desejada._",
+    "lastRuleApplied": "Menu ➔ Preços e Kits"
+  },
+  "5511988887766": {
+    "id": "5511988887766",
+    "phone": "5511988887766",
+    "senderNumber": "5511988887766",
+    "contactName": "Cliente Real WhatsApp",
+    "senderName": "Cliente Real WhatsApp",
+    "jid": "5511988887766@s.whatsapp.net",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T02:16:45.135Z",
+    "startedAt": "2026-11-05T02:16:45.135Z",
+    "createdAt": "2026-11-05T02:16:45.135Z",
+    "lastMessageAt": "2026-11-05T02:16:45.172Z",
+    "lastUserMessage": "1",
+    "lastMessageText": "1",
+    "messageCount": 2,
+    "currentFlow": "Menu ➔ Preços e Kits",
+    "welcomeSent": true,
+    "activeMenu": {
+      "titulo": "Preços e Kits",
+      "textoPrincipal": "Escolha seu kit",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Escolher 1 unidade (R$ 97,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Escolher 2 unidades (R$ 167,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_3",
+          "numero": 3,
+          "texto": "Escolher 3 unidades (R$ 197,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_4",
+          "numero": 4,
+          "texto": "Escolher 6 unidades (R$ 297,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_5",
+          "numero": 5,
+          "texto": "Voltar ao menu",
+          "acao": "voltar_menu",
+          "fluxoId": "flow_boas_vindas"
+        }
+      ],
+      "createdAt": "2026-11-05T02:16:45.179Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "selectedOption": "Preços e kits",
+    "selectedProduct": "Calcinha Cinta Modeladora Brizex",
+    "selectedKit": null,
+    "selectedColor": null,
+    "selectedSize": null,
+    "influencerCode": null,
+    "attendanceMode": "auto",
+    "automationPaused": false,
+    "modeChangedAt": "2026-11-05T02:16:45.135Z",
+    "modeChangedBy": "sistema",
+    "variables": {},
+    "updatedAt": "2026-11-05T02:16:45.182Z",
+    "lastWelcomeAt": "2026-11-05T02:16:45.139Z",
+    "currentFlowId": "flow_precos_kits",
+    "currentFlowName": "Preços e Kits",
+    "currentFlowStep": 0,
+    "lastBotReply": "✨ *Ofertas Oficiais Calcinha Cinta Modeladora Brizex:*\n\n1️⃣ *1 unidade:* R$ 97,90 (R$ 97,90/un)\n2️⃣ *2 unidades:* R$ 167,90 (R$ 83,95/un - Mais vendida!)\n3️⃣ *3 unidades:* R$ 197,90 (R$ 65,96/un - Super desconto!)\n4️⃣ *6 unidades:* R$ 297,90 (R$ 49,65/un - Kit Família Econômico)\n\n*Preços e Kits*\n\nEscolha seu kit\n\n*1* - Escolher 1 unidade (R$ 97,90)\n*2* - Escolher 2 unidades (R$ 167,90)\n*3* - Escolher 3 unidades (R$ 197,90)\n*4* - Escolher 6 unidades (R$ 297,90)\n*5* - Voltar ao menu\n\n_Digite o número da opção desejada._",
+    "lastRuleApplied": "Menu ➔ Preços e Kits",
+    "messages": [
+      {
+        "id": "msg-1793845005163-um65h",
+        "conversationId": "5511988887766",
+        "from": "bot",
+        "text": "Olá! 💕 Seja muito bem-vinda à Brizex! Como posso te ajudar hoje?",
+        "timestamp": "2026-11-05T02:16:45.146Z",
+        "formattedTime": "02:16",
+        "status": "delivered",
+        "statusLabel": "Entregue",
+        "source": "whatsapp_real",
+        "delaySeconds": 1.5,
+        "messageId": "baileys_msg_1"
+      },
+      {
+        "id": "msg-1793845005167-bjyot",
+        "conversationId": "5511988887766",
+        "from": "bot",
+        "text": "*Boas-vindas Principal*\n\nMenu Principal\n\n*1* - Preços e kits _(Conferir ofertas especiais)_\n*2* - Tamanhos e cores _(Tabela de medidas M, G e GG)_\n*3* - Pagamento e entrega _(PIX, Cartão e frete)_\n*4* - Finalizar compra _(Link de checkout Coinzz)_\n*5* - Falar com atendente _(Transferência para equipe humana)_\n\n_Digite o número da opção desejada._",
+        "timestamp": "2026-11-05T02:16:45.167Z",
+        "formattedTime": "02:16",
+        "status": "delivered",
+        "statusLabel": "Entregue",
+        "source": "whatsapp_real",
+        "delaySeconds": 1.5,
+        "messageId": "baileys_msg_2"
+      }
+    ]
+  },
+  "": {
+    "id": "",
+    "jid": "@s.whatsapp.net",
+    "phone": "",
+    "senderNumber": "",
+    "contactName": "Cliente Oficial",
+    "senderName": "Cliente Oficial",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:49:54.885Z",
+    "startedAt": "2026-11-05T23:49:54.885Z",
+    "createdAt": "2026-11-05T23:49:54.885Z",
+    "lastMessageAt": "2026-11-06T01:02:02.419Z",
+    "lastUserMessage": "quero saber de futebol e basquete",
+    "messageCount": 18,
+    "currentFlow": "Regra ➔ Fluxo Oficial de Atendimento",
+    "updatedAt": "2026-11-06T01:02:02.419Z",
+    "activeMenu": null,
+    "waitingForInput": false,
+    "lastMessageText": "quero saber de futebol e basquete",
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_exclusiva_1793926922405",
+        "name": "Regra Oficial Saudação",
+        "timestamp": 1793926922411
+      }
+    ],
+    "currentFlowId": "flow_exclusivo_1793926922405",
+    "currentFlowName": "Fluxo Oficial de Atendimento",
+    "currentFlowStep": 0,
+    "lastBotReply": "Olá! Você acionou a única automação oficial cadastrada.",
+    "lastRuleApplied": "Regra ➔ Fluxo Oficial de Atendimento"
+  },
+  "5511977776655": {
+    "id": "5511977776655",
+    "jid": "5511977776655@s.whatsapp.net",
+    "phone": "5511977776655",
+    "senderNumber": "5511977776655",
+    "contactName": "Renata Vasconcelos",
+    "senderName": "Renata Vasconcelos",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:12.851Z",
+    "startedAt": "2026-11-05T23:50:12.851Z",
+    "createdAt": "2026-11-05T23:50:12.851Z",
+    "lastMessageAt": "2026-11-05T23:50:12.851Z",
+    "lastUserMessage": "",
+    "messageCount": 1,
+    "currentFlow": "Pedido Agendado (Logzz)",
+    "updatedAt": "2026-11-05T23:50:12.856Z",
+    "attendanceMode": "manual",
+    "modeChangedAt": "2026-11-05T23:50:12.855Z",
+    "modeChangedBy": "pedido_agendado_logzz",
+    "automationPaused": true,
+    "lastRuleApplied": "Robô Ativo",
+    "pausedAt": "2026-11-05T23:50:12.855Z"
+  },
+  "5511999991001": {
+    "id": "5511999991001",
+    "jid": "5511999991001@s.whatsapp.net",
+    "phone": "5511999991001",
+    "senderNumber": "5511999991001",
+    "contactName": "Mariana",
+    "senderName": "Mariana",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:58.859Z",
+    "startedAt": "2026-11-05T23:50:58.859Z",
+    "createdAt": "2026-11-05T23:50:58.859Z",
+    "lastMessageAt": "2026-11-05T23:50:58.940Z",
+    "lastUserMessage": "opcao 4",
+    "messageCount": 9,
+    "currentFlow": "Menu ➔ Finalizar Compra",
+    "updatedAt": "2026-11-05T23:50:58.947Z",
+    "attendanceMode": "auto",
+    "modeChangedAt": "2026-11-05T23:50:58.858Z",
+    "modeChangedBy": "teste_a",
+    "automationPaused": false,
+    "lastRuleApplied": "Menu ➔ Finalizar Compra",
+    "lastMessageText": "opcao 4",
+    "activeMenu": {
+      "titulo": "Finalizar Compra",
+      "textoPrincipal": "Opções finais",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Voltar ao menu",
+          "acao": "voltar_menu",
+          "fluxoId": "flow_boas_vindas"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Falar com atendente",
+          "acao": "transferir_humano"
+        }
+      ],
+      "createdAt": "2026-11-05T23:50:58.945Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_boas_vindas",
+        "name": "Boas-vindas Inicial",
+        "timestamp": 1793922658869
+      },
+      {
+        "type": "rule",
+        "id": "rule_menu_principal",
+        "name": "Menu Principal",
+        "timestamp": 1793922658900
+      },
+      {
+        "type": "rule",
+        "id": "rule_menu_principal",
+        "name": "Menu Principal",
+        "timestamp": 1793922658915
+      },
+      {
+        "type": "rule",
+        "id": "rule_menu_principal",
+        "name": "Menu Principal",
+        "timestamp": 1793922658934
+      }
+    ],
+    "currentFlowId": "flow_finalizar_compra",
+    "currentFlowName": "Finalizar Compra",
+    "currentFlowStep": 0,
+    "lastBotReply": "🎉 Excelente escolha! Para concluir seu pedido com segurança total:\n\nAcesse nosso checkout seguro:\nhttps://checkout.brizex.com.br/calcinha-cinta-brizex\n\nAssim que o pagamento for aprovado, nossa equipe já separa seu pacote com todo carinho! 💕\n\n*Finalizar Compra*\n\nOpções finais\n\n*1* - Voltar ao menu\n*2* - Falar com atendente\n\n_Digite o número da opção desejada._",
+    "selectedOption": "Finalizar compra"
+  },
+  "5511999991002": {
+    "id": "5511999991002",
+    "jid": "5511999991002@s.whatsapp.net",
+    "phone": "5511999991002",
+    "senderNumber": "5511999991002",
+    "contactName": "Carla",
+    "senderName": "Carla",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:58.949Z",
+    "startedAt": "2026-11-05T23:50:58.949Z",
+    "createdAt": "2026-11-05T23:50:58.949Z",
+    "lastMessageAt": "2026-11-05T23:50:58.951Z",
+    "lastUserMessage": "preço",
+    "messageCount": 2,
+    "currentFlow": "Regra ➔ Preços e Kits",
+    "updatedAt": "2026-11-05T23:50:58.964Z",
+    "attendanceMode": "auto",
+    "modeChangedAt": "2026-11-05T23:50:58.949Z",
+    "modeChangedBy": "teste_b",
+    "automationPaused": false,
+    "lastRuleApplied": "Regra ➔ Preços e Kits",
+    "lastMessageText": "preço",
+    "activeMenu": {
+      "titulo": "Preços e Kits",
+      "textoPrincipal": "Escolha seu kit",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Escolher 1 unidade (R$ 97,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Escolher 2 unidades (R$ 167,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_3",
+          "numero": 3,
+          "texto": "Escolher 3 unidades (R$ 197,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_4",
+          "numero": 4,
+          "texto": "Escolher 6 unidades (R$ 297,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_5",
+          "numero": 5,
+          "texto": "Voltar ao menu",
+          "acao": "voltar_menu",
+          "fluxoId": "flow_boas_vindas"
+        }
+      ],
+      "createdAt": "2026-11-05T23:50:58.958Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_precos_kits",
+        "name": "Preços e Kits",
+        "timestamp": 1793922658955
+      }
+    ],
+    "currentFlowId": "flow_precos_kits",
+    "currentFlowName": "Preços e Kits",
+    "currentFlowStep": 0,
+    "lastBotReply": "✨ *Ofertas Oficiais Calcinha Cinta Modeladora Brizex:*\n\n1️⃣ *1 unidade:* R$ 97,90 (R$ 97,90/un)\n2️⃣ *2 unidades:* R$ 167,90 (R$ 83,95/un - Mais vendida!)\n3️⃣ *3 unidades:* R$ 197,90 (R$ 65,96/un - Super desconto!)\n4️⃣ *6 unidades:* R$ 297,90 (R$ 49,65/un - Kit Família Econômico)\n\n*Preços e Kits*\n\nEscolha seu kit\n\n*1* - Escolher 1 unidade (R$ 97,90)\n*2* - Escolher 2 unidades (R$ 167,90)\n*3* - Escolher 3 unidades (R$ 197,90)\n*4* - Escolher 6 unidades (R$ 297,90)\n*5* - Voltar ao menu\n\n_Digite o número da opção desejada._"
+  },
+  "5511999991003": {
+    "id": "5511999991003",
+    "jid": "5511999991003@s.whatsapp.net",
+    "phone": "5511999991003",
+    "senderNumber": "5511999991003",
+    "contactName": "Luciana",
+    "senderName": "Luciana",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:59.168Z",
+    "startedAt": "2026-11-05T23:50:59.168Z",
+    "createdAt": "2026-11-05T23:50:59.168Z",
+    "lastMessageAt": "2026-11-05T23:50:59.176Z",
+    "lastUserMessage": "preço",
+    "messageCount": 3,
+    "currentFlow": "Regra ➔ Preços e Kits",
+    "updatedAt": "2026-11-05T23:50:59.184Z",
+    "attendanceMode": "auto",
+    "modeChangedAt": "2026-11-05T23:50:59.172Z",
+    "modeChangedBy": "Operador Teste",
+    "automationPaused": false,
+    "lastMessageText": "preço",
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_precos_kits",
+        "name": "Preços e Kits",
+        "timestamp": 1793922659179
+      }
+    ],
+    "lastRuleApplied": "Regra ➔ Preços e Kits",
+    "activeMenu": {
+      "titulo": "Preços e Kits",
+      "textoPrincipal": "Escolha seu kit",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Escolher 1 unidade (R$ 97,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Escolher 2 unidades (R$ 167,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_3",
+          "numero": 3,
+          "texto": "Escolher 3 unidades (R$ 197,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_4",
+          "numero": 4,
+          "texto": "Escolher 6 unidades (R$ 297,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_5",
+          "numero": 5,
+          "texto": "Voltar ao menu",
+          "acao": "voltar_menu",
+          "fluxoId": "flow_boas_vindas"
+        }
+      ],
+      "createdAt": "2026-11-05T23:50:59.182Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "currentFlowId": "flow_precos_kits",
+    "currentFlowName": "Preços e Kits",
+    "currentFlowStep": 0,
+    "lastBotReply": "✨ *Ofertas Oficiais Calcinha Cinta Modeladora Brizex:*\n\n1️⃣ *1 unidade:* R$ 97,90 (R$ 97,90/un)\n2️⃣ *2 unidades:* R$ 167,90 (R$ 83,95/un - Mais vendida!)\n3️⃣ *3 unidades:* R$ 197,90 (R$ 65,96/un - Super desconto!)\n4️⃣ *6 unidades:* R$ 297,90 (R$ 49,65/un - Kit Família Econômico)\n\n*Preços e Kits*\n\nEscolha seu kit\n\n*1* - Escolher 1 unidade (R$ 97,90)\n*2* - Escolher 2 unidades (R$ 167,90)\n*3* - Escolher 3 unidades (R$ 197,90)\n*4* - Escolher 6 unidades (R$ 297,90)\n*5* - Voltar ao menu\n\n_Digite o número da opção desejada._"
+  },
+  "5511999991004": {
+    "id": "5511999991004",
+    "jid": "5511999991004@s.whatsapp.net",
+    "phone": "5511999991004",
+    "senderNumber": "5511999991004",
+    "contactName": "Cliente",
+    "senderName": "Cliente",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:59.186Z",
+    "startedAt": "2026-11-05T23:50:59.186Z",
+    "createdAt": "2026-11-05T23:50:59.186Z",
+    "lastMessageAt": "2026-11-05T23:50:59.186Z",
+    "lastUserMessage": "",
+    "messageCount": 1,
+    "currentFlow": "Automação Ativa (Robô)",
+    "updatedAt": "2026-11-05T23:50:59.187Z",
+    "attendanceMode": "auto",
+    "modeChangedAt": "2026-11-05T23:50:59.186Z",
+    "modeChangedBy": "operador",
+    "automationPaused": false,
+    "lastRuleApplied": "Robô Ativo"
+  },
+  "5511999991006": {
+    "id": "5511999991006",
+    "jid": "5511999991006@s.whatsapp.net",
+    "phone": "5511999991006",
+    "senderNumber": "5511999991006",
+    "contactName": "Renata",
+    "senderName": "Renata",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:59.196Z",
+    "startedAt": "2026-11-05T23:50:59.196Z",
+    "createdAt": "2026-11-05T23:50:59.196Z",
+    "lastMessageAt": "2026-11-05T23:50:59.205Z",
+    "lastUserMessage": "5",
+    "messageCount": 3,
+    "currentFlow": "Menu ➔ Atendente Humano",
+    "updatedAt": "2026-11-05T23:50:59.210Z",
+    "attendanceMode": "manual",
+    "modeChangedAt": "2026-11-05T23:50:59.209Z",
+    "modeChangedBy": "menu_transferencia",
+    "automationPaused": true,
+    "lastRuleApplied": "Menu ➔ Atendente Humano",
+    "lastMessageText": "5",
+    "activeMenu": null,
+    "waitingForInput": false,
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_menu_principal",
+        "name": "Menu Principal",
+        "timestamp": 1793922659200
+      }
+    ],
+    "currentFlowId": "flow_boas_vindas",
+    "currentFlowName": "Boas-vindas Principal",
+    "currentFlowStep": 0,
+    "lastBotReply": "Transferindo para nossa equipe humana. Um atendente responderá em instantes!",
+    "selectedOption": "Falar com atendente",
+    "pausedAt": "2026-11-05T23:50:59.209Z"
+  },
+  "5511999991007": {
+    "id": "5511999991007",
+    "jid": "5511999991007@s.whatsapp.net",
+    "phone": "5511999991007",
+    "senderNumber": "5511999991007",
+    "contactName": "Fernanda",
+    "senderName": "Fernanda",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:59.212Z",
+    "startedAt": "2026-11-05T23:50:59.212Z",
+    "createdAt": "2026-11-05T23:50:59.212Z",
+    "lastMessageAt": "2026-11-05T23:50:59.221Z",
+    "lastUserMessage": "9",
+    "messageCount": 3,
+    "currentFlow": "Opção de Menu Inválida",
+    "updatedAt": "2026-11-05T23:50:59.223Z",
+    "attendanceMode": "auto",
+    "modeChangedAt": "2026-11-05T23:50:59.212Z",
+    "modeChangedBy": "teste_g",
+    "automationPaused": false,
+    "lastRuleApplied": "Opção de Menu Inválida",
+    "lastMessageText": "9",
+    "activeMenu": {
+      "titulo": "Boas-vindas Principal",
+      "textoPrincipal": "Menu Principal",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Preços e kits",
+          "descricao": "Conferir ofertas especiais",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_precos_kits"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Tamanhos e cores",
+          "descricao": "Tabela de medidas M, G e GG",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_3",
+          "numero": 3,
+          "texto": "Pagamento e entrega",
+          "descricao": "PIX, Cartão e frete",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_pagamento_entrega"
+        },
+        {
+          "id": "opt_4",
+          "numero": 4,
+          "texto": "Finalizar compra",
+          "descricao": "Link de checkout Coinzz",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_finalizar_compra"
+        },
+        {
+          "id": "opt_5",
+          "numero": 5,
+          "texto": "Falar com atendente",
+          "descricao": "Transferência para equipe humana",
+          "acao": "transferir_humano"
+        }
+      ],
+      "createdAt": "2026-11-05T23:50:59.218Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_boas_vindas",
+        "name": "Boas-vindas Inicial",
+        "timestamp": 1793922659216
+      }
+    ],
+    "currentFlowId": "flow_boas_vindas",
+    "currentFlowName": "Boas-vindas Principal",
+    "currentFlowStep": 0,
+    "lastBotReply": "Você digitou *9*, mas as opções do menu vão de *1 a 5*.\n\nPor favor, digite um número entre *1 e 5* (ou digite *menu* para ver as opções novamente)."
+  },
+  "5511999992001": {
+    "id": "5511999992001",
+    "jid": "5511999992001@s.whatsapp.net",
+    "phone": "5511999992001",
+    "senderNumber": "5511999992001",
+    "contactName": "Cliente 0",
+    "senderName": "Cliente 0",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:59.226Z",
+    "startedAt": "2026-11-05T23:50:59.226Z",
+    "createdAt": "2026-11-05T23:50:59.226Z",
+    "lastMessageAt": "2026-11-05T23:50:59.264Z",
+    "lastUserMessage": "1",
+    "messageCount": 3,
+    "currentFlow": "Menu ➔ Preços e Kits",
+    "updatedAt": "2026-11-05T23:50:59.271Z",
+    "attendanceMode": "auto",
+    "modeChangedAt": "2026-11-05T23:50:59.225Z",
+    "modeChangedBy": "teste_i",
+    "automationPaused": false,
+    "lastRuleApplied": "Menu ➔ Preços e Kits",
+    "lastMessageText": "1",
+    "activeMenu": {
+      "titulo": "Preços e Kits",
+      "textoPrincipal": "Escolha seu kit",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Escolher 1 unidade (R$ 97,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Escolher 2 unidades (R$ 167,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_3",
+          "numero": 3,
+          "texto": "Escolher 3 unidades (R$ 197,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_4",
+          "numero": 4,
+          "texto": "Escolher 6 unidades (R$ 297,90)",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_tamanhos_cores"
+        },
+        {
+          "id": "opt_5",
+          "numero": 5,
+          "texto": "Voltar ao menu",
+          "acao": "voltar_menu",
+          "fluxoId": "flow_boas_vindas"
+        }
+      ],
+      "createdAt": "2026-11-05T23:50:59.270Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_boas_vindas",
+        "name": "Boas-vindas Inicial",
+        "timestamp": 1793922659230
+      }
+    ],
+    "currentFlowId": "flow_precos_kits",
+    "currentFlowName": "Preços e Kits",
+    "currentFlowStep": 0,
+    "lastBotReply": "✨ *Ofertas Oficiais Calcinha Cinta Modeladora Brizex:*\n\n1️⃣ *1 unidade:* R$ 97,90 (R$ 97,90/un)\n2️⃣ *2 unidades:* R$ 167,90 (R$ 83,95/un - Mais vendida!)\n3️⃣ *3 unidades:* R$ 197,90 (R$ 65,96/un - Super desconto!)\n4️⃣ *6 unidades:* R$ 297,90 (R$ 49,65/un - Kit Família Econômico)\n\n*Preços e Kits*\n\nEscolha seu kit\n\n*1* - Escolher 1 unidade (R$ 97,90)\n*2* - Escolher 2 unidades (R$ 167,90)\n*3* - Escolher 3 unidades (R$ 197,90)\n*4* - Escolher 6 unidades (R$ 297,90)\n*5* - Voltar ao menu\n\n_Digite o número da opção desejada._",
+    "selectedOption": "Preços e kits"
+  },
+  "5511999992002": {
+    "id": "5511999992002",
+    "jid": "5511999992002@s.whatsapp.net",
+    "phone": "5511999992002",
+    "senderNumber": "5511999992002",
+    "contactName": "Cliente 1",
+    "senderName": "Cliente 1",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:59.236Z",
+    "startedAt": "2026-11-05T23:50:59.236Z",
+    "createdAt": "2026-11-05T23:50:59.236Z",
+    "lastMessageAt": "2026-11-05T23:50:59.272Z",
+    "lastUserMessage": "2",
+    "messageCount": 3,
+    "currentFlow": "Menu ➔ Tamanhos e Cores",
+    "updatedAt": "2026-11-05T23:50:59.278Z",
+    "attendanceMode": "auto",
+    "modeChangedAt": "2026-11-05T23:50:59.235Z",
+    "modeChangedBy": "teste_i",
+    "automationPaused": false,
+    "lastRuleApplied": "Menu ➔ Tamanhos e Cores",
+    "lastMessageText": "2",
+    "activeMenu": {
+      "titulo": "Tamanhos e Cores",
+      "textoPrincipal": "Opções de navegação",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Ver preços e kits",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_precos_kits"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Finalizar compra",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_finalizar_compra"
+        },
+        {
+          "id": "opt_3",
+          "numero": 3,
+          "texto": "Voltar ao menu",
+          "acao": "voltar_menu",
+          "fluxoId": "flow_boas_vindas"
+        }
+      ],
+      "createdAt": "2026-11-05T23:50:59.276Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_boas_vindas",
+        "name": "Boas-vindas Inicial",
+        "timestamp": 1793922659240
+      }
+    ],
+    "currentFlowId": "flow_tamanhos_cores",
+    "currentFlowName": "Tamanhos e Cores",
+    "currentFlowStep": 0,
+    "lastBotReply": "📐 *Tamanhos e Cores Disponíveis:*\n\n• *Tamanhos:* M, G e GG (modelagem anatômica que comprime sem machucar)\n• *Cores:* Bege (discreta para roupas claras) e Preto (clássico e elegante)\n\n*Tamanhos e Cores*\n\nOpções de navegação\n\n*1* - Ver preços e kits\n*2* - Finalizar compra\n*3* - Voltar ao menu\n\n_Digite o número da opção desejada._",
+    "selectedOption": "Tamanhos e cores"
+  },
+  "5511999992003": {
+    "id": "5511999992003",
+    "jid": "5511999992003@s.whatsapp.net",
+    "phone": "5511999992003",
+    "senderNumber": "5511999992003",
+    "contactName": "Cliente 2",
+    "senderName": "Cliente 2",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:59.245Z",
+    "startedAt": "2026-11-05T23:50:59.245Z",
+    "createdAt": "2026-11-05T23:50:59.245Z",
+    "lastMessageAt": "2026-11-05T23:50:59.279Z",
+    "lastUserMessage": "3",
+    "messageCount": 3,
+    "currentFlow": "Menu ➔ Pagamento e Entrega",
+    "updatedAt": "2026-11-05T23:50:59.284Z",
+    "attendanceMode": "auto",
+    "modeChangedAt": "2026-11-05T23:50:59.245Z",
+    "modeChangedBy": "teste_i",
+    "automationPaused": false,
+    "lastRuleApplied": "Menu ➔ Pagamento e Entrega",
+    "lastMessageText": "3",
+    "activeMenu": {
+      "titulo": "Pagamento e Entrega",
+      "textoPrincipal": "Opções de pagamento",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Ver preços e kits",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_precos_kits"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Finalizar compra",
+          "acao": "executar_fluxo",
+          "fluxoId": "flow_finalizar_compra"
+        },
+        {
+          "id": "opt_3",
+          "numero": 3,
+          "texto": "Voltar ao menu",
+          "acao": "voltar_menu",
+          "fluxoId": "flow_boas_vindas"
+        }
+      ],
+      "createdAt": "2026-11-05T23:50:59.282Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_boas_vindas",
+        "name": "Boas-vindas Inicial",
+        "timestamp": 1793922659249
+      }
+    ],
+    "currentFlowId": "flow_pagamento_entrega",
+    "currentFlowName": "Pagamento e Entrega",
+    "currentFlowStep": 0,
+    "lastBotReply": "💳 *Pagamento & Entrega:*\n\n✅ Aceitamos PIX (aprovação na hora) e Cartão de Crédito em até 12x.\n🚚 Frete Rápido com código de rastreamento no WhatsApp.\n🔒 Compra 100% segura com garantia incondicional de 7 dias.\n\n*Pagamento e Entrega*\n\nOpções de pagamento\n\n*1* - Ver preços e kits\n*2* - Finalizar compra\n*3* - Voltar ao menu\n\n_Digite o número da opção desejada._",
+    "selectedOption": "Pagamento e entrega"
+  },
+  "5511999992004": {
+    "id": "5511999992004",
+    "jid": "5511999992004@s.whatsapp.net",
+    "phone": "5511999992004",
+    "senderNumber": "5511999992004",
+    "contactName": "Cliente 3",
+    "senderName": "Cliente 3",
+    "state": "active",
+    "firstMessageAt": "2026-11-05T23:50:59.254Z",
+    "startedAt": "2026-11-05T23:50:59.254Z",
+    "createdAt": "2026-11-05T23:50:59.254Z",
+    "lastMessageAt": "2026-11-05T23:50:59.284Z",
+    "lastUserMessage": "4",
+    "messageCount": 3,
+    "currentFlow": "Menu ➔ Finalizar Compra",
+    "updatedAt": "2026-11-05T23:50:59.291Z",
+    "attendanceMode": "auto",
+    "modeChangedAt": "2026-11-05T23:50:59.254Z",
+    "modeChangedBy": "teste_i",
+    "automationPaused": false,
+    "lastRuleApplied": "Menu ➔ Finalizar Compra",
+    "lastMessageText": "4",
+    "activeMenu": {
+      "titulo": "Finalizar Compra",
+      "textoPrincipal": "Opções finais",
+      "formato": "numerado",
+      "opcoes": [
+        {
+          "id": "opt_1",
+          "numero": 1,
+          "texto": "Voltar ao menu",
+          "acao": "voltar_menu",
+          "fluxoId": "flow_boas_vindas"
+        },
+        {
+          "id": "opt_2",
+          "numero": 2,
+          "texto": "Falar com atendente",
+          "acao": "transferir_humano"
+        }
+      ],
+      "createdAt": "2026-11-05T23:50:59.289Z",
+      "aguardandoResposta": true
+    },
+    "waitingForInput": true,
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "rule_boas_vindas",
+        "name": "Boas-vindas Inicial",
+        "timestamp": 1793922659258
+      }
+    ],
+    "currentFlowId": "flow_finalizar_compra",
+    "currentFlowName": "Finalizar Compra",
+    "currentFlowStep": 0,
+    "lastBotReply": "🎉 Excelente escolha! Para concluir seu pedido com segurança total:\n\nAcesse nosso checkout seguro:\nhttps://checkout.brizex.com.br/calcinha-cinta-brizex\n\nAssim que o pagamento for aprovado, nossa equipe já separa seu pacote com todo carinho! 💕\n\n*Finalizar Compra*\n\nOpções finais\n\n*1* - Voltar ao menu\n*2* - Falar com atendente\n\n_Digite o número da opção desejada._",
+    "selectedOption": "Finalizar compra"
+  },
+  "5511999990001": {
+    "id": "5511999990001",
+    "jid": "5511999990001@s.whatsapp.net",
+    "phone": "5511999990001",
+    "senderNumber": "5511999990001",
+    "contactName": "Cliente",
+    "senderName": "Cliente",
+    "state": "active",
+    "firstMessageAt": "2026-11-06T00:59:10.582Z",
+    "startedAt": "2026-11-06T00:59:10.582Z",
+    "createdAt": "2026-11-06T00:59:10.582Z",
+    "lastMessageAt": "2026-11-06T01:01:51.969Z",
+    "lastUserMessage": "oi",
+    "messageCount": 2,
+    "currentFlow": "Atendimento Manual",
+    "updatedAt": "2026-11-06T01:01:51.969Z",
+    "activeMenu": null,
+    "waitingForInput": false,
+    "lastMessageText": "oi"
+  },
+  "5511999990002": {
+    "id": "5511999990002",
+    "jid": "5511999990002@s.whatsapp.net",
+    "phone": "5511999990002",
+    "senderNumber": "5511999990002",
+    "contactName": "Cliente",
+    "senderName": "Cliente",
+    "state": "active",
+    "firstMessageAt": "2026-11-06T00:59:10.590Z",
+    "startedAt": "2026-11-06T00:59:10.590Z",
+    "createdAt": "2026-11-06T00:59:10.590Z",
+    "lastMessageAt": "2026-11-06T01:01:51.975Z",
+    "lastUserMessage": "quero a ofertax por favor",
+    "messageCount": 2,
+    "currentFlow": "Regra ➔ Fluxo Livre VIP",
+    "updatedAt": "2026-11-06T01:01:51.988Z",
+    "activeMenu": null,
+    "waitingForInput": false,
+    "lastMessageText": "quero a ofertax por favor",
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "test_rule_1793926911971",
+        "name": "Regra de Teste Oferta",
+        "timestamp": 1793926911981
+      }
+    ],
+    "currentFlowId": "test_flow_vazio_1793926911963",
+    "currentFlowName": "Fluxo Livre VIP",
+    "currentFlowStep": 0,
+    "lastBotReply": "Super oferta especial desbloqueada com sucesso!",
+    "lastRuleApplied": "Regra ➔ Fluxo Livre VIP"
+  },
+  "5511999990003": {
+    "id": "5511999990003",
+    "jid": "5511999990003@s.whatsapp.net",
+    "phone": "5511999990003",
+    "senderNumber": "5511999990003",
+    "contactName": "Cliente",
+    "senderName": "Cliente",
+    "state": "active",
+    "firstMessageAt": "2026-11-06T00:59:10.594Z",
+    "startedAt": "2026-11-06T00:59:10.594Z",
+    "createdAt": "2026-11-06T00:59:10.594Z",
+    "lastMessageAt": "2026-11-06T01:01:51.993Z",
+    "lastUserMessage": "ofertax",
+    "messageCount": 2,
+    "currentFlow": "Regra de Teste Oferta",
+    "updatedAt": "2026-11-06T01:01:52.002Z",
+    "activeMenu": null,
+    "waitingForInput": false,
+    "lastMessageText": "ofertax",
+    "recentTransitions": [
+      {
+        "type": "rule",
+        "id": "test_rule_1793926911971",
+        "name": "Regra de Teste Oferta",
+        "timestamp": 1793926911998
+      }
+    ],
+    "lastBotReply": "Resposta direta caso sem fluxo",
+    "lastRuleApplied": "Regra de Teste Oferta"
+  },
+  "5511999990004": {
+    "id": "5511999990004",
+    "jid": "5511999990004@s.whatsapp.net",
+    "phone": "5511999990004",
+    "senderNumber": "5511999990004",
+    "contactName": "Cliente",
+    "senderName": "Cliente",
+    "state": "active",
+    "firstMessageAt": "2026-11-06T00:59:10.597Z",
+    "startedAt": "2026-11-06T00:59:10.597Z",
+    "createdAt": "2026-11-06T00:59:10.597Z",
+    "lastMessageAt": "2026-11-06T01:01:52.006Z",
+    "lastUserMessage": "ofertax",
+    "messageCount": 2,
+    "currentFlow": "Atendimento Manual",
+    "updatedAt": "2026-11-06T01:01:52.006Z",
+    "activeMenu": null,
+    "waitingForInput": false,
+    "lastMessageText": "ofertax"
+  }
+}

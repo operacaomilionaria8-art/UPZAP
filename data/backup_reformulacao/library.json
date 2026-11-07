@@ -1,0 +1,29 @@
+[
+  {
+    "id": "lib_tabela_precos",
+    "name": "Tabela de Preços Oficiais Brizex",
+    "type": "texto",
+    "category": "Tabela de Preços",
+    "content": "✨ *Ofertas Oficiais Calcinha Cinta Modeladora Brizex:*\n\n1️⃣ *1 unidade:* R$ 97,90 (R$ 97,90/un)\n2️⃣ *2 unidades:* R$ 167,90 (R$ 83,95/un - Mais vendida!)\n3️⃣ *3 unidades:* R$ 197,90 (R$ 65,96/un - Super desconto!)\n4️⃣ *6 unidades:* R$ 297,90 (R$ 49,65/un - Kit Família Econômico)",
+    "size": "1 KB",
+    "updatedAt": "2026-10-16T13:28:52.160Z"
+  },
+  {
+    "id": "lib_tabela_medidas",
+    "name": "Tabela de Tamanhos e Cores",
+    "type": "texto",
+    "category": "Informações de Produtos",
+    "content": "📐 *Tamanhos e Cores Disponíveis:*\n\n• *Tamanhos:* M, G e GG (modelagem anatômica que comprime sem machucar)\n• *Cores:* Bege (discreta para roupas claras) e Preto (clássico e elegante)",
+    "size": "1 KB",
+    "updatedAt": "2026-10-16T13:28:52.161Z"
+  },
+  {
+    "id": "lib_garantia_entrega",
+    "name": "Garantia e Envio Brizex",
+    "type": "texto",
+    "category": "Respostas Comerciais",
+    "content": "🚚 *Frete Rápido:* Enviamos para todo o Brasil com código de rastreamento imediato no WhatsApp.\n🔒 *Garantia Incondicional:* 7 dias para testar! Se não gostar, devolvemos seu dinheiro.",
+    "size": "1 KB",
+    "updatedAt": "2026-10-16T13:28:52.161Z"
+  }
+]

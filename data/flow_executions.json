@@ -1,0 +1,1322 @@
+[
+  {
+    "id": "exec_1793922606788_refd",
+    "flowId": "flow_1793922606762_ajkr",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793922606757_u6at",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T23:50:06.788Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T23:50:06.789Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T23:50:06.789Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T23:50:06.790Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T23:50:06.790Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T23:50:06.791Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T23:50:06.793Z"
+  },
+  {
+    "id": "exec_1793922606779_uxtz",
+    "flowId": "flow_1793922606761_qtm2",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793922606757_u6at",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T23:50:06.779Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T23:50:06.780Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T23:50:06.781Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T23:50:06.781Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T23:50:06.781Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T23:50:06.782Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T23:50:06.785Z"
+  },
+  {
+    "id": "exec_1793844109003_n44f",
+    "flowId": "flow_1793844108979_7hs8",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793844108974_0uy5",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T02:01:49.003Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T02:01:49.004Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T02:01:49.004Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T02:01:49.004Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T02:01:49.004Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T02:01:49.005Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T02:01:49.007Z"
+  },
+  {
+    "id": "exec_1793844108994_6evm",
+    "flowId": "flow_1793844108978_a1dv",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793844108974_0uy5",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T02:01:48.994Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T02:01:48.995Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T02:01:48.996Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T02:01:48.996Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T02:01:48.996Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T02:01:48.997Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T02:01:48.999Z"
+  },
+  {
+    "id": "exec_1793843856008_cdco",
+    "flowId": "flow_1793843855983_ygr0",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793843855978_j7x2",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T01:57:36.008Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T01:57:36.009Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T01:57:36.010Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T01:57:36.010Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T01:57:36.010Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T01:57:36.011Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T01:57:36.013Z"
+  },
+  {
+    "id": "exec_1793843855999_8k7s",
+    "flowId": "flow_1793843855982_wrsn",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793843855978_j7x2",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T01:57:35.999Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T01:57:36.001Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T01:57:36.002Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T01:57:36.002Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T01:57:36.002Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T01:57:36.003Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T01:57:36.005Z"
+  },
+  {
+    "id": "exec_1793841743103_2pv9",
+    "flowId": "flow_1793841743071_kddt",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793841743066_94yh",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T01:22:23.103Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T01:22:23.104Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T01:22:23.104Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T01:22:23.104Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T01:22:23.104Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T01:22:23.105Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T01:22:23.109Z"
+  },
+  {
+    "id": "exec_1793841743093_lzm4",
+    "flowId": "flow_1793841743070_qxf9",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793841743066_94yh",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T01:22:23.093Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T01:22:23.095Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T01:22:23.096Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T01:22:23.096Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T01:22:23.096Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T01:22:23.097Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T01:22:23.100Z"
+  },
+  {
+    "id": "exec_1793841739402_xra3",
+    "flowId": "flow_1793841739383_sq7y",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793841739376_ly7z",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T01:22:19.402Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T01:22:19.404Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T01:22:19.404Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T01:22:19.404Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T01:22:19.404Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T01:22:19.405Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T01:22:19.408Z"
+  },
+  {
+    "id": "exec_1793841739394_uiip",
+    "flowId": "flow_1793841739381_ngiq",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793841739376_ly7z",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T01:22:19.394Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T01:22:19.395Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T01:22:19.396Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T01:22:19.396Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T01:22:19.396Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T01:22:19.397Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T01:22:19.400Z"
+  },
+  {
+    "id": "exec_1793841720175_a0mq",
+    "flowId": "flow_1793841720157_b50o",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793841720153_6kca",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T01:22:00.175Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T01:22:00.176Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T01:22:00.177Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T01:22:00.177Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T01:22:00.177Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T01:22:00.177Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T01:22:00.179Z"
+  },
+  {
+    "id": "exec_1793841720168_3ier",
+    "flowId": "flow_1793841720156_q4tu",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793841720153_6kca",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-05T01:22:00.168Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-05T01:22:00.169Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-05T01:22:00.169Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-05T01:22:00.169Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-05T01:22:00.169Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-05T01:22:00.170Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-05T01:22:00.172Z"
+  },
+  {
+    "id": "exec_1793757900038_f7jd",
+    "flowId": "flow_1793757900019_v856",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793757900014_f2vn",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-04T02:05:00.038Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-04T02:05:00.039Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-04T02:05:00.039Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-04T02:05:00.039Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-04T02:05:00.039Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-04T02:05:00.040Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-04T02:05:00.042Z"
+  },
+  {
+    "id": "exec_1793757900031_hgn8",
+    "flowId": "flow_1793757900017_0c5b",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793757900014_f2vn",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-04T02:05:00.031Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-04T02:05:00.032Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-04T02:05:00.033Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-04T02:05:00.033Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-04T02:05:00.033Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-04T02:05:00.034Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-04T02:05:00.036Z"
+  },
+  {
+    "id": "exec_1793755384063_4b2d",
+    "flowId": "flow_1793755384042_ijjd",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793755384037_pqhf",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-04T01:23:04.063Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-04T01:23:04.064Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-04T01:23:04.064Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-04T01:23:04.064Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-04T01:23:04.064Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-04T01:23:04.066Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-04T01:23:04.069Z"
+  },
+  {
+    "id": "exec_1793755384056_8p4s",
+    "flowId": "flow_1793755384041_h22j",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793755384037_pqhf",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-04T01:23:04.056Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-04T01:23:04.057Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-04T01:23:04.057Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-04T01:23:04.057Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-04T01:23:04.058Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-04T01:23:04.058Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-04T01:23:04.060Z"
+  },
+  {
+    "id": "exec_1793753966334_vo98",
+    "flowId": "flow_1793753966315_rd20",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793753966310_d8w9",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-04T00:59:26.334Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-04T00:59:26.335Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-04T00:59:26.335Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-04T00:59:26.335Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-04T00:59:26.335Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-04T00:59:26.336Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-04T00:59:26.337Z"
+  },
+  {
+    "id": "exec_1793753966327_3sri",
+    "flowId": "flow_1793753966313_9k6e",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793753966310_d8w9",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-04T00:59:26.327Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-04T00:59:26.328Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-04T00:59:26.329Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-04T00:59:26.329Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-04T00:59:26.329Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-04T00:59:26.330Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-04T00:59:26.332Z"
+  },
+  {
+    "id": "exec_1793753912736_18i0",
+    "flowId": "flow_1793753912718_a3vo",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793753912713_d334",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-04T00:58:32.736Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-04T00:58:32.737Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-04T00:58:32.737Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-04T00:58:32.737Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-04T00:58:32.737Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-04T00:58:32.738Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-04T00:58:32.740Z"
+  },
+  {
+    "id": "exec_1793753912730_t5x1",
+    "flowId": "flow_1793753912717_79gh",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793753912713_d334",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-04T00:58:32.730Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-04T00:58:32.731Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-04T00:58:32.732Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-04T00:58:32.732Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-04T00:58:32.732Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-04T00:58:32.733Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-04T00:58:32.734Z"
+  },
+  {
+    "id": "exec_1793573224772_3093",
+    "flowId": "flow_1793573224755_sdq6",
+    "flowName": "Fluxo Acompanhamento de Pedido (Cópia)",
+    "ruleId": "rule_1793573224749_582m",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-01T22:47:04.772Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-01T22:47:04.772Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-01T22:47:04.773Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-01T22:47:04.773Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-01T22:47:04.773Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-01T22:47:04.777Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-01T22:47:04.777Z"
+  },
+  {
+    "id": "exec_1793573224766_5v1d",
+    "flowId": "flow_1793573224753_f4cs",
+    "flowName": "Fluxo Acompanhamento de Pedido",
+    "ruleId": "rule_1793573224749_582m",
+    "ruleName": "Regra Teste Pedido Agendado",
+    "clienteNome": "Marina Silva",
+    "clienteTelefone": "5511999887766",
+    "orderId": "BZ-9921",
+    "logzzOrderId": "BZ-9921",
+    "origem": "brizex",
+    "status": "Concluído",
+    "etapaAtual": "Concluído",
+    "etapaIndex": 5,
+    "totalEtapas": 5,
+    "startedAt": "2026-11-01T22:47:04.767Z",
+    "stepsLog": [
+      {
+        "blocoId": "b_regra_1",
+        "tipoBloco": "regra",
+        "titulo": "Regra Teste Pedido Agendado",
+        "executadoEm": "2026-11-01T22:47:04.767Z",
+        "status": "sucesso",
+        "detalhes": "Regra acionada: Regra Teste Pedido Agendado"
+      },
+      {
+        "blocoId": "b_msg_1",
+        "tipoBloco": "texto",
+        "titulo": "Mensagem de Texto",
+        "executadoEm": "2026-11-01T22:47:04.768Z",
+        "status": "sucesso",
+        "detalhes": "Olá, Marina! Recebemos seu pedido #BZ-9921 (Status..."
+      },
+      {
+        "blocoId": "b_delay_1",
+        "tipoBloco": "delay",
+        "titulo": "Espera (2s)",
+        "executadoEm": "2026-11-01T22:47:04.768Z",
+        "status": "sucesso",
+        "detalhes": "Pausa calculada de 2 segundos."
+      },
+      {
+        "blocoId": "b_tag_1",
+        "tipoBloco": "tag",
+        "titulo": "Etiqueta CRM: cliente_brizex_agendado",
+        "executadoEm": "2026-11-01T22:47:04.768Z",
+        "status": "sucesso",
+        "detalhes": "Tag \"cliente_brizex_agendado\" atribuída ao contato."
+      },
+      {
+        "blocoId": "b_fim_1",
+        "tipoBloco": "encerrar",
+        "titulo": "Encerrar Fluxo",
+        "executadoEm": "2026-11-01T22:47:04.768Z",
+        "status": "sucesso",
+        "detalhes": "Atendimento finalizado."
+      }
+    ],
+    "completedAt": "2026-11-01T22:47:04.769Z"
+  }
+]

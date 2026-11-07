@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UpZap Base Oficial de Automação</title>
+    <meta name="description" content="Base Oficial de Automação e Identidade da Atendente UpZap para Cinta Modeladora Premium" />
+    <meta property="og:title" content="UpZap Base Oficial de Automação" />
+    <meta property="og:description" content="Base Oficial de Automação e Identidade da Atendente UpZap para Cinta Modeladora Premium" />
+    <script>
+      (function() {
+        try {
+          var savedTheme = localStorage.getItem('upzap_theme');
+          if (savedTheme === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

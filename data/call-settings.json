@@ -1,0 +1,7 @@
+{
+  "autoRejectCalls": true,
+  "sendWarningMessage": true,
+  "warningMessageText": "Olá! Não consigo atender chamadas de voz ou vídeo neste número. Por favor, envie sua dúvida por texto ou áudio por aqui que te respondo.",
+  "warningDelaySeconds": 1,
+  "updatedAt": "2026-08-31T14:55:00.000Z"
+}

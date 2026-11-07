@@ -1,0 +1,295 @@
+{
+  "fluxos": [
+    {
+      "id": "flow_1793925175537_p2as",
+      "nome": "oiiii",
+      "descricao": "Fluxo de atendimento inteligente UpZap",
+      "status": "Publicado",
+      "ativo": true,
+      "regraGatilhoId": "rule_1793925168093_esuz",
+      "regraGatilhoNome": "oiii",
+      "isWelcomeFlow": false,
+      "blocos": [
+        {
+          "id": "b_node_start_flow_1793925175537_p2as",
+          "tipo": "texto",
+          "conteudo": "Início do fluxo: oiiii. Clique no '+' para adicionar novos blocos.",
+          "delay": 1,
+          "x": -128,
+          "y": 176
+        },
+        {
+          "id": "b_node_mensagem_48z3",
+          "tipo": "texto",
+          "conteudo": "oiiiii {{nome}}",
+          "delay": 1.5,
+          "x": 240,
+          "y": 176
+        }
+      ],
+      "canvasNodes": [
+        {
+          "id": "node_start_flow_1793925175537_p2as",
+          "type": "inicio",
+          "x": -128,
+          "y": 176,
+          "width": 300,
+          "data": {
+            "titulo": "oiiii",
+            "conteudo": "Início do fluxo: oiiii. Clique no '+' para adicionar novos blocos."
+          }
+        },
+        {
+          "id": "node_mensagem_48z3",
+          "type": "mensagem",
+          "x": 240,
+          "y": 176,
+          "width": 320,
+          "data": {
+            "conteudo": "oiiiii {{nome}}",
+            "delay": 1.5
+          }
+        }
+      ],
+      "canvasConnections": [
+        {
+          "id": "conn_node_start_flow_1793925175537_p2as_output_node_mensagem_48z3_mw48z51u",
+          "fromNodeId": "node_start_flow_1793925175537_p2as",
+          "fromPortId": "output",
+          "toNodeId": "node_mensagem_48z3"
+        }
+      ],
+      "createdAt": "2026-11-06T00:39:26.157Z",
+      "updatedAt": "2026-11-06T00:40:04.613Z"
+    },
+    {
+      "id": "flow_boas_vindas",
+      "nome": "Boas-vindas Principal",
+      "descricao": "Saudação acolhedora e menu principal da loja Brizex",
+      "status": "Publicado",
+      "isWelcomeFlow": true,
+      "updatedAt": "2026-10-31T12:06:18.903Z",
+      "blocos": [
+        {
+          "id": "b_bv_1",
+          "tipo": "texto",
+          "conteudo": "Olá! 💕 Seja muito bem-vinda à Brizex! Como posso te ajudar hoje?",
+          "delay": 1.5
+        },
+        {
+          "id": "b_bv_2",
+          "tipo": "menu",
+          "conteudo": "Menu Principal",
+          "opcoes": [
+            {
+              "numero": 1,
+              "texto": "Preços e kits",
+              "descricao": "Conferir ofertas especiais",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_precos_kits"
+            },
+            {
+              "numero": 2,
+              "texto": "Tamanhos e cores",
+              "descricao": "Tabela de medidas M, G e GG",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_tamanhos_cores"
+            },
+            {
+              "numero": 3,
+              "texto": "Pagamento e entrega",
+              "descricao": "PIX, Cartão e frete",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_pagamento_entrega"
+            },
+            {
+              "numero": 4,
+              "texto": "Finalizar compra",
+              "descricao": "Link de checkout Coinzz",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_finalizar_compra"
+            },
+            {
+              "numero": 5,
+              "texto": "Falar com atendente",
+              "descricao": "Transferência para equipe humana",
+              "acao": "transferir_humano"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow_precos_kits",
+      "nome": "Preços e Kits",
+      "descricao": "Apresenta as 4 ofertas oficiais da Calcinha Cinta Modeladora",
+      "status": "Publicado",
+      "isWelcomeFlow": false,
+      "updatedAt": "2026-10-31T12:05:56.672Z",
+      "blocos": [
+        {
+          "id": "b_pk_1",
+          "tipo": "texto",
+          "conteudo": "✨ *Ofertas Oficiais Calcinha Cinta Modeladora Brizex:*\n\n1️⃣ *1 unidade:* R$ 97,90\n2️⃣ *2 unidades:* R$ 167,90 (Mais vendida!)\n3️⃣ *3 unidades:* R$ 197,90 (Super desconto!)\n4️⃣ *6 unidades:* R$ 297,90 (Kit Família Econômico)",
+          "libraryItemId": "lib_tabela_precos",
+          "delay": 1
+        },
+        {
+          "id": "b_pk_2",
+          "tipo": "menu",
+          "conteudo": "Escolha seu kit",
+          "opcoes": [
+            {
+              "numero": 1,
+              "texto": "Escolher 1 unidade (R$ 97,90)",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_tamanhos_cores"
+            },
+            {
+              "numero": 2,
+              "texto": "Escolher 2 unidades (R$ 167,90)",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_tamanhos_cores"
+            },
+            {
+              "numero": 3,
+              "texto": "Escolher 3 unidades (R$ 197,90)",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_tamanhos_cores"
+            },
+            {
+              "numero": 4,
+              "texto": "Escolher 6 unidades (R$ 297,90)",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_tamanhos_cores"
+            },
+            {
+              "numero": 5,
+              "texto": "Voltar ao menu",
+              "acao": "voltar_menu",
+              "fluxoId": "flow_boas_vindas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow_tamanhos_cores",
+      "nome": "Tamanhos e Cores",
+      "descricao": "Orientações de tamanhos M, G, GG e cores bege e preto",
+      "status": "Publicado",
+      "isWelcomeFlow": false,
+      "updatedAt": "2026-10-31T12:05:56.672Z",
+      "blocos": [
+        {
+          "id": "b_tc_1",
+          "tipo": "texto",
+          "conteudo": "📐 *Tamanhos e Cores Disponíveis:*\n\nTamanhos: *M*, *G* e *GG* (nossa modelagem anatômica se adapta perfeitamente ao seu corpo).\nCores: *Bege* (discreta) e *Preto* (elegante).\n\nComo você prefere continuar?",
+          "libraryItemId": "lib_tabela_medidas",
+          "delay": 1
+        },
+        {
+          "id": "b_tc_2",
+          "tipo": "menu",
+          "conteudo": "Opções de navegação",
+          "opcoes": [
+            {
+              "numero": 1,
+              "texto": "Ver preços e kits",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_precos_kits"
+            },
+            {
+              "numero": 2,
+              "texto": "Finalizar compra",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_finalizar_compra"
+            },
+            {
+              "numero": 3,
+              "texto": "Voltar ao menu",
+              "acao": "voltar_menu",
+              "fluxoId": "flow_boas_vindas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow_pagamento_entrega",
+      "nome": "Pagamento e Entrega",
+      "descricao": "Formas de pagamento PIX/Cartão e prazos de entrega",
+      "status": "Publicado",
+      "isWelcomeFlow": false,
+      "updatedAt": "2026-10-31T12:05:56.673Z",
+      "blocos": [
+        {
+          "id": "b_pe_1",
+          "tipo": "texto",
+          "conteudo": "💳 *Pagamento & Entrega:*\n\n✅ Aceitamos PIX (aprovação na hora) e Cartão de Crédito em até 12x.\n🚚 Frete Rápido com código de rastreamento no WhatsApp.\n🔒 Compra 100% segura com garantia incondicional de 7 dias.",
+          "delay": 1
+        },
+        {
+          "id": "b_pe_2",
+          "tipo": "menu",
+          "conteudo": "Opções de pagamento",
+          "opcoes": [
+            {
+              "numero": 1,
+              "texto": "Ver preços e kits",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_precos_kits"
+            },
+            {
+              "numero": 2,
+              "texto": "Finalizar compra",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_finalizar_compra"
+            },
+            {
+              "numero": 3,
+              "texto": "Voltar ao menu",
+              "acao": "voltar_menu",
+              "fluxoId": "flow_boas_vindas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow_finalizar_compra",
+      "nome": "Finalizar Compra",
+      "descricao": "Link seguro de checkout com orientações de pagamento",
+      "status": "Publicado",
+      "isWelcomeFlow": false,
+      "updatedAt": "2026-10-31T12:05:56.673Z",
+      "blocos": [
+        {
+          "id": "b_fc_1",
+          "tipo": "texto",
+          "conteudo": "🎉 Excelente escolha! Para concluir seu pedido com segurança total:\n\nAcesse nosso checkout seguro:\n{{linkCheckout}}\n\nAssim que o pagamento for aprovado, nossa equipe já separa seu pacote com todo carinho! 💕",
+          "delay": 1
+        },
+        {
+          "id": "b_fc_2",
+          "tipo": "menu",
+          "conteudo": "Opções finais",
+          "opcoes": [
+            {
+              "numero": 1,
+              "texto": "Voltar ao menu",
+              "acao": "voltar_menu",
+              "fluxoId": "flow_boas_vindas"
+            },
+            {
+              "numero": 2,
+              "texto": "Falar com atendente",
+              "acao": "transferir_humano"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "blocos": []
+}

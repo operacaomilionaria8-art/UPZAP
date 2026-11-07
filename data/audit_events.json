@@ -1,0 +1,1390 @@
+[
+  {
+    "id": "audit_1793922612857_hncpt",
+    "timestamp": "2026-11-05T23:50:12.857Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793922612848 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793922612848",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793922606795_741qs",
+    "timestamp": "2026-11-05T23:50:06.795Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793922606762_ajkr",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793922606786_hcmv1",
+    "timestamp": "2026-11-05T23:50:06.786Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793922606761_qtm2",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793922532295_3yaeo",
+    "timestamp": "2026-11-05T23:48:52.295Z",
+    "type": "system_alert",
+    "level": "error",
+    "title": "Exceção Fatal Não Tratada",
+    "description": "listen EADDRINUSE: address already in use 0.0.0.0:8080"
+  },
+  {
+    "id": "audit_1793844996541_hycgj",
+    "timestamp": "2026-11-05T02:16:36.541Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Queda de Conexão WhatsApp",
+    "description": "WhatsApp restabelecido: +5511999998888",
+    "details": {
+      "alertKey": "whatsapp_disconnected",
+      "resolvedAt": "2026-11-05T02:16:36.540Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793844996539_zznbx",
+    "timestamp": "2026-11-05T02:16:36.539Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Falha de Conexão Crítica",
+    "description": "Conexão restaurada com sucesso.",
+    "details": {
+      "alertKey": "test_conn_drop",
+      "resolvedAt": "2026-11-05T02:16:36.538Z"
+    },
+    "soundEvent": "reconexao_concluida"
+  },
+  {
+    "id": "audit_1793844888287_4ldrs",
+    "timestamp": "2026-11-05T02:14:48.287Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793844888273 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793844888273",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793844882108_p9zzb",
+    "timestamp": "2026-11-05T02:14:42.108Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: WhatsApp Desconectado",
+    "description": "Sessão restabelecida com sucesso",
+    "details": {
+      "alertKey": "wa_disconnect_test",
+      "resolvedAt": "2026-11-05T02:14:42.107Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793844109008_dl2av",
+    "timestamp": "2026-11-05T02:01:49.008Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793844108979_7hs8",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793844109001_75gly",
+    "timestamp": "2026-11-05T02:01:49.001Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793844108978_a1dv",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793843856014_izwue",
+    "timestamp": "2026-11-05T01:57:36.014Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793843855983_ygr0",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793843856007_94d0v",
+    "timestamp": "2026-11-05T01:57:36.007Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793843855982_wrsn",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793841743111_7rr12",
+    "timestamp": "2026-11-05T01:22:23.111Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793841743071_kddt",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793841743101_lqnhx",
+    "timestamp": "2026-11-05T01:22:23.101Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793841743070_qxf9",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793841739409_0wp5k",
+    "timestamp": "2026-11-05T01:22:19.409Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793841739383_sq7y",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793841739401_2d1z4",
+    "timestamp": "2026-11-05T01:22:19.401Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793841739381_ngiq",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793841737800_4ktay",
+    "timestamp": "2026-11-05T01:22:17.800Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Queda de Conexão WhatsApp",
+    "description": "WhatsApp restabelecido: +5511999998888",
+    "details": {
+      "alertKey": "whatsapp_disconnected",
+      "resolvedAt": "2026-11-05T01:22:17.800Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793841737799_dmcbe",
+    "timestamp": "2026-11-05T01:22:17.799Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Falha de Conexão Crítica",
+    "description": "Conexão restaurada com sucesso.",
+    "details": {
+      "alertKey": "test_conn_drop",
+      "resolvedAt": "2026-11-05T01:22:17.798Z"
+    },
+    "soundEvent": "reconexao_concluida"
+  },
+  {
+    "id": "audit_1793841735628_i5kc2",
+    "timestamp": "2026-11-05T01:22:15.628Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793841735620 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793841735620",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793841734558_ks8ro",
+    "timestamp": "2026-11-05T01:22:14.558Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: WhatsApp Desconectado",
+    "description": "Sessão restabelecida com sucesso",
+    "details": {
+      "alertKey": "wa_disconnect_test",
+      "resolvedAt": "2026-11-05T01:22:14.557Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793841722417_e8eyc",
+    "timestamp": "2026-11-05T01:22:02.417Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: WhatsApp Desconectado",
+    "description": "Sessão restabelecida com sucesso",
+    "details": {
+      "alertKey": "wa_disconnect_test",
+      "resolvedAt": "2026-11-05T01:22:02.417Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793841721327_9rex9",
+    "timestamp": "2026-11-05T01:22:01.327Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Queda de Conexão WhatsApp",
+    "description": "WhatsApp restabelecido: +5511999998888",
+    "details": {
+      "alertKey": "whatsapp_disconnected",
+      "resolvedAt": "2026-11-05T01:22:01.327Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793841721325_3a92n",
+    "timestamp": "2026-11-05T01:22:01.325Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Falha de Conexão Crítica",
+    "description": "Conexão restaurada com sucesso.",
+    "details": {
+      "alertKey": "test_conn_drop",
+      "resolvedAt": "2026-11-05T01:22:01.325Z"
+    },
+    "soundEvent": "reconexao_concluida"
+  },
+  {
+    "id": "audit_1793841720533_dpg20",
+    "timestamp": "2026-11-05T01:22:00.533Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793841720525 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793841720525",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793841720180_3seou",
+    "timestamp": "2026-11-05T01:22:00.180Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793841720157_b50o",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793841720174_1y1r9",
+    "timestamp": "2026-11-05T01:22:00.174Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793841720156_q4tu",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793757947731_ggbt6",
+    "timestamp": "2026-11-04T02:05:47.731Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793757947723 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793757947723",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793757943588_yuv96",
+    "timestamp": "2026-11-04T02:05:43.588Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: WhatsApp Desconectado",
+    "description": "Sessão restabelecida com sucesso",
+    "details": {
+      "alertKey": "wa_disconnect_test",
+      "resolvedAt": "2026-11-04T02:05:43.588Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793757900042_cg1kr",
+    "timestamp": "2026-11-04T02:05:00.042Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793757900019_v856",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793757900037_2398q",
+    "timestamp": "2026-11-04T02:05:00.037Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793757900017_0c5b",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793755384070_uy67w",
+    "timestamp": "2026-11-04T01:23:04.070Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793755384042_ijjd",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793755384062_p7w0a",
+    "timestamp": "2026-11-04T01:23:04.062Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793755384041_h22j",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793753966338_bttjw",
+    "timestamp": "2026-11-04T00:59:26.338Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793753966315_rd20",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793753966333_wu92d",
+    "timestamp": "2026-11-04T00:59:26.333Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793753966313_9k6e",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793753964568_vumob",
+    "timestamp": "2026-11-04T00:59:24.568Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793753964560 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793753964560",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793753963668_fu185",
+    "timestamp": "2026-11-04T00:59:23.668Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: WhatsApp Desconectado",
+    "description": "Sessão restabelecida com sucesso",
+    "details": {
+      "alertKey": "wa_disconnect_test",
+      "resolvedAt": "2026-11-04T00:59:23.668Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793753912740_hg3zz",
+    "timestamp": "2026-11-04T00:58:32.740Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793753912718_a3vo",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793753912735_8g7ce",
+    "timestamp": "2026-11-04T00:58:32.735Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793753912717_79gh",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793753885068_rrqy4",
+    "timestamp": "2026-11-04T00:58:05.068Z",
+    "type": "whatsapp_connection",
+    "level": "info",
+    "title": "Reconexão Automática (#6/10)",
+    "description": "Tentativa de reconexão #6 agendada em 60s (código 408).",
+    "details": {
+      "attempt": 6,
+      "maxAttempts": 10,
+      "delaySeconds": 60,
+      "maxBackoff": 60,
+      "statusCode": 408,
+      "isDrop": false
+    }
+  },
+  {
+    "id": "audit_1793753676216_pr4yo",
+    "timestamp": "2026-11-04T00:54:36.216Z",
+    "type": "whatsapp_connection",
+    "level": "info",
+    "title": "Reconexão Automática (#5/10)",
+    "description": "Tentativa de reconexão #5 agendada em 48s (código 408).",
+    "details": {
+      "attempt": 5,
+      "maxAttempts": 10,
+      "delaySeconds": 48,
+      "maxBackoff": 60,
+      "statusCode": 408,
+      "isDrop": false
+    }
+  },
+  {
+    "id": "audit_1793753576771_02s5p",
+    "timestamp": "2026-11-04T00:52:56.771Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: WhatsApp Desconectado",
+    "description": "Sessão restabelecida com sucesso",
+    "details": {
+      "alertKey": "wa_disconnect_test",
+      "resolvedAt": "2026-11-04T00:52:56.771Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793753575731_3igst",
+    "timestamp": "2026-11-04T00:52:55.731Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793753575724 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793753575724",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793753491651_qap9f",
+    "timestamp": "2026-11-04T00:51:31.651Z",
+    "type": "whatsapp_connection",
+    "level": "info",
+    "title": "Reconexão Automática (#4/10)",
+    "description": "Tentativa de reconexão #4 agendada em 24s (código 408).",
+    "details": {
+      "attempt": 4,
+      "maxAttempts": 10,
+      "delaySeconds": 24,
+      "maxBackoff": 60,
+      "statusCode": 408,
+      "isDrop": false
+    }
+  },
+  {
+    "id": "audit_1793753318767_cxl9e",
+    "timestamp": "2026-11-04T00:48:38.767Z",
+    "type": "whatsapp_connection",
+    "level": "info",
+    "title": "Reconexão Automática (#3/10)",
+    "description": "Tentativa de reconexão #3 agendada em 12s (código 408).",
+    "details": {
+      "attempt": 3,
+      "maxAttempts": 10,
+      "delaySeconds": 12,
+      "maxBackoff": 60,
+      "statusCode": 408,
+      "isDrop": false
+    }
+  },
+  {
+    "id": "audit_1793753151803_wiyd0",
+    "timestamp": "2026-11-04T00:45:51.803Z",
+    "type": "whatsapp_connection",
+    "level": "info",
+    "title": "Reconexão Automática (#2/10)",
+    "description": "Tentativa de reconexão #2 agendada em 6s (código 408).",
+    "details": {
+      "attempt": 2,
+      "maxAttempts": 10,
+      "delaySeconds": 6,
+      "maxBackoff": 60,
+      "statusCode": 408,
+      "isDrop": false
+    }
+  },
+  {
+    "id": "audit_1793752988180_i5l12",
+    "timestamp": "2026-11-04T00:43:08.180Z",
+    "type": "whatsapp_connection",
+    "level": "warning",
+    "title": "Queda de Conexão WhatsApp",
+    "description": "A conexão com o WhatsApp caiu (código 408). Iniciando reconexão automática em 3s.",
+    "details": {
+      "attempt": 1,
+      "maxAttempts": 10,
+      "delaySeconds": 3,
+      "maxBackoff": 60,
+      "statusCode": 408,
+      "isDrop": true
+    }
+  },
+  {
+    "id": "audit_1793752827463_99sl8",
+    "timestamp": "2026-11-04T00:40:27.463Z",
+    "type": "whatsapp_connection",
+    "level": "info",
+    "title": "Reconexão Manual Disparada",
+    "description": "O operador acionou o botão \"Reconectar agora\" na aba de Monitoramento. Reiniciando handshake Baileys...",
+    "details": {
+      "manual": true
+    }
+  },
+  {
+    "id": "audit_1793635092034_ecp24",
+    "timestamp": "2026-11-02T15:58:12.034Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: WhatsApp Desconectado",
+    "description": "Sessão restabelecida com sucesso",
+    "details": {
+      "alertKey": "wa_disconnect_test",
+      "resolvedAt": "2026-11-02T15:58:12.033Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793577027020_a0w8p",
+    "timestamp": "2026-11-01T23:50:27.020Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793577027010 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793577027010",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793577023233_dms2e",
+    "timestamp": "2026-11-01T23:50:23.233Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: WhatsApp Desconectado",
+    "description": "Sessão restabelecida com sucesso",
+    "details": {
+      "alertKey": "wa_disconnect_test",
+      "resolvedAt": "2026-11-01T23:50:23.232Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793576961111_cydhf",
+    "timestamp": "2026-11-01T23:49:21.111Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Queda de Conexão WhatsApp",
+    "description": "WhatsApp restabelecido: +5511999998888",
+    "details": {
+      "alertKey": "whatsapp_disconnected",
+      "resolvedAt": "2026-11-01T23:49:21.111Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793576961109_hfccd",
+    "timestamp": "2026-11-01T23:49:21.109Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Falha de Conexão Crítica",
+    "description": "Conexão restaurada com sucesso.",
+    "details": {
+      "alertKey": "test_conn_drop",
+      "resolvedAt": "2026-11-01T23:49:21.109Z"
+    },
+    "soundEvent": "reconexao_concluida"
+  },
+  {
+    "id": "audit_1793576955922_ug90n",
+    "timestamp": "2026-11-01T23:49:15.922Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: WhatsApp Desconectado",
+    "description": "Sessão restabelecida com sucesso",
+    "details": {
+      "alertKey": "wa_disconnect_test",
+      "resolvedAt": "2026-11-01T23:49:15.921Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793576936263_paf16",
+    "timestamp": "2026-11-01T23:48:56.263Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: WhatsApp Desconectado",
+    "description": "Sessão restabelecida com sucesso",
+    "details": {
+      "alertKey": "wa_disconnect_test",
+      "resolvedAt": "2026-11-01T23:48:56.263Z"
+    },
+    "soundEvent": "whatsapp_reconectado"
+  },
+  {
+    "id": "audit_1793576446911_36hor",
+    "timestamp": "2026-11-01T23:40:46.911Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Queda de Conexão WhatsApp",
+    "description": "Problema resolvido com sucesso pelo sistema ou operador.",
+    "details": {
+      "alertKey": "whatsapp_disconnected",
+      "resolvedAt": "2026-11-01T23:40:46.910Z"
+    }
+  },
+  {
+    "id": "audit_1793576443820_yhoda",
+    "timestamp": "2026-11-01T23:40:43.820Z",
+    "type": "whatsapp_connection",
+    "level": "warning",
+    "title": "Queda de Conexão WhatsApp",
+    "description": "Evento de teste real: conexão com o WhatsApp caiu (código 515). Reconexão agendada.",
+    "details": {
+      "attempt": 1,
+      "maxAttempts": 10,
+      "isDrop": true,
+      "delaySeconds": 3
+    }
+  },
+  {
+    "id": "audit_1793573225882_s9d70",
+    "timestamp": "2026-11-01T22:47:05.882Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793573225876 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793573225876",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793573224778_fgn2w",
+    "timestamp": "2026-11-01T22:47:04.778Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793573224755_sdq6",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793573224770_6u51r",
+    "timestamp": "2026-11-01T22:47:04.770Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793573224753_f4cs",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793573214637_xd101",
+    "timestamp": "2026-11-01T22:46:54.637Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Queda de Conexão WhatsApp",
+    "description": "WhatsApp restabelecido: +5511999998888",
+    "details": {
+      "alertKey": "whatsapp_disconnected",
+      "resolvedAt": "2026-11-01T22:46:54.637Z"
+    }
+  },
+  {
+    "id": "audit_1793573214635_xcf4a",
+    "timestamp": "2026-11-01T22:46:54.635Z",
+    "type": "system_alert",
+    "level": "success",
+    "title": "Alerta Resolvido: Falha de Conexão Crítica",
+    "description": "Conexão restaurada com sucesso.",
+    "details": {
+      "alertKey": "test_conn_drop",
+      "resolvedAt": "2026-11-01T22:46:54.635Z"
+    }
+  },
+  {
+    "id": "audit_1793571477936_3yb28",
+    "timestamp": "2026-11-01T22:17:57.936Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571477920_xgt0",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571477933_l6dfr",
+    "timestamp": "2026-11-01T22:17:57.933Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido BZ-9921 (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571477918_2m4z",
+      "orderId": "BZ-9921",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571421009_2hety",
+    "timestamp": "2026-11-01T22:17:01.009Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571420993_58w3",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571421006_mbb82",
+    "timestamp": "2026-11-01T22:17:01.006Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571420992_lfd7",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571313373_9wcm5",
+    "timestamp": "2026-11-01T22:15:13.373Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793571313361 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793571313361",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304978_p5qxz",
+    "timestamp": "2026-11-01T22:15:04.978Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571054873_qdhv",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304970_f15ds",
+    "timestamp": "2026-11-01T22:15:04.970Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571079807_y3rc",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304962_w6xbf",
+    "timestamp": "2026-11-01T22:15:04.962Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571151544_dqzf",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304953_df89q",
+    "timestamp": "2026-11-01T22:15:04.954Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571239422_37pl",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304945_thyej",
+    "timestamp": "2026-11-01T22:15:04.945Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571278968_1jkr",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304929_rl6du",
+    "timestamp": "2026-11-01T22:15:04.929Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571304826_obe0",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304917_9s645",
+    "timestamp": "2026-11-01T22:15:04.917Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571054871_uc3u",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304906_dn229",
+    "timestamp": "2026-11-01T22:15:04.906Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571079805_fuuo",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304896_endox",
+    "timestamp": "2026-11-01T22:15:04.896Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571151542_cw0j",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304885_6l2iq",
+    "timestamp": "2026-11-01T22:15:04.885Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571239420_qkgs",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304877_iyptf",
+    "timestamp": "2026-11-01T22:15:04.877Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571278965_rjmm",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571304870_1zl15",
+    "timestamp": "2026-11-01T22:15:04.870Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571304824_ovac",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571279103_9s4z1",
+    "timestamp": "2026-11-01T22:14:39.103Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571054873_qdhv",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571279097_oxjbe",
+    "timestamp": "2026-11-01T22:14:39.097Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571079807_y3rc",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571279083_4dm1o",
+    "timestamp": "2026-11-01T22:14:39.083Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571151544_dqzf",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571279073_8g4qc",
+    "timestamp": "2026-11-01T22:14:39.073Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571239422_37pl",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571279057_4cjn2",
+    "timestamp": "2026-11-01T22:14:39.057Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571278968_1jkr",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571279044_l51bx",
+    "timestamp": "2026-11-01T22:14:39.044Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571054871_uc3u",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571279034_mhksr",
+    "timestamp": "2026-11-01T22:14:39.034Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571079805_fuuo",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571279023_amkkv",
+    "timestamp": "2026-11-01T22:14:39.023Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571151542_cw0j",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571279016_eo8ad",
+    "timestamp": "2026-11-01T22:14:39.016Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571239420_qkgs",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571279007_b67a7",
+    "timestamp": "2026-11-01T22:14:39.007Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571278965_rjmm",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571239529_tq97y",
+    "timestamp": "2026-11-01T22:13:59.529Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571054873_qdhv",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571239519_nfrxl",
+    "timestamp": "2026-11-01T22:13:59.519Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571079807_y3rc",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571239508_7mu4h",
+    "timestamp": "2026-11-01T22:13:59.508Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571151544_dqzf",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571239497_ijemx",
+    "timestamp": "2026-11-01T22:13:59.497Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido (Cópia)",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571239422_37pl",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571239487_b4ztk",
+    "timestamp": "2026-11-01T22:13:59.487Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571054871_uc3u",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571239480_1ymdg",
+    "timestamp": "2026-11-01T22:13:59.480Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571079805_fuuo",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571239474_jnw7r",
+    "timestamp": "2026-11-01T22:13:59.474Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571151542_cw0j",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793571239462_kqtxq",
+    "timestamp": "2026-11-01T22:13:59.462Z",
+    "type": "flow_execution",
+    "level": "info",
+    "title": "Fluxo Executado: Fluxo Acompanhamento de Pedido",
+    "description": "Disparado por evento do pedido undefined (Agendado) para Marina Silva (5511999887766).",
+    "details": {
+      "flowId": "flow_1793571239420_qkgs",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793448455912_vbhep",
+    "timestamp": "2026-10-31T12:07:35.912Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793448455898 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793448455898",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793448376951_banct",
+    "timestamp": "2026-10-31T12:06:16.951Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793448376939 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793448376939",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793448354707_izpj3",
+    "timestamp": "2026-10-31T12:05:54.707Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793448354696 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793448354696",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793447942889_rp6b1",
+    "timestamp": "2026-10-31T11:59:02.889Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793447942875 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793447942875",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793447935783_lzrva",
+    "timestamp": "2026-10-31T11:58:55.783Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_AUDIT_1793447935774 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_AUDIT_1793447935774",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793447258137_ku1ru",
+    "timestamp": "2026-10-31T11:47:38.137Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_TEST_1793447258126 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_TEST_1793447258126",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793447244593_15cqj",
+    "timestamp": "2026-10-31T11:47:24.593Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LOGZZ_TEST_1793447244584 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977776655 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LOGZZ_TEST_1793447244584",
+      "phone": "5511977776655",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793295000092_7rux7",
+    "timestamp": "2026-10-29T17:30:00.092Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LGZ-TEST-ORD-002 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977771234 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LGZ-TEST-ORD-002",
+      "phone": "5511977771234",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793295000086_abuqc",
+    "timestamp": "2026-10-29T17:30:00.086Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LGZ-TEST-ORD-001 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977771234 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LGZ-TEST-ORD-001",
+      "phone": "5511977771234",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793294967973_chs8k",
+    "timestamp": "2026-10-29T17:29:27.973Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LGZ-TEST-ORD-001 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977771234 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LGZ-TEST-ORD-001",
+      "phone": "5511977771234",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793294895247_8fc1k",
+    "timestamp": "2026-10-29T17:28:15.247Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Automação Comercial Interrompida (Pedido Agendado)",
+    "description": "Pedido LGZ-TEST-ORD-001 foi Agendado na Logzz. O fluxo de vendas foi encerrado para 5511977771234 e transferido para acompanhamento humano no CRM.",
+    "details": {
+      "logzzOrderId": "LGZ-TEST-ORD-001",
+      "phone": "5511977771234",
+      "status": "Agendado"
+    }
+  },
+  {
+    "id": "audit_1793294290863_wnh00",
+    "timestamp": "2026-10-29T17:18:10.863Z",
+    "type": "whatsapp_connection",
+    "level": "success",
+    "title": "WhatsApp Conectado",
+    "description": "Sessão estabelecida com sucesso para o número 5511998889835 (Atendente Ana).",
+    "details": {
+      "phoneNumber": "5511998889835",
+      "userName": "Atendente Ana"
+    }
+  },
+  {
+    "id": "audit_1792246056368_4liaq",
+    "timestamp": "2026-10-17T14:07:36.368Z",
+    "type": "system_alert",
+    "level": "info",
+    "title": "Login no Painel",
+    "description": "Usuário \"Administrador UpZap\" (@admin) entrou no painel UpZap."
+  }
+]

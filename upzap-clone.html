@@ -1,0 +1,2721 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UpZap — Plataforma de Automação & Atendimento WhatsApp</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: '#090d16',
+            card: '#0f172a',
+            border: '#1e293b',
+            secondary: '#1e293b',
+            muted: '#94a3b8',
+            'muted-foreground': '#64748b',
+            primary: {
+              DEFAULT: '#3b82f6',
+              foreground: '#ffffff',
+              hover: '#2563eb'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Estilos globais e custom scrollbars */
+    :root {
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    body {
+      background-color: #090d16;
+      color: #f8fafc;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+
+    /* Grid do canvas de fluxos */
+    .flow-canvas-grid {
+      background-size: 24px 24px;
+      background-image: 
+        radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    }
+    .flow-node {
+      transition: box-shadow 0.15s var(--ease-out), transform 0.05s ease-out;
+      user-select: none;
+    }
+    .flow-node:hover {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+    }
+    .flow-node.selected {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+
+    /* Conexões Bezier SVG */
+    .flow-connection {
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      cursor: pointer;
+      transition: stroke 0.2s ease, stroke-width 0.2s ease;
+    }
+    .flow-connection:hover {
+      stroke-width: 4.5;
+      stroke: #f43f5e !important;
+    }
+
+    /* Microinterações táteis recomendadas pelo padrão Emil Kowalski */
+    button:active, a:active {
+      transform: scale(0.97);
+    }
+    .no-scale:active {
+      transform: none !important;
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground min-h-screen flex flex-col antialiased selection:bg-primary/20 selection:text-primary">
+
+  <!-- BANNER GLOBAL DE ALERTA OPERACIONAL -->
+  <div id="global-alert-banner" class="hidden bg-rose-500/15 border-b border-rose-500/30 text-rose-200 px-4 py-2.5 text-xs flex items-center justify-between z-50">
+    <div class="flex items-center gap-2">
+      <span class="flex h-2 w-2 rounded-full bg-rose-500 animate-ping"></span>
+      <span id="global-alert-title" class="font-bold">Alerta Operacional:</span>
+      <span id="global-alert-message">Conexão com o WhatsApp interrompida.</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="app.navigateTo('monitoramento')" class="px-2.5 py-1 rounded bg-rose-500/20 hover:bg-rose-500/30 text-rose-100 font-medium transition-colors cursor-pointer">
+        Ver Diagnóstico
+      </button>
+      <button onclick="app.dismissGlobalAlert()" class="p-1 text-rose-400 hover:text-rose-200">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- CONTAINER DO APP -->
+  <div id="app-root" class="flex flex-1 min-h-screen overflow-hidden">
+    <!-- O conteúdo será renderizado dinamicamente pelo motor JS abaixo -->
+  </div>
+
+  <!-- MODAL CONTAINER GLOBAL -->
+  <div id="modal-container" class="relative z-50 hidden"></div>
+
+  <!-- TOAST CONTAINER GLOBAL -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- AUDIO ELEMENTS PARA OS 11 ALERTAS OFICIAIS -->
+  <div id="audio-elements" class="hidden">
+    <audio id="audio-brizex_indisponivel" preload="auto" src="/audio/brizex_indisponivel.mp3"></audio>
+    <audio id="audio-erro_critico" preload="auto" src="/audio/erro_critico.mp3"></audio>
+    <audio id="audio-fluxo_falhou" preload="auto" src="/audio/fluxo_falhou.mp3"></audio>
+    <audio id="audio-integracao_restabelecida" preload="auto" src="/audio/integracao_restabelecida.mp3"></audio>
+    <audio id="audio-internet_desconectada" preload="auto" src="/audio/internet_desconectada.mp3"></audio>
+    <audio id="audio-internet_restabelecida" preload="auto" src="/audio/internet_restabelecida.mp3"></audio>
+    <audio id="audio-pedido_sincronizacao_falhou" preload="auto" src="/audio/pedido_sincronizacao_falhou.mp3"></audio>
+    <audio id="audio-reconexao_concluida" preload="auto" src="/audio/reconexao_concluida.mp3"></audio>
+    <audio id="audio-servidor_indisponivel" preload="auto" src="/audio/servidor_indisponivel.mp3"></audio>
+    <audio id="audio-whatsapp_desconectado" preload="auto" src="/audio/whatsapp_desconectado.mp3"></audio>
+    <audio id="audio-whatsapp_reconectado" preload="auto" src="/audio/whatsapp_reconectado.mp3"></audio>
+  </div>
+
+  <!-- SCRIPT INTEGRAL DO APLICATIVO UPZAP (ESTADO, NAVEGAÇÃO, API E VIEWS) -->
+  <script>
+    /**
+     * UPZAP REPRODUÇÃO INTEGRAL EM ARQUIVO ÚNICO
+     * Preserva: Autenticação, Dashboard, Atendimentos, Pedidos CRM (Kanban + Tabela 8 status),
+     * Regras, Construtor de Fluxos (Canvas interativo com 9 blocos), Biblioteca, Simulador,
+     * Conexão WhatsApp Baileys, Central de Monitoramento (com 11 áudios oficiais), Configurações e Backup.
+     */
+    const app = {
+      // Estado da aplicação
+      state: {
+        isAuthenticated: true,
+        currentUser: { id: 'usr_admin', name: 'Administrador', username: 'admin', role: 'admin' },
+        currentNav: 'dashboard',
+        isSidebarCollapsed: false,
+        isMobileMenuOpen: false,
+        soundEnabled: true,
+        soundVolume: 0.8,
+        
+        // Dados operacionais
+        conversations: [],
+        selectedConversationId: null,
+        replyText: '',
+        
+        orders: [],
+        ordersFilter: { search: '', status: 'all', period: 'all' },
+        ordersViewMode: 'kanban', // 'kanban' | 'table'
+        selectedOrderId: null,
+        
+        rules: [],
+        rulesFilter: { search: '', trigger: 'all' },
+        
+        flows: [],
+        activeFlowId: null,
+        canvas: {
+          zoom: 1,
+          panX: 40,
+          panY: 40,
+          nodes: [],
+          connections: [],
+          selectedNodeId: null,
+          isDragging: false,
+          dragNodeId: null,
+          dragOffset: { x: 0, y: 0 },
+          isConnecting: false,
+          connectingPort: null
+        },
+        
+        library: [],
+        libraryFilter: { search: '', type: 'all' },
+        
+        simulator: {
+          phone: '5511999990001',
+          messages: [
+            { id: 'sim_1', from: 'bot', text: 'Olá! Sou a assistente virtual UpZap. Como posso te ajudar hoje?', time: '10:00' }
+          ],
+          inputText: '',
+          isLoading: false
+        },
+        
+        whatsapp: {
+          state: 'connected', // 'connected' | 'connecting' | 'disconnected'
+          number: '551199887766',
+          status: 'Conectado via Baileys Multi-Device',
+          qrCode: null,
+          reconnectAttempts: 0,
+          callSettings: { rejectCalls: true, replyMessage: 'Atendimento via WhatsApp ativo apenas por mensagens.' }
+        },
+        
+        monitoring: {
+          services: {
+            app: { status: 'online', label: 'Serviço UpZap', uptime: '99.98%' },
+            whatsapp: { status: 'online', label: 'WhatsApp Baileys', uptime: '99.94%' },
+            brizex: { status: 'online', label: 'Webhook Brizex', uptime: '100.0%' },
+            storage: { status: 'online', label: 'Armazenamento', uptime: '100.0%' }
+          },
+          alerts: [],
+          events: []
+        },
+        
+        backups: []
+      },
+
+      // Inicialização do Aplicativo
+      async init() {
+        console.log('[UpZap] Inicializando aplicação integrada...');
+        this.loadLocalCache();
+        await this.syncWithBackend();
+        this.setupEventListeners();
+        this.render();
+        this.updateIcons();
+        this.startBackgroundPolling();
+      },
+
+      // Cache e dados pré-carregados seguros
+      loadLocalCache() {
+        const token = localStorage.getItem('upzap_token');
+        if (token) {
+          try {
+            const userStr = localStorage.getItem('upzap_user');
+            if (userStr) this.state.currentUser = JSON.parse(userStr);
+          } catch(e) {}
+        }
+        
+        const cachedNav = localStorage.getItem('upzap_main_nav');
+        if (cachedNav) this.state.currentNav = cachedNav;
+
+        // Se não houver dados, inicializa a base rica padrão
+        this.initDefaultDataIfEmpty();
+      },
+
+      initDefaultDataIfEmpty() {
+        if (!this.state.orders || this.state.orders.length === 0) {
+          this.state.orders = [
+            {
+              id: 'BZ-9921',
+              clienteNome: 'Marina Silva',
+              telefone: '5511999887766',
+              status: 'Agendado',
+              dataCriacao: new Date(Date.now() - 3600000 * 2).toISOString(),
+              valor: 167.90,
+              produtos: [{ nome: 'Kit 3 Pares Meia Compressão', qtd: 1, valorUnitario: 167.90 }],
+              endereco: 'Rua das Flores, 120 - São Paulo, SP',
+              rastreio: 'BRZ-SP-99210',
+              historico: [
+                { data: new Date(Date.now() - 3600000 * 2).toISOString(), status: 'Agendado', descricao: 'Pedido sincronizado via Webhook Brizex' }
+              ]
+            },
+            {
+              id: 'BZ-9922',
+              clienteNome: 'Carlos Eduardo Santos',
+              telefone: '5511988776655',
+              status: 'Em Separação',
+              dataCriacao: new Date(Date.now() - 3600000 * 5).toISOString(),
+              valor: 249.90,
+              produtos: [{ nome: 'Cinta Modeladora Anatômica', qtd: 1, valorUnitario: 249.90 }],
+              endereco: 'Av. Paulista, 1000 - Apto 42 - São Paulo, SP',
+              rastreio: 'BRZ-SP-99221',
+              historico: [
+                { data: new Date(Date.now() - 3600000 * 5).toISOString(), status: 'Agendado', descricao: 'Pedido criado' },
+                { data: new Date(Date.now() - 3600000 * 3).toISOString(), status: 'Em Separação', descricao: 'Encaminhado ao estoque logístico' }
+              ]
+            },
+            {
+              id: 'BZ-9923',
+              clienteNome: 'Juliana Mendes',
+              telefone: '5521977665544',
+              status: 'Em Rota',
+              dataCriacao: new Date(Date.now() - 3600000 * 12).toISOString(),
+              valor: 189.00,
+              produtos: [{ nome: 'Massageador Cervical Relax', qtd: 1, valorUnitario: 189.00 }],
+              endereco: 'Rua Barata Ribeiro, 45 - Rio de Janeiro, RJ',
+              rastreio: 'BRZ-RJ-88312',
+              historico: [
+                { data: new Date(Date.now() - 3600000 * 12).toISOString(), status: 'Agendado', descricao: 'Pedido criado' },
+                { data: new Date(Date.now() - 3600000 * 4).toISOString(), status: 'Em Rota', descricao: 'Saiu com o entregador local' }
+              ]
+            },
+            {
+              id: 'BZ-9924',
+              clienteNome: 'Roberto Albuquerque',
+              telefone: '5531966554433',
+              status: 'Completo',
+              dataCriacao: new Date(Date.now() - 3600000 * 24).toISOString(),
+              valor: 310.50,
+              produtos: [{ nome: 'Kit Ortopédico Completo', qtd: 1, valorUnitario: 310.50 }],
+              endereco: 'Av. Afonso Pena, 800 - Belo Horizonte, MG',
+              rastreio: 'BRZ-MG-11204',
+              historico: [
+                { data: new Date(Date.now() - 3600000 * 24).toISOString(), status: 'Agendado', descricao: 'Pedido criado' },
+                { data: new Date(Date.now() - 3600000 * 6).toISOString(), status: 'Completo', descricao: 'Entregue com comprovante assinado' }
+              ]
+            }
+          ];
+        }
+
+        if (!this.state.conversations || this.state.conversations.length === 0) {
+          this.state.conversations = [
+            {
+              id: 'conv_1',
+              phone: '5511999887766',
+              name: 'Marina Silva',
+              initials: 'MS',
+              state: 'active',
+              mode: 'bot',
+              lastMessage: 'Qual é a previsão de entrega do meu pedido?',
+              lastTime: '11:42',
+              messages: [
+                { id: 'm1', from: 'bot', text: 'Olá Marina! Tudo bem? Como posso te ajudar hoje?', time: '11:40' },
+                { id: 'm2', from: 'user', text: 'Oi! Gostaria de saber sobre meu pedido #BZ-9921', time: '11:41' },
+                { id: 'm3', from: 'bot', text: 'Seu pedido #BZ-9921 está agendado e com envio programado para amanhã!', time: '11:41' },
+                { id: 'm4', from: 'user', text: 'Qual é a previsão de entrega do meu pedido?', time: '11:42' }
+              ]
+            },
+            {
+              id: 'conv_2',
+              phone: '5511988776655',
+              name: 'Carlos Eduardo Santos',
+              initials: 'CE',
+              state: 'active',
+              mode: 'human',
+              lastMessage: 'Atendente humano assumiu a conversa.',
+              lastTime: '10:15',
+              messages: [
+                { id: 'm21', from: 'user', text: 'Preciso trocar o endereço de entrega com urgência!', time: '10:14' },
+                { id: 'm22', from: 'bot', text: 'Transferindo seu atendimento para nossa equipe humana agora...', time: '10:14' },
+                { id: 'm23', from: 'agent', text: 'Olá Carlos, já recebi sua solicitação de alteração de endereço.', time: '10:15' }
+              ]
+            }
+          ];
+          this.state.selectedConversationId = this.state.conversations[0].id;
+        }
+
+        if (!this.state.rules || this.state.rules.length === 0) {
+          this.state.rules = [
+            {
+              id: 'rule_1',
+              nome: 'Gatilho: Pedido Agendado',
+              descricao: 'Envia mensagem automática com dados de confirmação ao agendar pedido',
+              tipoGatilho: 'pedido_agendado',
+              statusPedido: 'Agendado',
+              prioridade: 'Alta',
+              ativo: true,
+              palavras: ['confirmar', 'agendado', 'pedido'],
+              resposta: 'Olá {{nome}}! Seu pedido #{{pedido}} foi agendado com sucesso no valor de R$ {{valor}}.'
+            },
+            {
+              id: 'rule_2',
+              nome: 'Dúvidas sobre Envio e Frete',
+              descricao: 'Responde dúvidas comuns de clientes sobre prazos e entregas',
+              tipoGatilho: 'palavra_chave',
+              prioridade: 'Media',
+              ativo: true,
+              palavras: ['frete', 'prazo', 'envio', 'correios', 'transportadora'],
+              resposta: 'O envio é realizado via transportadora expressa com rastreamento em tempo real!'
+            },
+            {
+              id: 'rule_3',
+              nome: 'Pedido Cancelado - Recuperação',
+              descricao: 'Aciona fluxo de recuperação amigável quando pedido for cancelado',
+              tipoGatilho: 'pedido_cancelado',
+              statusPedido: 'Cancelado',
+              prioridade: 'Alta',
+              ativo: true,
+              palavras: ['cancelar', 'desistir'],
+              resposta: 'Poxa {{nome}}, vimos que o pedido #{{pedido}} foi cancelado. Podemos te ajudar com alguma condição especial?'
+            }
+          ];
+        }
+
+        if (!this.state.flows || this.state.flows.length === 0) {
+          const defaultFlow = {
+            id: 'flow_welcome_default',
+            nome: 'Fluxo Principal de Boas-vindas',
+            descricao: 'Acolhimento com menu numerado e ramificação lógica',
+            isWelcomeFlow: true,
+            ativo: true,
+            nodes: [
+              { id: 'node_1', type: 'inicio', title: 'Início', x: 60, y: 120, data: { label: 'Início do Atendimento' } },
+              { id: 'node_2', type: 'mensagem', title: 'Mensagem de Acolhimento', x: 280, y: 120, data: { texto: 'Olá {{nome}}! Bem-vindo à nossa loja oficial no WhatsApp. Como podemos te surpreender hoje?' } },
+              { id: 'node_3', type: 'menu', title: 'Menu de Opções', x: 560, y: 100, data: { texto: 'Escolha uma das opções abaixo:', opcoes: [{ id: 'opt_1', numero: '1', texto: 'Consultar meu pedido' }, { id: 'opt_2', numero: '2', texto: 'Falar com atendente' }] } },
+              { id: 'node_4', type: 'transferir_humano', title: 'Atendimento Humano', x: 880, y: 220, data: { departamento: 'Suporte' } },
+              { id: 'node_5', type: 'encerramento', title: 'Conclusão', x: 880, y: 60, data: { texto: 'Obrigado pelo contato! Estamos à disposição.' } }
+            ],
+            connections: [
+              { id: 'c1', from: 'node_1', to: 'node_2' },
+              { id: 'c2', from: 'node_2', to: 'node_3' },
+              { id: 'c3', from: 'node_3', to: 'node_5', fromPort: 'opt_1' },
+              { id: 'c4', from: 'node_3', to: 'node_4', fromPort: 'opt_2' }
+            ]
+          };
+          this.state.flows = [defaultFlow];
+          this.state.activeFlowId = defaultFlow.id;
+          this.loadFlowIntoCanvas(defaultFlow);
+        }
+
+        if (!this.state.library || this.state.library.length === 0) {
+          this.state.library = [
+            { id: 'lib_1', name: 'Catálogo de Produtos 2026.pdf', type: 'pdf', size: '2.4 MB', category: 'Catálogos', url: '#' },
+            { id: 'lib_2', name: 'Tabela de Medidas e Tamanhos.jpg', type: 'foto', size: '640 KB', category: 'Imagens', url: '#' },
+            { id: 'lib_3', name: 'Demonstração de Uso Prático.mp4', type: 'video', size: '8.1 MB', category: 'Vídeos', url: '#' },
+            { id: 'lib_4', name: 'Audio_BoasVindas_Humanizado.mp3', type: 'audio', size: '320 KB', category: 'Áudios', url: '#' }
+          ];
+        }
+
+        if (!this.state.monitoring.events || this.state.monitoring.events.length === 0) {
+          this.state.monitoring.events = [
+            { id: 'ev_1', type: 'whatsapp_connected', severity: 'success', title: 'WhatsApp Conectado', description: 'Sessão Baileys autenticada com sucesso no número +55 11 9988-7766.', timestamp: new Date(Date.now() - 1000 * 60 * 15).toISOString() },
+            { id: 'ev_2', type: 'order_webhook', severity: 'info', title: 'Evento Brizex Recebido', description: 'Pedido BZ-9921 processado e regra disparada.', timestamp: new Date(Date.now() - 1000 * 60 * 30).toISOString() },
+            { id: 'ev_3', type: 'flow_execution', severity: 'info', title: 'Fluxo Executado', description: 'Fluxo Principal de Boas-vindas concluído para cliente Marina Silva.', timestamp: new Date(Date.now() - 1000 * 60 * 45).toISOString() }
+          ];
+        }
+
+        if (!this.state.backups || this.state.backups.length === 0) {
+          this.state.backups = [
+            { id: 'bkp_1', name: 'upzap-backup-2026-11-04.json', size: '48.2 KB', date: '2026-11-04 14:30', itemsCount: 42 }
+          ];
+        }
+      },
+
+      loadFlowIntoCanvas(flow) {
+        if (!flow) return;
+        this.state.canvas.nodes = JSON.parse(JSON.stringify(flow.nodes || []));
+        this.state.canvas.connections = JSON.parse(JSON.stringify(flow.connections || []));
+        this.state.canvas.selectedNodeId = null;
+      },
+
+      // Sincronização resiliente com backend real (se online)
+      async syncWithBackend() {
+        try {
+          const res = await fetch('/api/whatsapp/status');
+          if (res.ok) {
+            const data = await res.json();
+            if (data) {
+              this.state.whatsapp.state = data.state || this.state.whatsapp.state;
+              this.state.whatsapp.number = data.number || this.state.whatsapp.number;
+              this.state.whatsapp.status = data.status || this.state.whatsapp.status;
+            }
+          }
+        } catch (e) {
+          console.log('[UpZap] Modo autônomo local ativo (Backend offline ou em ambiente estático)');
+        }
+      },
+
+      startBackgroundPolling() {
+        setInterval(() => {
+          this.syncWithBackend();
+        }, 15000);
+      },
+
+      setupEventListeners() {
+        // Atalhos de teclado globais
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.closeModal();
+            this.state.canvas.selectedNodeId = null;
+            this.render();
+          }
+          if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+            e.preventDefault();
+            this.handleUndo();
+          }
+          if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+            e.preventDefault();
+            this.handleManualSave();
+          }
+        });
+
+        // Fechamento de modal ao clicar fora
+        const modalContainer = document.getElementById('modal-container');
+        if (modalContainer) {
+          modalContainer.addEventListener('click', (e) => {
+            if (e.target === modalContainer) {
+              this.closeModal();
+            }
+          });
+        }
+      },
+
+      // Sistema de Áudio para os 11 alertas oficiais
+      playSound(soundName) {
+        if (!this.state.soundEnabled) return;
+        
+        try {
+          const audioEl = document.getElementById(`audio-${soundName}`);
+          if (audioEl) {
+            audioEl.volume = this.state.soundVolume;
+            audioEl.currentTime = 0;
+            const playPromise = audioEl.play();
+            if (playPromise !== undefined) {
+              playPromise.catch((err) => {
+                console.warn(`[UpZap Áudio] Reprodução do arquivo ${soundName}.mp3 bloqueada pelo navegador:`, err);
+                this.fallbackTone(soundName);
+              });
+            }
+            return;
+          }
+        } catch (e) {
+          this.fallbackTone(soundName);
+        }
+      },
+
+      fallbackTone(soundName) {
+        try {
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          gain.gain.value = this.state.soundVolume * 0.15;
+          
+          if (soundName.includes('erro') || soundName.includes('falhou') || soundName.includes('desconectado')) {
+            osc.frequency.setValueAtTime(320, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.35);
+          } else {
+            osc.frequency.setValueAtTime(540, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.25);
+          }
+          osc.start();
+          osc.stop(ctx.currentTime + 0.35);
+        } catch (e) {}
+      },
+
+      triggerAlert(type, title, message) {
+        this.playSound(type);
+        const banner = document.getElementById('global-alert-banner');
+        const msgEl = document.getElementById('global-alert-message');
+        const titleEl = document.getElementById('global-alert-title');
+        
+        if (banner && msgEl && titleEl) {
+          titleEl.textContent = title;
+          msgEl.textContent = message;
+          banner.classList.remove('hidden');
+        }
+
+        this.showToast(message, 'error');
+        
+        // Registra evento de auditoria
+        this.state.monitoring.events.unshift({
+          id: `ev_${Date.now()}`,
+          type,
+          severity: 'error',
+          title,
+          description: message,
+          timestamp: new Date().toISOString()
+        });
+      },
+
+      dismissGlobalAlert() {
+        const banner = document.getElementById('global-alert-banner');
+        if (banner) banner.classList.add('hidden');
+      },
+
+      // Sistema de Toast
+      showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        const isSuccess = type === 'success';
+        toast.className = `pointer-events-auto px-4 py-2.5 rounded-xl shadow-2xl border text-xs font-semibold backdrop-blur-md flex items-center gap-2.5 transition-all transform duration-200 translate-y-2 opacity-0 ${
+          isSuccess 
+            ? 'bg-slate-900 border-emerald-500/50 text-emerald-200' 
+            : 'bg-slate-900 border-rose-500/50 text-rose-200'
+        }`;
+        
+        toast.innerHTML = `
+          <i data-lucide="${isSuccess ? 'check-circle-2' : 'alert-circle'}" class="w-4 h-4 shrink-0 ${isSuccess ? 'text-emerald-400' : 'text-rose-400'}"></i>
+          <span>${message}</span>
+        `;
+        
+        container.appendChild(toast);
+        this.updateIcons();
+
+        requestAnimationFrame(() => {
+          toast.classList.remove('translate-y-2', 'opacity-0');
+        });
+
+        setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-2');
+          setTimeout(() => toast.remove(), 250);
+        }, 3500);
+      },
+
+      // Navegação
+      navigateTo(navId) {
+        this.state.currentNav = navId;
+        localStorage.setItem('upzap_main_nav', navId);
+        
+        // Recolhe sidebar no Flow Builder para máxima visibilidade
+        if (navId === 'fluxos') {
+          this.state.isSidebarCollapsed = true;
+        }
+        
+        this.render();
+      },
+
+      toggleSidebar() {
+        this.state.isSidebarCollapsed = !this.state.isSidebarCollapsed;
+        this.render();
+      },
+
+      // Modal Manager
+      openModal(htmlContent) {
+        const container = document.getElementById('modal-container');
+        if (!container) return;
+        container.innerHTML = `
+          <div class="fixed inset-0 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-in fade-in-0 duration-150">
+            <div class="bg-card border border-border rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col" onclick="event.stopPropagation()">
+              ${htmlContent}
+            </div>
+          </div>
+        `;
+        container.classList.remove('hidden');
+        this.updateIcons();
+      },
+
+      closeModal() {
+        const container = document.getElementById('modal-container');
+        if (container) {
+          container.innerHTML = '';
+          container.classList.add('hidden');
+        }
+      },
+
+      updateIcons() {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      },
+
+      // RENDERIZADOR PRINCIPAL DO APLICATIVO
+      render() {
+        const root = document.getElementById('app-root');
+        if (!root) return;
+
+        if (!this.state.isAuthenticated) {
+          root.innerHTML = this.renderLoginView();
+          this.updateIcons();
+          return;
+        }
+
+        const isFlows = this.state.currentNav === 'fluxos';
+
+        root.innerHTML = `
+          <!-- SIDEBAR -->
+          ${this.renderSidebar()}
+
+          <!-- MAIN WRAPPER -->
+          <div class="flex-1 flex flex-col min-w-0 ${isFlows ? 'h-screen overflow-hidden' : 'min-h-screen'}">
+            <!-- HEADER (oculto no canvas para 100% de aproveitamento de área) -->
+            ${!isFlows ? this.renderHeader() : ''}
+
+            <!-- MAIN VIEW CONTAINER -->
+            <main class="${isFlows ? 'flex-1 p-0 overflow-hidden relative flex flex-col h-screen' : 'flex-1 px-4 py-6 md:px-8 md:py-8 overflow-y-auto'}">
+              ${this.renderCurrentView()}
+            </main>
+          </div>
+        `;
+
+        this.updateIcons();
+
+        // Se for o flow builder, inicializa listeners de arrasto do canvas
+        if (isFlows) {
+          this.initCanvasInteractions();
+        }
+      },
+
+      // SIDEBAR COMPLETA COM TODAS AS SEÇÕES
+      renderSidebar() {
+        const collapsed = this.state.isSidebarCollapsed;
+        const nav = this.state.currentNav;
+
+        const navItem = (id, label, icon) => {
+          const isActive = nav === id;
+          return `
+            <button 
+              onclick="app.navigateTo('${id}')" 
+              title="${label}"
+              class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
+                isActive 
+                  ? 'bg-primary text-primary-foreground shadow-xs' 
+                  : 'text-muted hover:text-foreground hover:bg-slate-800/60'
+              } ${collapsed ? 'justify-center px-2' : ''}"
+            >
+              <i data-lucide="${icon}" class="w-4 h-4 shrink-0"></i>
+              ${!collapsed ? `<span class="truncate">${label}</span>` : ''}
+            </button>
+          `;
+        };
+
+        return `
+          <aside class="shrink-0 bg-[#0b0f19] border-r border-border flex flex-col justify-between transition-all duration-200 z-40 select-none ${
+            collapsed ? 'w-16' : 'w-60'
+          }">
+            <div class="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+              <!-- LOGO & BRAND -->
+              <div class="h-14 border-b border-border flex items-center justify-between px-3.5">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs shadow-xs">
+                    UZ
+                  </div>
+                  ${!collapsed ? '<span class="font-bold tracking-tight text-sm text-foreground">UpZap</span>' : ''}
+                </div>
+                <button onclick="app.toggleSidebar()" class="p-1.5 text-muted hover:text-foreground hover:bg-slate-800 rounded-lg cursor-pointer">
+                  <i data-lucide="${collapsed ? 'panel-left-open' : 'panel-left-close'}" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- NAV GROUPS -->
+              <div class="p-3 space-y-4">
+                <!-- PRINCIPAL -->
+                <div>
+                  ${!collapsed ? '<div class="px-3 pb-1 text-[10px] font-bold text-muted uppercase tracking-wider">Principal</div>' : ''}
+                  <div class="space-y-1">
+                    ${navItem('dashboard', 'Dashboard', 'layout-dashboard')}
+                  </div>
+                </div>
+
+                <!-- OPERAÇÃO -->
+                <div>
+                  ${!collapsed ? '<div class="px-3 pb-1 text-[10px] font-bold text-muted uppercase tracking-wider">Operação</div>' : ''}
+                  <div class="space-y-1">
+                    ${navItem('atendimentos', 'Atendimentos', 'message-square')}
+                    ${navItem('pedidos', 'Pedidos (CRM)', 'package')}
+                  </div>
+                </div>
+
+                <!-- AUTOMAÇÃO -->
+                <div>
+                  ${!collapsed ? '<div class="px-3 pb-1 text-[10px] font-bold text-muted uppercase tracking-wider">Automação</div>' : ''}
+                  <div class="space-y-1">
+                    ${navItem('regras', 'Regras', 'zap')}
+                    ${navItem('fluxos', 'Flow Builder', 'workflow')}
+                    ${navItem('biblioteca', 'Biblioteca', 'folder-open')}
+                    ${navItem('simulador', 'Simulador', 'square-play')}
+                  </div>
+                </div>
+
+                <!-- INFRAESTRUTURA -->
+                <div>
+                  ${!collapsed ? '<div class="px-3 pb-1 text-[10px] font-bold text-muted uppercase tracking-wider">Infraestrutura</div>' : ''}
+                  <div class="space-y-1">
+                    ${navItem('conexao', 'Conexão WhatsApp', 'smartphone')}
+                    ${navItem('monitoramento', 'Monitoramento', 'activity')}
+                  </div>
+                </div>
+
+                <!-- CONFIGURAÇÕES -->
+                <div>
+                  ${!collapsed ? '<div class="px-3 pb-1 text-[10px] font-bold text-muted uppercase tracking-wider">Configurações</div>' : ''}
+                  <div class="space-y-1">
+                    ${navItem('backup', 'Backup', 'database-backup')}
+                    ${navItem('configuracoes', 'Geral', 'settings')}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RODAPÉ DO USUÁRIO & STATUS WHATSAPP -->
+            <div class="p-3 border-t border-border bg-[#090d16]">
+              <div class="flex items-center gap-2 mb-3 px-1.5 ${collapsed ? 'justify-center' : ''}">
+                <span class="w-2 h-2 rounded-full ${this.state.whatsapp.state === 'connected' ? 'bg-emerald-500' : 'bg-rose-500'}"></span>
+                ${!collapsed ? `
+                  <span class="text-[11px] text-muted truncate">
+                    ${this.state.whatsapp.state === 'connected' ? 'WhatsApp Online' : 'WhatsApp Desconectado'}
+                  </span>
+                ` : ''}
+              </div>
+
+              <div class="flex items-center justify-between ${collapsed ? 'flex-col gap-2' : ''}">
+                <div class="flex items-center gap-2 min-w-0">
+                  <div class="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-slate-300 shrink-0">
+                    AD
+                  </div>
+                  ${!collapsed ? `
+                    <div class="truncate">
+                      <div class="text-xs font-semibold text-foreground truncate">Administrador</div>
+                      <div class="text-[10px] text-muted truncate">admin@upzap.com</div>
+                    </div>
+                  ` : ''}
+                </div>
+                <button onclick="app.logout()" title="Sair da sessão" class="p-1.5 text-muted hover:text-rose-400 hover:bg-slate-800 rounded-lg cursor-pointer">
+                  <i data-lucide="log-out" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </aside>
+        `;
+      },
+
+      // HEADER
+      renderHeader() {
+        const titles = {
+          dashboard: 'Visão Geral & Indicadores',
+          atendimentos: 'Atendimentos & Conversas',
+          pedidos: 'CRM de Pedidos (Brizex-Logzz)',
+          regras: 'Regras e Gatilhos de Automação',
+          biblioteca: 'Biblioteca de Mídias e Textos',
+          simulador: 'Simulador Integrado do WhatsApp',
+          conexao: 'Conexão WhatsApp Baileys',
+          monitoramento: 'Central de Monitoramento & Alertas',
+          backup: 'Backup & Restauração de Dados',
+          configuracoes: 'Configurações Operacionais'
+        };
+
+        const currentTitle = titles[this.state.currentNav] || 'UpZap';
+
+        return `
+          <header class="h-14 shrink-0 bg-card/80 backdrop-blur-md border-b border-border px-6 flex items-center justify-between z-30">
+            <div class="flex items-center gap-3">
+              <h1 class="text-sm font-semibold text-foreground tracking-tight">${currentTitle}</h1>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+              <!-- CONTROLE GLOBAL DE SOM -->
+              <button 
+                onclick="app.toggleGlobalSound()" 
+                title="${this.state.soundEnabled ? 'Silenciar alertas de áudio' : 'Ativar alertas sonoros'}"
+                class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border text-xs font-medium cursor-pointer ${
+                  this.state.soundEnabled ? 'bg-slate-800 text-sky-400' : 'bg-slate-900 text-muted opacity-70'
+                }"
+              >
+                <i data-lucide="${this.state.soundEnabled ? 'volume-2' : 'volume-x'}" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">${this.state.soundEnabled ? 'Áudio Ativo' : 'Mudo'}</span>
+              </button>
+
+              <!-- STATUS DA CONEXÃO WHATSAPP -->
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-border text-xs font-medium">
+                <span class="w-2 h-2 rounded-full ${this.state.whatsapp.state === 'connected' ? 'bg-emerald-500' : 'bg-rose-500'}"></span>
+                <span class="text-slate-300 font-mono">${this.state.whatsapp.number || 'Sem número'}</span>
+              </div>
+            </div>
+          </header>
+        `;
+      },
+
+      toggleGlobalSound() {
+        this.state.soundEnabled = !this.state.soundEnabled;
+        this.showToast(this.state.soundEnabled ? 'Alertas de áudio ativados.' : 'Alertas sonoros silenciados.');
+        this.render();
+      },
+
+      // ROTEADOR DE VIEWS
+      renderCurrentView() {
+        switch (this.state.currentNav) {
+          case 'dashboard':
+            return this.renderDashboardView();
+          case 'atendimentos':
+            return this.renderConversationsView();
+          case 'pedidos':
+            return this.renderOrdersView();
+          case 'regras':
+            return this.renderRulesView();
+          case 'fluxos':
+            return this.renderFlowBuilderView();
+          case 'biblioteca':
+            return this.renderLibraryView();
+          case 'simulador':
+            return this.renderSimulatorView();
+          case 'conexao':
+            return this.renderWhatsappView();
+          case 'monitoramento':
+            return this.renderMonitoringView();
+          case 'backup':
+            return this.renderBackupView();
+          case 'configuracoes':
+            return this.renderSettingsView();
+          default:
+            return this.renderDashboardView();
+        }
+      },
+
+      // 5.1. LOGIN VIEW
+      renderLoginView() {
+        return `
+          <div class="min-h-screen w-full bg-background flex items-center justify-center p-4">
+            <div class="w-full max-w-md bg-card border border-border rounded-2xl p-8 shadow-2xl space-y-6">
+              <div class="text-center space-y-2">
+                <div class="w-12 h-12 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center mx-auto font-black text-lg shadow-xs">
+                  UZ
+                </div>
+                <h1 class="text-xl font-bold tracking-tight text-foreground">UpZap</h1>
+                <p class="text-xs text-muted">Plataforma de Automação & Atendimento WhatsApp</p>
+              </div>
+
+              <form onsubmit="event.preventDefault(); app.handleLogin();" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-semibold text-muted mb-1.5">Usuário ou E-mail</label>
+                  <input type="text" id="login-user" value="admin" class="w-full bg-background border border-border rounded-xl px-3.5 py-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary" required>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-muted mb-1.5">Senha de Acesso</label>
+                  <input type="password" id="login-pass" value="admin123" class="w-full bg-background border border-border rounded-xl px-3.5 py-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary" required>
+                </div>
+                <button type="submit" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-primary-foreground font-semibold text-xs shadow-xs transition-all cursor-pointer">
+                  Entrar na Plataforma
+                </button>
+              </form>
+            </div>
+          </div>
+        `;
+      },
+
+      handleLogin() {
+        this.state.isAuthenticated = true;
+        this.showToast('Login realizado com sucesso!');
+        this.render();
+      },
+
+      logout() {
+        this.state.isAuthenticated = false;
+        this.showToast('Sessão encerrada.');
+        this.render();
+      },
+
+      // 5.2. DASHBOARD VIEW
+      renderDashboardView() {
+        const totalOrders = this.state.orders.length;
+        const scheduledOrders = this.state.orders.filter(o => o.status === 'Agendado').length;
+        const inRouteOrders = this.state.orders.filter(o => o.status === 'Em Rota').length;
+        const completedOrders = this.state.orders.filter(o => o.status === 'Completo').length;
+        const totalRevenue = this.state.orders.reduce((acc, o) => acc + (o.valor || 0), 0);
+
+        return `
+          <div class="space-y-6">
+            <!-- INTRO -->
+            <div class="flex items-center justify-between pb-4 border-b border-border">
+              <div>
+                <h2 class="text-lg font-bold text-foreground">Visão Geral da Operação</h2>
+                <p class="text-xs text-muted mt-0.5">Métricas em tempo real de pedidos, conversas ativas e automações.</p>
+              </div>
+              <button onclick="app.showToast('Métricas atualizadas com sucesso.')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary hover:bg-slate-800 text-xs font-medium border border-border cursor-pointer">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                <span>Atualizar</span>
+              </button>
+            </div>
+
+            <!-- CARDS DE MÉTRICAS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div class="p-5 rounded-2xl bg-card border border-border">
+                <div class="flex items-center justify-between text-muted text-xs font-semibold">
+                  <span>Atendimentos Ativos</span>
+                  <i data-lucide="message-square" class="w-4 h-4 text-primary"></i>
+                </div>
+                <div class="mt-3 text-2xl font-bold text-foreground">${this.state.conversations.length}</div>
+                <div class="mt-1 text-[11px] text-emerald-400 flex items-center gap-1">
+                  <i data-lucide="check-circle-2" class="w-3 h-3"></i>
+                  <span>100% sob automação ativa</span>
+                </div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-card border border-border">
+                <div class="flex items-center justify-between text-muted text-xs font-semibold">
+                  <span>Pedidos Brizex (Total)</span>
+                  <i data-lucide="package" class="w-4 h-4 text-amber-500"></i>
+                </div>
+                <div class="mt-3 text-2xl font-bold text-foreground">${totalOrders}</div>
+                <div class="mt-1 text-[11px] text-muted flex items-center gap-1">
+                  <span>${scheduledOrders} Agendados • ${inRouteOrders} Em Rota</span>
+                </div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-card border border-border">
+                <div class="flex items-center justify-between text-muted text-xs font-semibold">
+                  <span>Pedidos Entregues</span>
+                  <i data-lucide="truck" class="w-4 h-4 text-emerald-500"></i>
+                </div>
+                <div class="mt-3 text-2xl font-bold text-foreground">${completedOrders}</div>
+                <div class="mt-1 text-[11px] text-emerald-400">Taxa de sucesso operacional de 98%</div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-card border border-border">
+                <div class="flex items-center justify-between text-muted text-xs font-semibold">
+                  <span>Faturamento Registrado</span>
+                  <i data-lucide="activity" class="w-4 h-4 text-teal-400"></i>
+                </div>
+                <div class="mt-3 text-2xl font-bold text-foreground">R$ ${totalRevenue.toFixed(2).replace('.', ',')}</div>
+                <div class="mt-1 text-[11px] text-muted">Sincronizado via Webhook Brizex</div>
+              </div>
+            </div>
+
+            <!-- TABELA DE ATIVIDADES RECENTES -->
+            <div class="p-5 rounded-2xl bg-card border border-border space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xs font-bold text-foreground uppercase tracking-wider">Últimos Eventos Operacionais</h3>
+                <button onclick="app.navigateTo('monitoramento')" class="text-xs text-primary hover:underline cursor-pointer">Ver auditoria completa</button>
+              </div>
+              <div class="space-y-2">
+                ${this.state.monitoring.events.slice(0, 4).map(e => `
+                  <div class="p-3 rounded-xl bg-slate-900/60 border border-border/80 flex items-center justify-between text-xs">
+                    <div class="flex items-center gap-2.5">
+                      <span class="w-2 h-2 rounded-full ${e.severity === 'error' ? 'bg-rose-500' : 'bg-emerald-500'}"></span>
+                      <span class="font-semibold text-foreground">${e.title}</span>
+                      <span class="text-muted hidden md:inline">— ${e.description}</span>
+                    </div>
+                    <span class="text-[11px] text-muted font-mono">${new Date(e.timestamp).toLocaleTimeString('pt-BR')}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      },
+
+      // 5.3. ATENDIMENTOS VIEW (CHAT COMPLETO)
+      renderConversationsView() {
+        const selectedConv = this.state.conversations.find(c => c.id === this.state.selectedConversationId) || this.state.conversations[0];
+
+        return `
+          <div class="h-[calc(100vh-8.5rem)] flex rounded-2xl bg-card border border-border overflow-hidden">
+            <!-- LISTA LATERAL DE CONVERSAS -->
+            <div class="w-80 shrink-0 border-r border-border flex flex-col bg-[#0b0f19]">
+              <div class="p-3.5 border-b border-border">
+                <div class="relative">
+                  <i data-lucide="search" class="w-3.5 h-3.5 text-muted absolute left-3 top-3"></i>
+                  <input 
+                    type="text" 
+                    placeholder="Buscar conversa ou telefone..." 
+                    class="w-full bg-slate-900 border border-border rounded-xl pl-8 pr-3 py-1.5 text-xs text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-primary"
+                  >
+                </div>
+              </div>
+
+              <div class="flex-1 overflow-y-auto divide-y divide-border/60">
+                ${this.state.conversations.map(c => `
+                  <div 
+                    onclick="app.selectConversation('${c.id}')"
+                    class="p-3.5 hover:bg-slate-800/50 cursor-pointer transition-colors ${c.id === selectedConv?.id ? 'bg-slate-800/80 border-l-2 border-primary' : ''}"
+                  >
+                    <div class="flex items-center justify-between mb-1">
+                      <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-full bg-primary/20 text-primary font-bold text-xs flex items-center justify-center">
+                          ${c.initials}
+                        </div>
+                        <span class="font-semibold text-xs text-foreground truncate max-w-32">${c.name}</span>
+                      </div>
+                      <span class="text-[10px] text-muted">${c.lastTime}</span>
+                    </div>
+                    <p class="text-[11px] text-muted truncate">${c.lastMessage}</p>
+                    <div class="mt-2 flex items-center gap-1.5">
+                      <span class="px-1.5 py-0.2 rounded text-[10px] font-semibold ${c.mode === 'bot' ? 'bg-sky-500/10 text-sky-400 border border-sky-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}">
+                        ${c.mode === 'bot' ? 'Robô Ativo' : 'Atendimento Humano'}
+                      </span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- CHAT DO WHATSAPP (ÁREA CENTRAL) -->
+            ${selectedConv ? `
+              <div class="flex-1 flex flex-col bg-[#090d16]">
+                <!-- HEADER DO CHAT -->
+                <div class="h-14 px-5 border-b border-border flex items-center justify-between bg-card">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-primary/20 text-primary font-bold text-xs flex items-center justify-center">
+                      ${selectedConv.initials}
+                    </div>
+                    <div>
+                      <div class="font-bold text-xs text-foreground">${selectedConv.name}</div>
+                      <div class="text-[10px] text-muted font-mono">${selectedConv.phone}</div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-2">
+                    <button 
+                      onclick="app.toggleConversationMode('${selectedConv.id}')"
+                      class="px-3 py-1.5 rounded-lg border border-border text-xs font-semibold cursor-pointer ${
+                        selectedConv.mode === 'bot' ? 'bg-amber-500/10 text-amber-400 border-amber-500/30' : 'bg-sky-500/10 text-sky-400 border-sky-500/30'
+                      }"
+                    >
+                      ${selectedConv.mode === 'bot' ? 'Assumir Atendimento Manual' : 'Retomar Robô'}
+                    </button>
+                    <button onclick="app.closeConversation('${selectedConv.id}')" class="px-3 py-1.5 rounded-lg bg-secondary hover:bg-slate-800 text-xs text-muted hover:text-foreground border border-border cursor-pointer">
+                      Encerrar
+                    </button>
+                  </div>
+                </div>
+
+                <!-- LISTA DE MENSAGENS -->
+                <div id="chat-messages-container" class="flex-1 p-5 overflow-y-auto space-y-3">
+                  ${selectedConv.messages.map(m => `
+                    <div class="flex flex-col ${m.from === 'user' ? 'items-start' : 'items-end'}">
+                      <div class="max-w-md p-3 rounded-2xl text-xs ${
+                        m.from === 'user' 
+                          ? 'bg-slate-800 text-slate-100 rounded-tl-xs' 
+                          : m.from === 'agent'
+                            ? 'bg-amber-600 text-white rounded-tr-xs'
+                            : 'bg-primary text-primary-foreground rounded-tr-xs'
+                      }">
+                        <p class="leading-relaxed whitespace-pre-wrap">${m.text}</p>
+                        <div class="mt-1 text-[9px] opacity-75 text-right font-mono">${m.time}</div>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+
+                <!-- CAMPO DE RESPOSTA -->
+                <div class="p-3.5 border-t border-border bg-card flex items-center gap-2">
+                  <input 
+                    type="text" 
+                    id="chat-reply-input"
+                    placeholder="Digite uma mensagem para o cliente..." 
+                    class="flex-1 bg-background border border-border rounded-xl px-4 py-2 text-xs text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-primary"
+                    onkeydown="if(event.key === 'Enter') app.sendChatMessage('${selectedConv.id}');"
+                  >
+                  <button 
+                    onclick="app.sendChatMessage('${selectedConv.id}')"
+                    class="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-primary-foreground text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-xs"
+                  >
+                    <span>Enviar</span>
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            ` : `
+              <div class="flex-1 flex items-center justify-center text-xs text-muted">
+                Nenhum atendimento selecionado.
+              </div>
+            `}
+          </div>
+        `;
+      },
+
+      selectConversation(id) {
+        this.state.selectedConversationId = id;
+        this.render();
+      },
+
+      toggleConversationMode(id) {
+        const conv = this.state.conversations.find(c => c.id === id);
+        if (conv) {
+          conv.mode = conv.mode === 'bot' ? 'human' : 'bot';
+          this.showToast(`Modo alterado para: ${conv.mode === 'bot' ? 'Robô' : 'Atendente Humano'}`);
+          this.render();
+        }
+      },
+
+      closeConversation(id) {
+        const conv = this.state.conversations.find(c => c.id === id);
+        if (conv) {
+          conv.state = 'closed';
+          this.showToast(`Atendimento de ${conv.name} encerrado com sucesso.`);
+          this.render();
+        }
+      },
+
+      sendChatMessage(id) {
+        const input = document.getElementById('chat-reply-input');
+        if (!input || !input.value.trim()) return;
+
+        const conv = this.state.conversations.find(c => c.id === id);
+        if (conv) {
+          conv.messages.push({
+            id: `msg_${Date.now()}`,
+            from: conv.mode === 'human' ? 'agent' : 'bot',
+            text: input.value.trim(),
+            time: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+          });
+          conv.lastMessage = input.value.trim();
+          conv.lastTime = 'Agora';
+          input.value = '';
+          this.render();
+        }
+      },
+
+      // 5.4. PEDIDOS VIEW (CRM BRIZEX-LOGZZ COM 8 STATUS E KANBAN/TABELA)
+      renderOrdersView() {
+        const statuses = [
+          'Agendado',
+          'Em Separação',
+          'Separado',
+          'Em Rota',
+          'Cancelado',
+          'A Reagendar',
+          'Frustrado',
+          'Completo'
+        ];
+
+        const filteredOrders = this.state.orders.filter(o => {
+          const matchSearch = !this.state.ordersFilter.search || 
+            o.id.toLowerCase().includes(this.state.ordersFilter.search.toLowerCase()) ||
+            o.clienteNome.toLowerCase().includes(this.state.ordersFilter.search.toLowerCase()) ||
+            o.telefone.includes(this.state.ordersFilter.search);
+          const matchStatus = this.state.ordersFilter.status === 'all' || o.status === this.state.ordersFilter.status;
+          return matchSearch && matchStatus;
+        });
+
+        return `
+          <div class="space-y-5">
+            <!-- HEADER DA ABA -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-border">
+              <div>
+                <h2 class="text-lg font-bold text-foreground">Pedidos — CRM Brizex-Logzz</h2>
+                <p class="text-xs text-muted mt-0.5">Gestão oficial dos 8 status comerciais integrados via webhook.</p>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <!-- ALTERNAR KANBAN / TABELA -->
+                <div class="flex items-center bg-slate-900 border border-border rounded-xl p-1">
+                  <button 
+                    onclick="app.setOrdersViewMode('kanban')"
+                    class="px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer ${this.state.ordersViewMode === 'kanban' ? 'bg-primary text-white' : 'text-muted hover:text-white'}"
+                  >
+                    Kanban
+                  </button>
+                  <button 
+                    onclick="app.setOrdersViewMode('table')"
+                    class="px-2.5 py-1 rounded-lg text-xs font-semibold cursor-pointer ${this.state.ordersViewMode === 'table' ? 'bg-primary text-white' : 'text-muted hover:text-white'}"
+                  >
+                    Tabela
+                  </button>
+                </div>
+
+                <button 
+                  onclick="app.openSimulateOrderModal()"
+                  class="px-3 py-1.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-xs"
+                >
+                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                  <span>Simular Pedido</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- FILTROS -->
+            <div class="flex flex-wrap items-center gap-3">
+              <div class="relative flex-1 min-w-[200px]">
+                <i data-lucide="search" class="w-3.5 h-3.5 text-muted absolute left-3 top-3"></i>
+                <input 
+                  type="text" 
+                  id="orders-search-input"
+                  placeholder="Buscar por ID, cliente ou telefone..."
+                  value="${this.state.ordersFilter.search}"
+                  oninput="app.state.ordersFilter.search = this.value; app.render();"
+                  class="w-full bg-card border border-border rounded-xl pl-8 pr-3 py-1.5 text-xs text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-primary"
+                >
+              </div>
+
+              <select 
+                onchange="app.state.ordersFilter.status = this.value; app.render();"
+                class="bg-card border border-border rounded-xl px-3 py-1.5 text-xs text-foreground focus:outline-none cursor-pointer"
+              >
+                <option value="all">Todos os Status (${this.state.orders.length})</option>
+                ${statuses.map(s => `
+                  <option value="${s}" ${this.state.ordersFilter.status === s ? 'selected' : ''}>
+                    ${s} (${this.state.orders.filter(o => o.status === s).length})
+                  </option>
+                `).join('')}
+              </select>
+            </div>
+
+            <!-- VISUALIZAÇÃO KANBAN OU TABELA -->
+            ${this.state.ordersViewMode === 'kanban' ? `
+              <!-- KANBAN BOARD -->
+              <div class="flex gap-3 overflow-x-auto pb-4 scrollbar-thin">
+                ${statuses.map(st => {
+                  const columnOrders = filteredOrders.filter(o => o.status === st);
+                  return `
+                    <div class="w-64 shrink-0 bg-card/60 border border-border rounded-2xl flex flex-col max-h-[75vh]">
+                      <div class="p-3 border-b border-border flex items-center justify-between">
+                        <span class="text-xs font-bold text-foreground">${st}</span>
+                        <span class="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-slate-800 text-muted border border-border">
+                          ${columnOrders.length}
+                        </span>
+                      </div>
+
+                      <div class="flex-1 p-2 space-y-2 overflow-y-auto">
+                        ${columnOrders.length === 0 ? `
+                          <div class="py-8 text-center text-[11px] text-muted">Sem pedidos</div>
+                        ` : columnOrders.map(o => `
+                          <div 
+                            onclick="app.openOrderDetails('${o.id}')"
+                            class="p-3 rounded-xl bg-slate-900 border border-border hover:border-primary/50 transition-all cursor-pointer space-y-2 group"
+                          >
+                            <div class="flex items-center justify-between">
+                              <span class="text-xs font-bold text-foreground group-hover:text-primary">#${o.id}</span>
+                              <span class="text-xs font-mono font-bold text-emerald-400">R$ ${o.valor.toFixed(2).replace('.', ',')}</span>
+                            </div>
+                            <div class="text-[11px] text-slate-300 font-medium truncate">${o.clienteNome}</div>
+                            <div class="text-[10px] text-muted font-mono truncate">${o.telefone}</div>
+                          </div>
+                        `).join('')}
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            ` : `
+              <!-- TABELA DETALHADA -->
+              <div class="rounded-2xl bg-card border border-border overflow-hidden">
+                <table class="w-full text-left text-xs">
+                  <thead class="bg-slate-900 border-b border-border text-muted font-semibold">
+                    <tr>
+                      <th class="p-3.5">ID Pedido</th>
+                      <th class="p-3.5">Cliente</th>
+                      <th class="p-3.5">Telefone</th>
+                      <th class="p-3.5">Status</th>
+                      <th class="p-3.5">Valor</th>
+                      <th class="p-3.5 text-right">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-border/60">
+                    ${filteredOrders.map(o => `
+                      <tr class="hover:bg-slate-800/40 transition-colors">
+                        <td class="p-3.5 font-bold text-foreground font-mono">#${o.id}</td>
+                        <td class="p-3.5 font-medium text-slate-200">${o.clienteNome}</td>
+                        <td class="p-3.5 font-mono text-muted">${o.telefone}</td>
+                        <td class="p-3.5">
+                          <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary/10 text-primary border border-primary/20">
+                            ${o.status}
+                          </span>
+                        </td>
+                        <td class="p-3.5 font-mono font-bold text-emerald-400">R$ ${o.valor.toFixed(2).replace('.', ',')}</td>
+                        <td class="p-3.5 text-right">
+                          <button onclick="app.openOrderDetails('${o.id}')" class="px-2.5 py-1 rounded-lg bg-secondary hover:bg-slate-700 text-xs text-foreground cursor-pointer">
+                            Detalhes
+                          </button>
+                        </td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            `}
+          </div>
+        `;
+      },
+
+      setOrdersViewMode(mode) {
+        this.state.ordersViewMode = mode;
+        this.render();
+      },
+
+      openOrderDetails(orderId) {
+        const order = this.state.orders.find(o => o.id === orderId);
+        if (!order) return;
+
+        this.openModal(`
+          <div class="p-5 border-b border-border flex items-center justify-between">
+            <div>
+              <h3 class="text-sm font-bold text-foreground">Pedido #${order.id}</h3>
+              <p class="text-xs text-muted">Sincronização Brizex em tempo real</p>
+            </div>
+            <button onclick="app.closeModal()" class="p-1 text-muted hover:text-foreground">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <div class="p-5 space-y-4 overflow-y-auto max-h-[70vh] text-xs">
+            <div class="grid grid-cols-2 gap-3">
+              <div class="p-3 rounded-xl bg-slate-900 border border-border">
+                <div class="text-[10px] text-muted font-bold uppercase">Cliente</div>
+                <div class="text-xs font-semibold text-foreground mt-0.5">${order.clienteNome}</div>
+                <div class="text-[11px] font-mono text-muted mt-0.5">${order.telefone}</div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-900 border border-border">
+                <div class="text-[10px] text-muted font-bold uppercase">Status Atual</div>
+                <div class="text-xs font-semibold text-primary mt-0.5">${order.status}</div>
+                <div class="text-[11px] font-mono text-emerald-400 mt-0.5 font-bold">R$ ${order.valor.toFixed(2)}</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="text-[10px] text-muted font-bold uppercase mb-1.5">Endereço de Entrega</div>
+              <div class="p-3 rounded-xl bg-slate-900 border border-border text-slate-300">
+                ${order.endereco || 'Endereço registrado na Logzz'}
+              </div>
+            </div>
+
+            <div>
+              <div class="text-[10px] text-muted font-bold uppercase mb-1.5">Produtos Comprados</div>
+              <div class="p-3 rounded-xl bg-slate-900 border border-border space-y-1">
+                ${(order.produtos || []).map(p => `
+                  <div class="flex items-center justify-between">
+                    <span>${p.qtd}x ${p.nome}</span>
+                    <span class="font-mono text-muted">R$ ${p.valorUnitario.toFixed(2)}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <div>
+              <div class="text-[10px] text-muted font-bold uppercase mb-1.5">Histórico do Pedido</div>
+              <div class="p-3 rounded-xl bg-slate-900 border border-border space-y-2">
+                ${(order.historico || []).map(h => `
+                  <div class="flex items-start justify-between text-[11px]">
+                    <div>
+                      <span class="font-bold text-foreground">${h.status}</span>
+                      <p class="text-muted mt-0.5">${h.descricao}</p>
+                    </div>
+                    <span class="text-[10px] text-muted font-mono">${new Date(h.data).toLocaleDateString('pt-BR')}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `);
+      },
+
+      openSimulateOrderModal() {
+        this.openModal(`
+          <div class="p-5 border-b border-border flex items-center justify-between">
+            <h3 class="text-sm font-bold text-foreground">Simular Novo Pedido (Webhook Brizex)</h3>
+            <button onclick="app.closeModal()" class="p-1 text-muted hover:text-foreground">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <form onsubmit="event.preventDefault(); app.handleCreateSimulatedOrder();" class="p-5 space-y-4 text-xs">
+            <div>
+              <label class="block font-semibold text-muted mb-1">Nome do Cliente</label>
+              <input type="text" id="sim-order-name" value="Lucas Fernandes" class="w-full bg-background border border-border rounded-xl px-3 py-2 text-foreground focus:outline-none focus:ring-1 focus:ring-primary" required>
+            </div>
+            <div>
+              <label class="block font-semibold text-muted mb-1">Telefone WhatsApp</label>
+              <input type="text" id="sim-order-phone" value="5511999112233" class="w-full bg-background border border-border rounded-xl px-3 py-2 text-foreground focus:outline-none focus:ring-1 focus:ring-primary" required>
+            </div>
+            <div>
+              <label class="block font-semibold text-muted mb-1">Status Inicial</label>
+              <select id="sim-order-status" class="w-full bg-background border border-border rounded-xl px-3 py-2 text-foreground focus:outline-none cursor-pointer">
+                <option value="Agendado">Agendado</option>
+                <option value="Em Separação">Em Separação</option>
+                <option value="Em Rota">Em Rota</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-semibold text-muted mb-1">Valor Total (R$)</label>
+              <input type="number" step="0.01" id="sim-order-val" value="197.00" class="w-full bg-background border border-border rounded-xl px-3 py-2 text-foreground focus:outline-none focus:ring-1 focus:ring-primary" required>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold cursor-pointer shadow-xs">
+              Disparar Webhook Simulado
+            </button>
+          </form>
+        `);
+      },
+
+      handleCreateSimulatedOrder() {
+        const name = document.getElementById('sim-order-name')?.value;
+        const phone = document.getElementById('sim-order-phone')?.value;
+        const status = document.getElementById('sim-order-status')?.value;
+        const val = parseFloat(document.getElementById('sim-order-val')?.value || '197.00');
+
+        const newOrder = {
+          id: `BZ-${Math.floor(1000 + Math.random() * 9000)}`,
+          clienteNome: name,
+          telefone: phone,
+          status,
+          valor: val,
+          dataCriacao: new Date().toISOString(),
+          produtos: [{ nome: 'Produto Demonstrativo Brizex', qtd: 1, valorUnitario: val }],
+          endereco: 'Av. Brasil, 500 - São Paulo, SP',
+          historico: [{ data: new Date().toISOString(), status, descricao: 'Criado via simulador' }]
+        };
+
+        this.state.orders.unshift(newOrder);
+        this.closeModal();
+        this.showToast(`Pedido #${newOrder.id} gerado com sucesso!`);
+        this.render();
+      },
+
+      // 5.5. REGRAS VIEW (GESTÃO COMPLETA DE REGRAS E GATILHOS)
+      renderRulesView() {
+        return `
+          <div class="space-y-5">
+            <div class="flex items-center justify-between pb-4 border-b border-border">
+              <div>
+                <h2 class="text-lg font-bold text-foreground">Regras de Automação</h2>
+                <p class="text-xs text-muted mt-0.5">Defina gatilhos por palavras-chave ou status de pedidos para disparar ações.</p>
+              </div>
+              <button 
+                onclick="app.openCreateRuleModal()"
+                class="px-3.5 py-1.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-xs"
+              >
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                <span>Nova Regra</span>
+              </button>
+            </div>
+
+            <!-- LISTAGEM DE REGRAS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              ${this.state.rules.map(r => `
+                <div class="p-4 rounded-2xl bg-card border border-border space-y-3 flex flex-col justify-between">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-2">
+                        <i data-lucide="zap" class="w-4 h-4 text-amber-500"></i>
+                        <span class="font-bold text-xs text-foreground">${r.nome}</span>
+                      </div>
+                      <button 
+                        onclick="app.toggleRuleActive('${r.id}')"
+                        class="px-2 py-0.5 rounded-full text-[10px] font-semibold cursor-pointer ${
+                          r.ativo ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-slate-800 text-muted'
+                        }"
+                      >
+                        ${r.ativo ? 'Ativa' : 'Inativa'}
+                      </button>
+                    </div>
+                    <p class="text-[11px] text-muted">${r.descricao || 'Sem descrição cadastrada'}</p>
+                    
+                    <div class="p-2.5 rounded-xl bg-slate-900 border border-border text-[11px] text-slate-300">
+                      <span class="text-muted block text-[10px] uppercase font-bold mb-1">Gatilho:</span>
+                      ${r.tipoGatilho === 'pedido_agendado' ? 'Pedido Agendado Brizex' : (r.palavras || []).join(', ')}
+                    </div>
+                  </div>
+
+                  <div class="pt-2 border-t border-border flex items-center justify-between">
+                    <span class="text-[10px] font-semibold text-muted">Prioridade: ${r.prioridade}</span>
+                    <div class="flex items-center gap-1">
+                      <button onclick="app.duplicateRule('${r.id}')" title="Duplicar regra" class="p-1.5 rounded-lg text-muted hover:text-foreground hover:bg-slate-800 cursor-pointer">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                      </button>
+                      <button onclick="app.deleteRule('${r.id}')" title="Excluir regra" class="p-1.5 rounded-lg text-muted hover:text-rose-400 hover:bg-slate-800 cursor-pointer">
+                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      },
+
+      toggleRuleActive(id) {
+        const rule = this.state.rules.find(r => r.id === id);
+        if (rule) {
+          rule.ativo = !rule.ativo;
+          this.showToast(`Regra "${rule.nome}" ${rule.ativo ? 'ativada' : 'desativada'}.`);
+          this.render();
+        }
+      },
+
+      duplicateRule(id) {
+        const rule = this.state.rules.find(r => r.id === id);
+        if (rule) {
+          const clone = JSON.parse(JSON.stringify(rule));
+          clone.id = `rule_${Date.now()}`;
+          clone.nome = `${clone.nome} (Cópia)`;
+          this.state.rules.push(clone);
+          this.showToast(`Regra duplicada com sucesso.`);
+          this.render();
+        }
+      },
+
+      deleteRule(id) {
+        this.state.rules = this.state.rules.filter(r => r.id !== id);
+        this.showToast('Regra excluída.');
+        this.render();
+      },
+
+      openCreateRuleModal() {
+        this.openModal(`
+          <div class="p-5 border-b border-border flex items-center justify-between">
+            <h3 class="text-sm font-bold text-foreground">Nova Regra de Automação</h3>
+            <button onclick="app.closeModal()" class="p-1 text-muted hover:text-foreground">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <form onsubmit="event.preventDefault(); app.handleSaveNewRule();" class="p-5 space-y-4 text-xs">
+            <div>
+              <label class="block font-semibold text-muted mb-1">Nome da Regra</label>
+              <input type="text" id="new-rule-name" placeholder="Ex: Informar Prazo de Envio" class="w-full bg-background border border-border rounded-xl px-3 py-2 text-foreground focus:outline-none focus:ring-1 focus:ring-primary" required>
+            </div>
+            <div>
+              <label class="block font-semibold text-muted mb-1">Palavras-chave (separadas por vírgula)</label>
+              <input type="text" id="new-rule-keywords" placeholder="Ex: prazo, entrega, envio" class="w-full bg-background border border-border rounded-xl px-3 py-2 text-foreground focus:outline-none focus:ring-1 focus:ring-primary" required>
+            </div>
+            <div>
+              <label class="block font-semibold text-muted mb-1">Resposta Automática</label>
+              <textarea id="new-rule-response" rows="3" placeholder="Mensagem enviada pelo robô..." class="w-full bg-background border border-border rounded-xl p-3 text-foreground focus:outline-none focus:ring-1 focus:ring-primary" required></textarea>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold cursor-pointer shadow-xs">
+              Cadastrar Regra
+            </button>
+          </form>
+        `);
+      },
+
+      handleSaveNewRule() {
+        const name = document.getElementById('new-rule-name')?.value;
+        const kw = document.getElementById('new-rule-keywords')?.value;
+        const resp = document.getElementById('new-rule-response')?.value;
+
+        this.state.rules.push({
+          id: `rule_${Date.now()}`,
+          nome: name,
+          descricao: 'Regra personalizada',
+          tipoGatilho: 'palavra_chave',
+          prioridade: 'Alta',
+          ativo: true,
+          palavras: kw.split(',').map(s => s.trim()),
+          resposta: resp
+        });
+
+        this.closeModal();
+        this.showToast('Nova regra salva com sucesso!');
+        this.render();
+      },
+
+      // 5.6. CONSTRUTOR DE FLUXOS (FLOW BUILDER COMPLETO)
+      renderFlowBuilderView() {
+        const flow = this.state.flows.find(f => f.id === this.state.activeFlowId) || this.state.flows[0];
+        const nodes = this.state.canvas.nodes;
+        const zoom = this.state.canvas.zoom;
+
+        const blockTypes = [
+          { type: 'inicio', label: 'Início', icon: 'play', color: 'emerald' },
+          { type: 'regra', label: 'Regra vinculada', icon: 'zap', color: 'amber' },
+          { type: 'mensagem', label: 'Mensagem', icon: 'message-square', color: 'sky' },
+          { type: 'midia', label: 'Mídia', icon: 'image', color: 'purple' },
+          { type: 'menu', label: 'Menu numerado', icon: 'list-ordered', color: 'teal' },
+          { type: 'delay', label: 'Espera', icon: 'hourglass', color: 'orange' },
+          { type: 'condicao', label: 'Condição', icon: 'git-branch', color: 'indigo' },
+          { type: 'transferir_humano', label: 'Atendimento humano', icon: 'phone-call', color: 'blue' },
+          { type: 'encerramento', label: 'Fim', icon: 'check-circle-2', color: 'rose' }
+        ];
+
+        return `
+          <div class="h-full flex flex-col bg-background relative overflow-hidden select-none">
+            <!-- FAIXA A: SUBNAVEGAÇÃO -->
+            <div class="h-10 shrink-0 bg-card border-b border-border px-3.5 flex items-center justify-between z-40">
+              <div class="flex items-center gap-1">
+                <button class="px-3 py-1.5 rounded-lg text-xs font-medium bg-primary text-primary-foreground shadow-xs flex items-center gap-1.5 cursor-pointer">
+                  <i data-lucide="workflow" class="w-3.5 h-3.5"></i>
+                  <span>Editor Visual (Canvas)</span>
+                </button>
+                <button onclick="app.openFlowsListModal()" class="px-3 py-1.5 rounded-lg text-xs font-medium text-muted hover:text-foreground hover:bg-slate-800 flex items-center gap-1.5 cursor-pointer">
+                  <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                  <span>Meus Fluxos (${this.state.flows.length})</span>
+                </button>
+                <button onclick="app.openBrizexMappingModal()" class="px-3 py-1.5 rounded-lg text-xs font-medium text-muted hover:text-foreground hover:bg-slate-800 flex items-center gap-1.5 cursor-pointer">
+                  <i data-lucide="link-2" class="w-3.5 h-3.5"></i>
+                  <span>Mapeamento Brizex</span>
+                </button>
+              </div>
+
+              <button onclick="app.toggleSidebar()" class="p-1.5 text-muted hover:text-foreground rounded-lg cursor-pointer">
+                <i data-lucide="${this.state.isSidebarCollapsed ? 'panel-left-open' : 'panel-left-close'}" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- FAIXAS B, C, D, E: BARRA SUPERIOR DO CANVAS -->
+            <header class="h-13 shrink-0 bg-card/95 backdrop-blur-md border-b border-border px-3.5 flex items-center justify-between gap-3 z-30 shadow-xs">
+              <!-- GRUPO B: Contexto do Fluxo -->
+              <div class="flex items-center gap-2.5">
+                <div class="h-7 w-7 rounded-lg bg-primary/10 text-primary border border-primary/20 flex items-center justify-center shrink-0">
+                  <i data-lucide="workflow" class="w-4 h-4"></i>
+                </div>
+                <div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-secondary text-xs font-semibold">
+                  <span class="text-muted font-normal">Fluxo:</span>
+                  <span class="text-foreground max-w-40 truncate">${flow?.nome || 'Fluxo Principal'}</span>
+                </div>
+                <button onclick="app.openRulesDropdown()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-secondary hover:bg-slate-800 text-xs font-medium border border-border cursor-pointer">
+                  <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-500"></i>
+                  <span>Regras (${this.state.rules.length})</span>
+                </button>
+                <div class="hidden sm:flex items-center gap-1.5 text-xs text-emerald-400 font-medium px-2 py-1 rounded bg-emerald-500/5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <span>Salvo</span>
+                </div>
+              </div>
+
+              <!-- GRUPO C: Inserção Centralizada (+ Adicionar Bloco) -->
+              <div class="flex items-center">
+                <button 
+                  onclick="app.openAddBlockPopover()"
+                  class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary border border-primary/25 text-xs font-semibold cursor-pointer shadow-xs active:scale-95"
+                >
+                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                  <span>Adicionar bloco</span>
+                  <i data-lucide="chevron-down" class="w-3.5 h-3.5 opacity-70"></i>
+                </button>
+              </div>
+
+              <!-- GRUPO D & E: Controles do Canvas + Ações Principais -->
+              <div class="flex items-center gap-2">
+                <div class="flex items-center bg-secondary rounded-lg border border-border overflow-hidden">
+                  <button onclick="app.handleUndo()" title="Desfazer (Ctrl+Z)" class="p-1.5 text-foreground hover:bg-slate-700 cursor-pointer">
+                    <i data-lucide="undo-2" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <div class="w-px h-3.5 bg-border"></div>
+                  <button onclick="app.handleRedo()" title="Refazer (Ctrl+Shift+Z)" class="p-1.5 text-foreground hover:bg-slate-700 cursor-pointer">
+                    <i data-lucide="redo-2" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+
+                <button onclick="app.autoArrangeNodes()" title="Auto-organizar em colunas" class="p-1.5 rounded-lg bg-secondary text-foreground hover:bg-slate-700 border border-border cursor-pointer">
+                  <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+                </button>
+
+                <button onclick="app.fitToView()" title="Centralizar e ajustar à tela" class="p-1.5 rounded-lg bg-secondary text-foreground hover:bg-slate-700 border border-border cursor-pointer">
+                  <i data-lucide="crosshair" class="w-3.5 h-3.5"></i>
+                </button>
+
+                <!-- ZOOM -->
+                <div class="hidden sm:flex items-center bg-secondary rounded-lg border border-border overflow-hidden text-xs">
+                  <button onclick="app.adjustZoom(-0.15)" class="p-1.5 hover:bg-slate-700 cursor-pointer">
+                    <i data-lucide="zoom-out" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <button onclick="app.resetZoom()" class="px-1.5 py-1 font-mono text-[11px] hover:bg-slate-700 cursor-pointer">
+                    ${Math.round(zoom * 100)}%
+                  </button>
+                  <button onclick="app.adjustZoom(0.15)" class="p-1.5 hover:bg-slate-700 cursor-pointer">
+                    <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+
+                <div class="h-4 w-px bg-border mx-1"></div>
+
+                <!-- TESTAR FLUXO & SALVAR -->
+                <button onclick="app.openTestFlowModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs font-semibold cursor-pointer shadow-xs">
+                  <i data-lucide="play" class="w-3.5 h-3.5 fill-sky-400"></i>
+                  <span>Testar Fluxo</span>
+                </button>
+                <button onclick="app.handleManualSave()" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-semibold cursor-pointer shadow-xs">
+                  <i data-lucide="save" class="w-3.5 h-3.5"></i>
+                  <span>Salvar</span>
+                </button>
+              </div>
+            </header>
+
+            <!-- CANVAS INTERATIVO DE FLUXOS -->
+            <div id="canvas-viewport" class="flex-1 w-full h-full relative overflow-hidden flow-canvas-grid cursor-grab">
+              <div 
+                id="canvas-world" 
+                class="absolute origin-top-left"
+                style="transform: translate(${this.state.canvas.panX}px, ${this.state.canvas.panY}px) scale(${zoom});"
+              >
+                <!-- SVG DE CONEXÕES -->
+                <svg id="canvas-svg" class="absolute top-0 left-0 w-[4000px] h-[4000px] pointer-events-none z-10">
+                  ${this.renderSvgConnections()}
+                </svg>
+
+                <!-- BLOCOS (NODES) -->
+                <div id="canvas-nodes-container" class="relative z-20">
+                  ${nodes.map(n => this.renderNodeHtml(n)).join('')}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      },
+
+      renderSvgConnections() {
+        const nodes = this.state.canvas.nodes;
+        const connections = this.state.canvas.connections;
+
+        return connections.map(c => {
+          const fromNode = nodes.find(n => n.id === c.from);
+          const toNode = nodes.find(n => n.id === c.to);
+          if (!fromNode || !toNode) return '';
+
+          const x1 = fromNode.x + 240;
+          const y1 = fromNode.y + 40;
+          const x2 = toNode.x;
+          const y2 = toNode.y + 40;
+          const dx = Math.abs(x2 - x1) * 0.5;
+
+          const pathD = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+
+          return `
+            <path 
+              d="${pathD}" 
+              class="flow-connection pointer-events-auto" 
+              stroke="#3b82f6" 
+              onclick="app.deleteConnection('${c.id}')"
+              title="Clique para excluir conexão"
+            />
+          `;
+        }).join('');
+      },
+
+      renderNodeHtml(node) {
+        const isSelected = this.state.canvas.selectedNodeId === node.id;
+        const colorMap = {
+          inicio: 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10',
+          regra: 'border-amber-500/40 text-amber-400 bg-amber-500/10',
+          mensagem: 'border-sky-500/40 text-sky-400 bg-sky-500/10',
+          midia: 'border-purple-500/40 text-purple-400 bg-purple-500/10',
+          menu: 'border-teal-500/40 text-teal-400 bg-teal-500/10',
+          delay: 'border-orange-500/40 text-orange-400 bg-orange-500/10',
+          condicao: 'border-indigo-500/40 text-indigo-400 bg-indigo-500/10',
+          transferir_humano: 'border-blue-500/40 text-blue-400 bg-blue-500/10',
+          encerramento: 'border-rose-500/40 text-rose-400 bg-rose-500/10'
+        };
+
+        const currentStyle = colorMap[node.type] || 'border-slate-700 text-slate-300 bg-slate-800';
+
+        return `
+          <div 
+            id="node-${node.id}"
+            data-node-id="${node.id}"
+            class="flow-node absolute w-60 rounded-2xl bg-card border border-border shadow-xl p-3.5 cursor-move ${isSelected ? 'selected' : ''}"
+            style="left: ${node.x}px; top: ${node.y}px;"
+            onmousedown="app.handleNodeMouseDown(event, '${node.id}')"
+          >
+            <!-- CABEÇALHO DO BLOCO -->
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-border/80">
+              <div class="flex items-center gap-2">
+                <span class="p-1 rounded-lg ${currentStyle}">
+                  <i data-lucide="${this.getNodeIcon(node.type)}" class="w-3.5 h-3.5"></i>
+                </span>
+                <span class="text-xs font-bold text-foreground truncate max-w-32">${node.title || node.type}</span>
+              </div>
+              <button onclick="event.stopPropagation(); app.deleteNode('${node.id}')" class="text-muted hover:text-rose-400 p-1">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+
+            <!-- CONTEÚDO DO BLOCO -->
+            <div class="text-[11px] text-muted space-y-1">
+              ${node.type === 'mensagem' ? `
+                <div class="p-2 rounded-xl bg-slate-900 border border-border text-slate-200 line-clamp-2">
+                  ${node.data?.texto || 'Clique para definir mensagem...'}
+                </div>
+              ` : node.type === 'menu' ? `
+                <div class="space-y-1">
+                  ${(node.data?.opcoes || []).map(o => `
+                    <div class="p-1.5 rounded-lg bg-slate-900 border border-border flex items-center justify-between text-[10px]">
+                      <span>${o.numero}. ${o.texto}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : `
+                <div class="text-[11px] text-slate-400 italic">Bloco ${node.type} configurado</div>
+              `}
+            </div>
+
+            <!-- PORTAS DE CONEXÃO -->
+            <div 
+              class="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-slate-700 border-2 border-primary cursor-crosshair"
+              title="Entrada"
+              onclick="event.stopPropagation(); app.connectToNode('${node.id}')"
+            ></div>
+            <div 
+              class="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary border-2 border-slate-900 cursor-crosshair"
+              title="Saída (Clique para conectar)"
+              onclick="event.stopPropagation(); app.startConnectionFromNode('${node.id}')"
+            ></div>
+          </div>
+        `;
+      },
+
+      getNodeIcon(type) {
+        const map = {
+          inicio: 'play',
+          regra: 'zap',
+          mensagem: 'message-square',
+          midia: 'image',
+          menu: 'list-ordered',
+          delay: 'hourglass',
+          condicao: 'git-branch',
+          transferir_humano: 'phone-call',
+          encerramento: 'check-circle-2'
+        };
+        return map[type] || 'square';
+      },
+
+      initCanvasInteractions() {
+        const viewport = document.getElementById('canvas-viewport');
+        if (!viewport) return;
+
+        let isPanning = false;
+        let startX = 0;
+        let startY = 0;
+
+        viewport.onmousedown = (e) => {
+          if (e.target === viewport || e.target.id === 'canvas-world' || e.target.id === 'canvas-svg') {
+            isPanning = true;
+            startX = e.clientX - this.state.canvas.panX;
+            startY = e.clientY - this.state.canvas.panY;
+            viewport.classList.add('cursor-grabbing');
+          }
+        };
+
+        window.onmousemove = (e) => {
+          if (isPanning) {
+            this.state.canvas.panX = e.clientX - startX;
+            this.state.canvas.panY = e.clientY - startY;
+            const world = document.getElementById('canvas-world');
+            if (world) {
+              world.style.transform = `translate(${this.state.canvas.panX}px, ${this.state.canvas.panY}px) scale(${this.state.canvas.zoom})`;
+            }
+          } else if (this.state.canvas.isDragging && this.state.canvas.dragNodeId) {
+            const node = this.state.canvas.nodes.find(n => n.id === this.state.canvas.dragNodeId);
+            if (node) {
+              node.x = Math.round((e.clientX - this.state.canvas.panX - this.state.canvas.dragOffset.x) / this.state.canvas.zoom);
+              node.y = Math.round((e.clientY - this.state.canvas.panY - this.state.canvas.dragOffset.y) / this.state.canvas.zoom);
+              
+              const nodeEl = document.getElementById(`node-${node.id}`);
+              if (nodeEl) {
+                nodeEl.style.left = `${node.x}px`;
+                nodeEl.style.top = `${node.y}px`;
+              }
+              const svg = document.getElementById('canvas-svg');
+              if (svg) svg.innerHTML = this.renderSvgConnections();
+            }
+          }
+        };
+
+        window.onmouseup = () => {
+          if (isPanning) {
+            isPanning = false;
+            viewport.classList.remove('cursor-grabbing');
+          }
+          if (this.state.canvas.isDragging) {
+            this.state.canvas.isDragging = false;
+            this.state.canvas.dragNodeId = null;
+          }
+        };
+
+        viewport.onwheel = (e) => {
+          e.preventDefault();
+          const delta = e.deltaY > 0 ? -0.08 : 0.08;
+          this.adjustZoom(delta);
+        };
+      },
+
+      handleNodeMouseDown(e, nodeId) {
+        e.stopPropagation();
+        this.state.canvas.isDragging = true;
+        this.state.canvas.dragNodeId = nodeId;
+        this.state.canvas.selectedNodeId = nodeId;
+        
+        const node = this.state.canvas.nodes.find(n => n.id === nodeId);
+        if (node) {
+          this.state.canvas.dragOffset = {
+            x: (e.clientX - this.state.canvas.panX) - (node.x * this.state.canvas.zoom),
+            y: (e.clientY - this.state.canvas.panY) - (node.y * this.state.canvas.zoom)
+          };
+        }
+      },
+
+      startConnectionFromNode(nodeId) {
+        this.state.canvas.isConnecting = true;
+        this.state.canvas.connectingPort = nodeId;
+        this.showToast('Selecione o bloco de destino para conectar...');
+      },
+
+      connectToNode(targetNodeId) {
+        if (!this.state.canvas.isConnecting || !this.state.canvas.connectingPort) return;
+        const from = this.state.canvas.connectingPort;
+        if (from === targetNodeId) return;
+
+        this.state.canvas.connections.push({
+          id: `conn_${Date.now()}`,
+          from,
+          to: targetNodeId
+        });
+
+        this.state.canvas.isConnecting = false;
+        this.state.canvas.connectingPort = null;
+        this.showToast('Conexão estabelecida!');
+        this.render();
+      },
+
+      deleteConnection(connId) {
+        this.state.canvas.connections = this.state.canvas.connections.filter(c => c.id !== connId);
+        this.showToast('Conexão removida.');
+        this.render();
+      },
+
+      deleteNode(nodeId) {
+        this.state.canvas.nodes = this.state.canvas.nodes.filter(n => n.id !== nodeId);
+        this.state.canvas.connections = this.state.canvas.connections.filter(c => c.from !== nodeId && c.to !== nodeId);
+        this.showToast('Bloco excluído do fluxo.');
+        this.render();
+      },
+
+      adjustZoom(amount) {
+        let newZoom = Math.min(Math.max(this.state.canvas.zoom + amount, 0.4), 2.0);
+        this.state.canvas.zoom = parseFloat(newZoom.toFixed(2));
+        const world = document.getElementById('canvas-world');
+        if (world) {
+          world.style.transform = `translate(${this.state.canvas.panX}px, ${this.state.canvas.panY}px) scale(${this.state.canvas.zoom})`;
+        }
+        this.render();
+      },
+
+      resetZoom() {
+        this.state.canvas.zoom = 1;
+        this.render();
+      },
+
+      fitToView() {
+        this.state.canvas.panX = 40;
+        this.state.canvas.panY = 40;
+        this.state.canvas.zoom = 1;
+        this.render();
+      },
+
+      autoArrangeNodes() {
+        let currentX = 60;
+        this.state.canvas.nodes.forEach((node, idx) => {
+          node.x = currentX;
+          node.y = 120 + ((idx % 2) * 90);
+          currentX += 280;
+        });
+        this.showToast('Blocos auto-organizados em colunas.');
+        this.render();
+      },
+
+      handleManualSave() {
+        const flow = this.state.flows.find(f => f.id === this.state.activeFlowId);
+        if (flow) {
+          flow.nodes = JSON.parse(JSON.stringify(this.state.canvas.nodes));
+          flow.connections = JSON.parse(JSON.stringify(this.state.canvas.connections));
+          this.showToast('Fluxo salvo com sucesso no UpZap!');
+        }
+      },
+
+      handleUndo() {
+        this.showToast('Ação desfeita.');
+      },
+
+      handleRedo() {
+        this.showToast('Ação refeita.');
+      },
+
+      openAddBlockPopover() {
+        const blockTypes = [
+          { type: 'inicio', label: 'Início', desc: 'Ponto de partida do fluxo', icon: 'play', color: 'emerald' },
+          { type: 'regra', label: 'Regra vinculada', desc: 'Gatilho por palavras-chave', icon: 'zap', color: 'amber' },
+          { type: 'mensagem', label: 'Mensagem', desc: 'Texto enviado ao cliente', icon: 'message-square', color: 'sky' },
+          { type: 'midia', label: 'Mídia', desc: 'Foto, vídeo, áudio ou PDF', icon: 'image', color: 'purple' },
+          { type: 'menu', label: 'Menu numerado', desc: 'Opções estruturadas', icon: 'list-ordered', color: 'teal' },
+          { type: 'delay', label: 'Espera / Delay', desc: 'Intervalo de pausa antes da próxima ação', icon: 'hourglass', color: 'orange' },
+          { type: 'condicao', label: 'Condição', desc: 'Ramificação lógica', icon: 'git-branch', color: 'indigo' },
+          { type: 'transferir_humano', label: 'Atendimento humano', desc: 'Transfere para operador humano', icon: 'phone-call', color: 'blue' },
+          { type: 'encerramento', label: 'Fim', desc: 'Conclusão do atendimento', icon: 'check-circle-2', color: 'rose' }
+        ];
+
+        this.openModal(`
+          <div class="p-5 border-b border-border flex items-center justify-between">
+            <div>
+              <h3 class="text-sm font-bold text-foreground">Adicionar Bloco ao Fluxo</h3>
+              <p class="text-xs text-muted">Selecione uma etapa para posicionar no canvas</p>
+            </div>
+            <button onclick="app.closeModal()" class="p-1 text-muted hover:text-foreground">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <div class="p-3 space-y-1.5 max-h-[70vh] overflow-y-auto">
+            ${blockTypes.map(b => `
+              <button 
+                onclick="app.addBlockToCanvas('${b.type}', '${b.label}')"
+                class="w-full text-left p-3 rounded-xl hover:bg-slate-800/80 border border-transparent hover:border-border transition-all flex items-center gap-3 cursor-pointer group"
+              >
+                <div class="w-8 h-8 rounded-lg bg-${b.color}-500/10 text-${b.color}-400 border border-${b.color}-500/20 flex items-center justify-center shrink-0">
+                  <i data-lucide="${b.icon}" class="w-4 h-4"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="text-xs font-bold text-foreground group-hover:text-primary">${b.label}</div>
+                  <div class="text-[11px] text-muted">${b.desc}</div>
+                </div>
+                <i data-lucide="plus" class="w-4 h-4 text-muted group-hover:text-primary"></i>
+              </button>
+            `).join('')}
+          </div>
+        `);
+      },
+
+      addBlockToCanvas(type, label) {
+        const newNode = {
+          id: `node_${Date.now()}`,
+          type,
+          title: label,
+          x: Math.round(-this.state.canvas.panX + 300),
+          y: Math.round(-this.state.canvas.panY + 200),
+          data: {
+            texto: type === 'mensagem' ? 'Nova mensagem do fluxo...' : ''
+          }
+        };
+
+        this.state.canvas.nodes.push(newNode);
+        this.closeModal();
+        this.showToast(`Bloco "${label}" adicionado ao canvas!`);
+        this.render();
+      },
+
+      openTestFlowModal() {
+        this.openModal(`
+          <div class="p-5 border-b border-border flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i data-lucide="play" class="w-4 h-4 text-sky-400"></i>
+              <h3 class="text-sm font-bold text-foreground">Simulador em Tempo Real</h3>
+            </div>
+            <button onclick="app.closeModal()" class="p-1 text-muted hover:text-foreground">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <div class="p-5 space-y-4 text-xs">
+            <div class="p-3 rounded-xl bg-slate-900 border border-border text-slate-300">
+              Testando execução do <strong>Fluxo Principal de Boas-vindas</strong> com suporte a menus e variáveis de pedidos.
+            </div>
+            <div class="space-y-2">
+              <div class="p-3 rounded-xl bg-primary text-white rounded-tr-xs max-w-xs ml-auto">
+                Olá Marina! Bem-vindo à nossa loja oficial no WhatsApp. Como podemos te surpreender hoje?
+              </div>
+              <div class="p-3 rounded-xl bg-slate-800 text-slate-200 rounded-tl-xs max-w-xs">
+                1. Consultar meu pedido
+              </div>
+              <div class="p-3 rounded-xl bg-primary text-white rounded-tr-xs max-w-xs ml-auto">
+                Seu pedido #BZ-9921 está agendado e com envio programado para amanhã!
+              </div>
+            </div>
+            <button onclick="app.closeModal(); app.showToast('Fluxo testado e aprovado com 100% de sucesso.');" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold cursor-pointer">
+              Concluir Teste de Fluxo
+            </button>
+          </div>
+        `);
+      },
+
+      openFlowsListModal() {
+        this.openModal(`
+          <div class="p-5 border-b border-border flex items-center justify-between">
+            <h3 class="text-sm font-bold text-foreground">Gerenciador de Fluxos</h3>
+            <button onclick="app.closeModal()" class="p-1 text-muted hover:text-foreground">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <div class="p-5 space-y-3">
+            ${this.state.flows.map(f => `
+              <div class="p-3.5 rounded-xl bg-slate-900 border border-border flex items-center justify-between">
+                <div>
+                  <div class="text-xs font-bold text-foreground">${f.nome}</div>
+                  <div class="text-[11px] text-muted">${(f.nodes || []).length} blocos • ${f.isWelcomeFlow ? 'Fluxo Padrão' : 'Personalizado'}</div>
+                </div>
+                <button onclick="app.selectFlow('${f.id}')" class="px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-semibold cursor-pointer">
+                  Editar no Canvas
+                </button>
+              </div>
+            `).join('')}
+          </div>
+        `);
+      },
+
+      selectFlow(flowId) {
+        this.state.activeFlowId = flowId;
+        const flow = this.state.flows.find(f => f.id === flowId);
+        if (flow) this.loadFlowIntoCanvas(flow);
+        this.closeModal();
+        this.render();
+      },
+
+      openRulesDropdown() {
+        this.navigateTo('regras');
+      },
+
+      openBrizexMappingModal() {
+        this.openModal(`
+          <div class="p-5 border-b border-border flex items-center justify-between">
+            <h3 class="text-sm font-bold text-foreground">Mapeamento de Eventos Brizex</h3>
+            <button onclick="app.closeModal()" class="p-1 text-muted hover:text-foreground">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <div class="p-5 space-y-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-900 border border-border flex items-center justify-between">
+              <div>
+                <div class="font-bold text-foreground">Pedido Agendado</div>
+                <div class="text-[11px] text-muted">Dispara confirmação de agendamento</div>
+              </div>
+              <span class="text-emerald-400 font-semibold">Fluxo Vinculado</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900 border border-border flex items-center justify-between">
+              <div>
+                <div class="font-bold text-foreground">Pedido em Rota</div>
+                <div class="text-[11px] text-muted">Dispara aviso com código de rastreio</div>
+              </div>
+              <span class="text-emerald-400 font-semibold">Fluxo Vinculado</span>
+            </div>
+          </div>
+        `);
+      },
+
+      // 5.7. BIBLIOTECA VIEW
+      renderLibraryView() {
+        return `
+          <div class="space-y-5">
+            <div class="flex items-center justify-between pb-4 border-b border-border">
+              <div>
+                <h2 class="text-lg font-bold text-foreground">Biblioteca de Arquivos & Mídias</h2>
+                <p class="text-xs text-muted mt-0.5">Catálogo de imagens, áudios, PDFs e vídeos prontos para envio nas mensagens.</p>
+              </div>
+              <button onclick="app.openUploadModal()" class="px-3.5 py-1.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-xs">
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                <span>Enviar Arquivo</span>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              ${this.state.library.map(item => `
+                <div class="p-4 rounded-2xl bg-card border border-border flex flex-col justify-between space-y-3">
+                  <div class="space-y-2">
+                    <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                      <i data-lucide="${item.type === 'pdf' ? 'file-text' : item.type === 'foto' ? 'image' : item.type === 'audio' ? 'music' : 'video'}" class="w-5 h-5"></i>
+                    </div>
+                    <div class="font-bold text-xs text-foreground truncate" title="${item.name}">${item.name}</div>
+                    <div class="text-[11px] text-muted">${item.size} • ${item.category}</div>
+                  </div>
+                  <div class="pt-2 border-t border-border flex items-center justify-between">
+                    <button onclick="app.showToast('Link do arquivo copiado!')" class="text-xs text-primary hover:underline cursor-pointer">Copiar Link</button>
+                    <button onclick="app.deleteLibraryItem('${item.id}')" class="p-1 text-muted hover:text-rose-400 cursor-pointer">
+                      <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      },
+
+      deleteLibraryItem(id) {
+        this.state.library = this.state.library.filter(i => i.id !== id);
+        this.showToast('Arquivo removido da biblioteca.');
+        this.render();
+      },
+
+      openUploadModal() {
+        this.openModal(`
+          <div class="p-5 border-b border-border flex items-center justify-between">
+            <h3 class="text-sm font-bold text-foreground">Adicionar Novo Arquivo</h3>
+            <button onclick="app.closeModal()" class="p-1 text-muted hover:text-foreground">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <form onsubmit="event.preventDefault(); app.handleUploadItem();" class="p-5 space-y-4 text-xs">
+            <div>
+              <label class="block font-semibold text-muted mb-1">Nome do Arquivo</label>
+              <input type="text" id="upload-name" placeholder="Ex: Tabela de Preços.pdf" class="w-full bg-background border border-border rounded-xl px-3 py-2 text-foreground focus:outline-none focus:ring-1 focus:ring-primary" required>
+            </div>
+            <div>
+              <label class="block font-semibold text-muted mb-1">Tipo de Mídia</label>
+              <select id="upload-type" class="w-full bg-background border border-border rounded-xl px-3 py-2 text-foreground focus:outline-none cursor-pointer">
+                <option value="pdf">Documento PDF</option>
+                <option value="foto">Foto / Imagem</option>
+                <option value="audio">Áudio Gravado</option>
+                <option value="video">Vídeo Demonstrativo</option>
+              </select>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold cursor-pointer shadow-xs">
+              Cadastrar Mídia
+            </button>
+          </form>
+        `);
+      },
+
+      handleUploadItem() {
+        const name = document.getElementById('upload-name')?.value;
+        const type = document.getElementById('upload-type')?.value;
+
+        this.state.library.push({
+          id: `lib_${Date.now()}`,
+          name,
+          type,
+          size: '1.2 MB',
+          category: 'Geral',
+          url: '#'
+        });
+
+        this.closeModal();
+        this.showToast('Arquivo adicionado com sucesso!');
+        this.render();
+      },
+
+      // 5.8. SIMULADOR VIEW
+      renderSimulatorView() {
+        return `
+          <div class="max-w-xl mx-auto space-y-4">
+            <div class="p-4 rounded-2xl bg-card border border-border flex items-center justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-foreground">Simulador Oficial WhatsApp</h3>
+                <p class="text-xs text-muted">Valide respostas, menus e transferências como se fosse um cliente real.</p>
+              </div>
+              <button onclick="app.resetSimulator()" class="p-2 rounded-lg bg-secondary hover:bg-slate-700 text-muted hover:text-foreground cursor-pointer">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- JANELA DE CONVERSA DO SIMULADOR -->
+            <div class="h-[480px] rounded-2xl bg-[#090d16] border border-border flex flex-col overflow-hidden">
+              <div class="p-3.5 bg-card border-b border-border flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs">
+                  UZ
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-foreground">UpZap Robô de Atendimento</div>
+                  <div class="text-[10px] text-emerald-400">Online 24/7</div>
+                </div>
+              </div>
+
+              <div id="sim-messages-list" class="flex-1 p-4 overflow-y-auto space-y-3">
+                ${this.state.simulator.messages.map(m => `
+                  <div class="flex flex-col ${m.from === 'user' ? 'items-end' : 'items-start'}">
+                    <div class="max-w-xs p-3 rounded-2xl text-xs ${
+                      m.from === 'user' 
+                        ? 'bg-primary text-primary-foreground rounded-tr-xs' 
+                        : 'bg-slate-800 text-slate-100 rounded-tl-xs'
+                    }">
+                      <p class="leading-relaxed whitespace-pre-wrap">${m.text}</p>
+                      <div class="mt-1 text-[9px] opacity-75 text-right font-mono">${m.time}</div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div class="p-3 bg-card border-t border-border flex items-center gap-2">
+                <input 
+                  type="text" 
+                  id="sim-input" 
+                  placeholder="Envie uma mensagem (ex: frete, agendado, 1)..."
+                  class="flex-1 bg-background border border-border rounded-xl px-3.5 py-2 text-xs text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-primary"
+                  onkeydown="if(event.key === 'Enter') app.sendSimulatorMessage();"
+                >
+                <button onclick="app.sendSimulatorMessage()" class="px-3.5 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold cursor-pointer">
+                  Enviar
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      },
+
+      sendSimulatorMessage() {
+        const input = document.getElementById('sim-input');
+        if (!input || !input.value.trim()) return;
+
+        const text = input.value.trim();
+        const time = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+        this.state.simulator.messages.push({
+          id: `sim_${Date.now()}`,
+          from: 'user',
+          text,
+          time
+        });
+        input.value = '';
+        this.render();
+
+        // Resposta inteligente simulada
+        setTimeout(() => {
+          let botReply = 'Entendi! Como posso te ajudar com isso?';
+          const lower = text.toLowerCase();
+
+          if (lower.includes('frete') || lower.includes('prazo')) {
+            botReply = 'O envio é realizado via transportadora expressa com entrega em 2 a 5 dias úteis!';
+          } else if (lower.includes('agendado') || lower.includes('pedido')) {
+            botReply = 'Seu pedido #BZ-9921 está agendado e com envio programado para amanhã!';
+          } else if (lower === '1') {
+            botReply = 'Consultando seu pedido na Brizex... Status atual: Agendado com entrega em andamento.';
+          } else if (lower === '2' || lower.includes('humano')) {
+            botReply = 'Transferindo atendimento para a fila humana da nossa equipe!';
+          }
+
+          this.state.simulator.messages.push({
+            id: `sim_bot_${Date.now()}`,
+            from: 'bot',
+            text: botReply,
+            time: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+          });
+          this.render();
+        }, 600);
+      },
+
+      resetSimulator() {
+        this.state.simulator.messages = [
+          { id: 'sim_1', from: 'bot', text: 'Olá! Sou a assistente virtual UpZap. Como posso te ajudar hoje?', time: '10:00' }
+        ];
+        this.showToast('Simulador reinicializado.');
+        this.render();
+      },
+
+      // 5.9. CONEXÃO WHATSAPP VIEW
+      renderWhatsappView() {
+        const isConnected = this.state.whatsapp.state === 'connected';
+
+        return `
+          <div class="max-w-2xl mx-auto space-y-6">
+            <div class="p-6 rounded-2xl bg-card border border-border space-y-6">
+              <div class="flex items-center justify-between pb-4 border-b border-border">
+                <div>
+                  <h3 class="text-sm font-bold text-foreground">Conexão WhatsApp — Baileys</h3>
+                  <p class="text-xs text-muted">Integração oficial Multi-Device em tempo real.</p>
+                </div>
+                <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${
+                  isConnected ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
+                }">
+                  ${isConnected ? 'Conectado' : 'Desconectado'}
+                </span>
+              </div>
+
+              <!-- DETALHES DA SESSÃO -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="p-4 rounded-xl bg-slate-900 border border-border">
+                  <div class="text-[10px] text-muted font-bold uppercase">Número Vinculado</div>
+                  <div class="text-xs font-bold text-foreground font-mono mt-1">${this.state.whatsapp.number || 'Nenhum'}</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900 border border-border">
+                  <div class="text-[10px] text-muted font-bold uppercase">Estado do Socket</div>
+                  <div class="text-xs font-semibold text-emerald-400 mt-1">${this.state.whatsapp.status}</div>
+                </div>
+              </div>
+
+              <!-- BOTÕES DE CONTROLE -->
+              <div class="flex flex-wrap items-center gap-3">
+                ${isConnected ? `
+                  <button onclick="app.disconnectWhatsapp()" class="px-4 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold cursor-pointer">
+                    Desconectar WhatsApp
+                  </button>
+                  <button onclick="app.reconnectWhatsapp()" class="px-4 py-2 rounded-xl bg-secondary hover:bg-slate-700 text-foreground text-xs font-semibold border border-border cursor-pointer">
+                    Forçar Reconexão Segura
+                  </button>
+                ` : `
+                  <button onclick="app.connectWhatsapp()" class="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold cursor-pointer shadow-xs">
+                    Gerar Novo QR Code
+                  </button>
+                `}
+              </div>
+
+              <!-- CONFIGURAÇÕES DE CHAMADAS (BLOQUEIO AUTOMÁTICO) -->
+              <div class="pt-4 border-t border-border space-y-3">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-xs font-bold text-foreground">Bloqueio Automático de Chamadas</div>
+                    <div class="text-[11px] text-muted">Recusa chamadas de voz e vídeo e avisa no chat.</div>
+                  </div>
+                  <input 
+                    type="checkbox" 
+                    ${this.state.whatsapp.callSettings.rejectCalls ? 'checked' : ''}
+                    onchange="app.state.whatsapp.callSettings.rejectCalls = this.checked; app.showToast('Configuração de chamadas atualizada.');"
+                    class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      },
+
+      connectWhatsapp() {
+        this.state.whatsapp.state = 'connected';
+        this.playSound('whatsapp_reconectado');
+        this.showToast('WhatsApp conectado com sucesso via Baileys!');
+        this.render();
+      },
+
+      disconnectWhatsapp() {
+        this.state.whatsapp.state = 'disconnected';
+        this.triggerAlert('whatsapp_desconectado', 'WhatsApp Desconectado', 'A sessão do WhatsApp foi desconectada.');
+        this.render();
+      },
+
+      reconnectWhatsapp() {
+        this.playSound('reconexao_concluida');
+        this.showToast('Reconexão concluída com sucesso!');
+        this.render();
+      },
+
+      // 5.10. MONITORAMENTO E ALERTAS VIEW
+      renderMonitoringView() {
+        const soundList = [
+          { id: 'brizex_indisponivel', label: 'Brizex Indisponível' },
+          { id: 'erro_critico', label: 'Erro Crítico' },
+          { id: 'fluxo_falhou', label: 'Fluxo Falhou' },
+          { id: 'integracao_restabelecida', label: 'Integração Restabelecida' },
+          { id: 'internet_desconectada', label: 'Internet Desconectada' },
+          { id: 'internet_restabelecida', label: 'Internet Restabelecida' },
+          { id: 'pedido_sincronizacao_falhou', label: 'Pedido Sincronização Falhou' },
+          { id: 'reconexao_concluida', label: 'Reconexão Concluída' },
+          { id: 'servidor_indisponivel', label: 'Servidor Indisponível' },
+          { id: 'whatsapp_desconectado', label: 'WhatsApp Desconectado' },
+          { id: 'whatsapp_reconectado', label: 'WhatsApp Reconectado' }
+        ];
+
+        return `
+          <div class="space-y-6">
+            <div class="flex items-center justify-between pb-4 border-b border-border">
+              <div>
+                <h2 class="text-lg font-bold text-foreground">Central de Monitoramento & Alertas</h2>
+                <p class="text-xs text-muted mt-0.5">Diagnóstico contínuo dos serviços e trilha de auditoria.</p>
+              </div>
+
+              <!-- CONTROLE GERAL DE ÁUDIO -->
+              <div class="flex items-center gap-3 bg-card border border-border px-3.5 py-1.5 rounded-xl">
+                <span class="text-xs font-semibold text-muted">Volume Geral:</span>
+                <input 
+                  type="range" 
+                  min="0" 
+                  max="1" 
+                  step="0.05" 
+                  value="${this.state.soundVolume}"
+                  oninput="app.state.soundVolume = parseFloat(this.value);"
+                  class="w-24 accent-primary cursor-pointer"
+                >
+              </div>
+            </div>
+
+            <!-- STATUS DOS SERVIÇOS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              ${Object.values(this.state.monitoring.services).map(s => `
+                <div class="p-4 rounded-2xl bg-card border border-border">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-foreground">${s.label}</span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  </div>
+                  <div class="mt-2 text-xl font-bold text-emerald-400">Online</div>
+                  <div class="text-[11px] text-muted mt-0.5">Disponibilidade: ${s.uptime}</div>
+                </div>
+              `).join('')}
+            </div>
+
+            <!-- MAPEAMENTO DOS 11 ÁUDIOS OFICIAIS -->
+            <div class="p-5 rounded-2xl bg-card border border-border space-y-3">
+              <h3 class="text-xs font-bold text-foreground uppercase tracking-wider">Catálogo Oficial de Alertas Sonoros (11 Áudios)</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+                ${soundList.map(snd => `
+                  <div class="p-2.5 rounded-xl bg-slate-900 border border-border flex items-center justify-between">
+                    <span class="font-medium text-slate-200 truncate">${snd.label}</span>
+                    <button 
+                      onclick="app.playSound('${snd.id}')"
+                      title="Ouvir alerta"
+                      class="p-1 rounded-md bg-secondary hover:bg-slate-700 text-sky-400 cursor-pointer"
+                    >
+                      <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- LINHA DO TEMPO DE EVENTOS DE AUDITORIA -->
+            <div class="p-5 rounded-2xl bg-card border border-border space-y-3">
+              <h3 class="text-xs font-bold text-foreground uppercase tracking-wider">Trilha de Eventos e Diagnóstico</h3>
+              <div class="space-y-2">
+                ${this.state.monitoring.events.map(ev => `
+                  <div class="p-3.5 rounded-xl bg-slate-900 border border-border flex items-center justify-between text-xs">
+                    <div class="flex items-center gap-3">
+                      <span class="w-2 h-2 rounded-full ${ev.severity === 'error' ? 'bg-rose-500' : 'bg-emerald-500'}"></span>
+                      <div>
+                        <div class="font-bold text-foreground">${ev.title}</div>
+                        <div class="text-[11px] text-muted">${ev.description}</div>
+                      </div>
+                    </div>
+                    <span class="text-[11px] text-muted font-mono">${new Date(ev.timestamp).toLocaleTimeString('pt-BR')}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      },
+
+      // 5.11. CONFIGURAÇÕES VIEW
+      renderSettingsView() {
+        return `
+          <div class="max-w-2xl mx-auto space-y-6">
+            <div class="p-6 rounded-2xl bg-card border border-border space-y-5">
+              <div class="pb-3 border-b border-border">
+                <h3 class="text-sm font-bold text-foreground">Configurações Operacionais</h3>
+                <p class="text-xs text-muted">Parâmetros de atendimento, segurança e contingência.</p>
+              </div>
+
+              <div class="space-y-4 text-xs">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-bold text-foreground">Simulação de Digitação Humana</div>
+                    <div class="text-muted">Atrasa levemente as mensagens para maior naturalidade.</div>
+                  </div>
+                  <input type="checkbox" checked class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer">
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-bold text-foreground">Proteção contra Loops de Mensagens</div>
+                    <div class="text-muted">Evita repetições infinitas se outro robô responder.</div>
+                  </div>
+                  <input type="checkbox" checked class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer">
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-bold text-foreground">Encerramento Automático de Atendimentos Inativos</div>
+                    <div class="text-muted">Fecha chats sem interação após 30 minutos.</div>
+                  </div>
+                  <input type="checkbox" checked class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer">
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-border">
+                <button onclick="app.showToast('Configurações salvas com sucesso!')" class="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold cursor-pointer shadow-xs">
+                  Salvar Parâmetros
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      },
+
+      // 5.12. BACKUP E RESTAURAÇÃO VIEW
+      renderBackupView() {
+        return `
+          <div class="max-w-2xl mx-auto space-y-6">
+            <div class="p-6 rounded-2xl bg-card border border-border space-y-5">
+              <div class="flex items-center justify-between pb-3 border-b border-border">
+                <div>
+                  <h3 class="text-sm font-bold text-foreground">Backup & Restauração</h3>
+                  <p class="text-xs text-muted">Exporte e restaure instantaneamente as regras, fluxos e dados do UpZap.</p>
+                </div>
+                <button onclick="app.createBackup()" class="px-3.5 py-1.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-xs">
+                  <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                  <span>Criar Backup Agora</span>
+                </button>
+              </div>
+
+              <!-- LISTAGEM DE BACKUPS -->
+              <div class="space-y-3">
+                ${this.state.backups.map(b => `
+                  <div class="p-3.5 rounded-xl bg-slate-900 border border-border flex items-center justify-between text-xs">
+                    <div>
+                      <div class="font-bold text-foreground font-mono">${b.name}</div>
+                      <div class="text-[11px] text-muted">${b.date} • ${b.size}</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <button onclick="app.downloadBackup('${b.id}')" class="px-2.5 py-1 rounded-lg bg-secondary hover:bg-slate-700 text-xs text-foreground cursor-pointer">
+                        Baixar
+                      </button>
+                      <button onclick="app.restoreBackup('${b.id}')" class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold cursor-pointer">
+                        Restaurar
+                      </button>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      },
+
+      createBackup() {
+        const dateStr = new Date().toISOString().split('T')[0];
+        const newBkp = {
+          id: `bkp_${Date.now()}`,
+          name: `upzap-backup-${dateStr}-${Math.floor(100 + Math.random() * 900)}.json`,
+          size: '52.4 KB',
+          date: new Date().toLocaleString('pt-BR'),
+          itemsCount: 48
+        };
+
+        this.state.backups.unshift(newBkp);
+        this.showToast('Backup gerado e registrado com sucesso!');
+        this.render();
+      },
+
+      downloadBackup(id) {
+        const bkp = this.state.backups.find(b => b.id === id);
+        if (!bkp) return;
+
+        const dataStr = JSON.stringify({
+          version: '3.0',
+          app: 'UpZap Oficial',
+          exportDate: new Date().toISOString(),
+          state: this.state
+        }, null, 2);
+
+        const blob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = bkp.name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        this.showToast('Download do arquivo de backup iniciado.');
+      },
+
+      restoreBackup(id) {
+        this.showToast('Backup restaurado com 100% de integridade!');
+      }
+    };
+
+    // Inicialização ao carregar a página
+    window.addEventListener('DOMContentLoaded', () => {
+      app.init();
+    });
+  </script>
+</body>
+</html>

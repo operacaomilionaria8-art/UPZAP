@@ -1,0 +1,271 @@
+{
+  "fluxos": [
+    {
+      "id": "flow_boas_vindas",
+      "nome": "Boas-vindas Principal",
+      "descricao": "Saudação acolhedora e menu principal da loja Brizex",
+      "status": "Publicado",
+      "isWelcomeFlow": true,
+      "updatedAt": "2026-10-17T10:00:00.000Z",
+      "blocos": [
+        {
+          "id": "b_bv_1",
+          "tipo": "texto",
+          "conteudo": "Olá! 💕 Seja muito bem-vinda à Brizex! Como posso te ajudar hoje?",
+          "delay": 1.5
+        },
+        {
+          "id": "b_bv_2",
+          "tipo": "menu",
+          "formatoMenu": "numerado",
+          "tituloMenu": "Boas-vindas Principal",
+          "conteudo": "Menu Principal",
+          "rodapeMenu": "👉 Digite o número da opção desejada para continuar.",
+          "delay": 1.5,
+          "opcoes": [
+            {
+              "id": "opt_1",
+              "numero": 1,
+              "texto": "Preços e kits",
+              "descricao": "Conferir ofertas especiais",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_precos_kits"
+            },
+            {
+              "id": "opt_2",
+              "numero": 2,
+              "texto": "Tamanhos e cores",
+              "descricao": "Tabela de medidas M, G e GG",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_tamanhos_cores"
+            },
+            {
+              "id": "opt_3",
+              "numero": 3,
+              "texto": "Pagamento e entrega",
+              "descricao": "PIX, Cartão e frete",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_pagamento_entrega"
+            },
+            {
+              "id": "opt_4",
+              "numero": 4,
+              "texto": "Finalizar compra",
+              "descricao": "Link de checkout Coinzz",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_finalizar_compra"
+            },
+            {
+              "id": "opt_5",
+              "numero": 5,
+              "texto": "Falar com atendente",
+              "descricao": "Transferência para equipe humana",
+              "acao": "transferir_humano"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow_precos_kits",
+      "nome": "Preços e Kits",
+      "descricao": "Apresenta as 4 ofertas oficiais da Calcinha Cinta Modeladora",
+      "status": "Publicado",
+      "isWelcomeFlow": false,
+      "updatedAt": "2026-10-17T10:00:00.000Z",
+      "blocos": [
+        {
+          "id": "b_pk_1",
+          "tipo": "texto",
+          "conteudo": "✨ *Ofertas Oficiais Calcinha Cinta Modeladora Brizex:*\n\n1️⃣ *1 unidade:* R$ 97,90\n2️⃣ *2 unidades:* R$ 167,90 (Mais vendida!)\n3️⃣ *3 unidades:* R$ 197,90 (Super desconto!)\n4️⃣ *6 unidades:* R$ 297,90 (Kit Família Econômico)",
+          "libraryItemId": "lib_tabela_precos",
+          "delay": 1.5
+        },
+        {
+          "id": "b_pk_2",
+          "tipo": "menu",
+          "formatoMenu": "numerado",
+          "tituloMenu": "Escolha seu kit",
+          "conteudo": "Selecione o kit desejado:",
+          "rodapeMenu": "👉 Digite o número do kit escolhido.",
+          "delay": 1.5,
+          "opcoes": [
+            {
+              "id": "opt_pk_1",
+              "numero": 1,
+              "texto": "Escolher 1 unidade (R$ 97,90)",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_tamanhos_cores"
+            },
+            {
+              "id": "opt_pk_2",
+              "numero": 2,
+              "texto": "Escolher 2 unidades (R$ 167,90)",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_tamanhos_cores"
+            },
+            {
+              "id": "opt_pk_3",
+              "numero": 3,
+              "texto": "Escolher 3 unidades (R$ 197,90)",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_tamanhos_cores"
+            },
+            {
+              "id": "opt_pk_4",
+              "numero": 4,
+              "texto": "Escolher 6 unidades (R$ 297,90)",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_tamanhos_cores"
+            },
+            {
+              "id": "opt_pk_5",
+              "numero": 5,
+              "texto": "Voltar ao menu",
+              "acao": "voltar_menu",
+              "fluxoId": "flow_boas_vindas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow_tamanhos_cores",
+      "nome": "Tamanhos e Cores",
+      "descricao": "Orientações de tamanhos M, G, GG e cores bege e preto",
+      "status": "Publicado",
+      "isWelcomeFlow": false,
+      "updatedAt": "2026-10-17T10:00:00.000Z",
+      "blocos": [
+        {
+          "id": "b_tc_1",
+          "tipo": "texto",
+          "conteudo": "📐 *Tamanhos e Cores Disponíveis:*\n\nTamanhos: *M*, *G* e *GG* (nossa modelagem anatômica se adapta perfeitamente ao seu corpo).\nCores: *Bege* (discreta) e *Preto* (elegante).\n\nComo você prefere continuar?",
+          "libraryItemId": "lib_tabela_medidas",
+          "delay": 1.5
+        },
+        {
+          "id": "b_tc_2",
+          "tipo": "menu",
+          "formatoMenu": "numerado",
+          "tituloMenu": "Tamanhos e Cores",
+          "conteudo": "Opções de navegação:",
+          "rodapeMenu": "👉 Digite o número da opção desejada.",
+          "delay": 1.5,
+          "opcoes": [
+            {
+              "id": "opt_tc_1",
+              "numero": 1,
+              "texto": "Ver preços e kits",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_precos_kits"
+            },
+            {
+              "id": "opt_tc_2",
+              "numero": 2,
+              "texto": "Finalizar compra",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_finalizar_compra"
+            },
+            {
+              "id": "opt_tc_3",
+              "numero": 3,
+              "texto": "Voltar ao menu",
+              "acao": "voltar_menu",
+              "fluxoId": "flow_boas_vindas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow_pagamento_entrega",
+      "nome": "Pagamento e Entrega",
+      "descricao": "Formas de pagamento PIX/Cartão e prazos de entrega",
+      "status": "Publicado",
+      "isWelcomeFlow": false,
+      "updatedAt": "2026-10-17T10:00:00.000Z",
+      "blocos": [
+        {
+          "id": "b_pe_1",
+          "tipo": "texto",
+          "conteudo": "💳 *Pagamento & Entrega:*\n\n✅ Aceitamos PIX (aprovação na hora) e Cartão de Crédito em até 12x.\n🚚 Frete Rápido com código de rastreamento no WhatsApp.\n🔒 Compra 100% segura com garantia incondicional de 7 dias.",
+          "delay": 1.5
+        },
+        {
+          "id": "b_pe_2",
+          "tipo": "menu",
+          "formatoMenu": "numerado",
+          "tituloMenu": "Pagamento e Entrega",
+          "conteudo": "Opções de pagamento:",
+          "rodapeMenu": "👉 Digite o número da opção desejada.",
+          "delay": 1.5,
+          "opcoes": [
+            {
+              "id": "opt_pe_1",
+              "numero": 1,
+              "texto": "Ver preços e kits",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_precos_kits"
+            },
+            {
+              "id": "opt_pe_2",
+              "numero": 2,
+              "texto": "Finalizar compra",
+              "acao": "executar_fluxo",
+              "fluxoId": "flow_finalizar_compra"
+            },
+            {
+              "id": "opt_pe_3",
+              "numero": 3,
+              "texto": "Voltar ao menu",
+              "acao": "voltar_menu",
+              "fluxoId": "flow_boas_vindas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow_finalizar_compra",
+      "nome": "Finalizar Compra",
+      "descricao": "Link seguro de checkout Coinzz com suporte a código de influenciadora",
+      "status": "Publicado",
+      "isWelcomeFlow": false,
+      "updatedAt": "2026-10-17T10:00:00.000Z",
+      "blocos": [
+        {
+          "id": "b_fc_1",
+          "tipo": "texto",
+          "conteudo": "🎉 Excelente escolha! Para concluir seu pedido com segurança total:\n\nAcesse nosso checkout seguro Coinzz:\n{{linkCheckout}}\n\nAssim que o pagamento for aprovado, nossa equipe já separa seu pacote com todo carinho! 💕",
+          "delay": 1.5
+        },
+        {
+          "id": "b_fc_2",
+          "tipo": "menu",
+          "formatoMenu": "numerado",
+          "tituloMenu": "Finalizar Compra",
+          "conteudo": "Opções finais:",
+          "rodapeMenu": "👉 Digite o número da opção desejada.",
+          "delay": 1.5,
+          "opcoes": [
+            {
+              "id": "opt_fc_1",
+              "numero": 1,
+              "texto": "Voltar ao menu",
+              "acao": "voltar_menu",
+              "fluxoId": "flow_boas_vindas"
+            },
+            {
+              "id": "opt_fc_2",
+              "numero": 2,
+              "texto": "Falar com atendente",
+              "acao": "transferir_humano"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "blocos": []
+}

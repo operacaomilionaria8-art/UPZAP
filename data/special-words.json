@@ -1,0 +1,31 @@
+[
+  {
+    "id": "sw_atendente",
+    "nome": "Chamar Atendente Humano",
+    "palavras": [
+      "atendente",
+      "humano",
+      "operador",
+      "falar com atendente",
+      "suporte humano"
+    ],
+    "acao": "transferir_humano",
+    "resposta": "Transferindo seu atendimento para nossa equipe humana da Brizex, {{nome}}! 💕 Aguarde um instante.",
+    "ativo": true,
+    "descricao": "Transfere e pausa a automação imediatamente para atendimento humano"
+  },
+  {
+    "id": "sw_encerrar",
+    "nome": "Encerrar Atendimento",
+    "palavras": [
+      "sair",
+      "cancelar",
+      "encerrar",
+      "parar"
+    ],
+    "acao": "encerrar",
+    "resposta": "Atendimento cancelado e encerrado. Se precisar de algo, só mandar um Oi! 💕",
+    "ativo": true,
+    "descricao": "Encerra o atendimento ativo do cliente"
+  }
+]

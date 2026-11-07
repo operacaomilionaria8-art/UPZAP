@@ -1,0 +1,7 @@
+{
+  "webhookSecret": "brizex_live_secret_upzap2026",
+  "enabled": true,
+  "autoPauseCommercialOnScheduled": true,
+  "webhookUrl": "/api/integrations/brizex/orders",
+  "updatedAt": "2026-10-29T17:28:15.237Z"
+}

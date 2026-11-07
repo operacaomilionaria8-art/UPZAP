@@ -1,0 +1,641 @@
+[
+  {
+    "id": "synclog_1793922612858_t1c2",
+    "timestamp": "2026-11-05T23:50:12.858Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793922612848",
+    "brizexOrderId": "BRZ_1793922612851",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Agendado",
+    "tipoOperacao": "atualizacao",
+    "sucesso": true,
+    "mensagem": "Pedido LOGZZ_AUDIT_1793922612848 atualizado com sucesso para o status [Agendado].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793922612852_uhtn",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Agendado"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793922612854_ebqx",
+    "timestamp": "2026-11-05T23:50:12.854Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793922612848",
+    "brizexOrderId": "BRZ_1793922612851",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "aviso_status",
+    "sucesso": true,
+    "mensagem": "Pedido mantido: Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+    "detalhes": {
+      "upzapId": "upz_ord_1793922612852_uhtn",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "analise_de_credito_externa",
+      "statusWarning": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793922612853_m7c8",
+    "timestamp": "2026-11-05T23:50:12.853Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793922612848",
+    "brizexOrderId": "BRZ_1793922612851",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "criacao",
+    "sucesso": true,
+    "mensagem": "Novo pedido LOGZZ_AUDIT_1793922612848 registrado com sucesso no status [Em Separação].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793922612852_uhtn",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Em Separação"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793922612847_kxmc",
+    "timestamp": "2026-11-05T23:50:12.847Z",
+    "tipoOperacao": "erro_validacao",
+    "sucesso": false,
+    "mensagem": "Campo obrigatório ausente: identificador do pedido na Logzz (logzzOrderId / id_logzz).",
+    "detalhes": {
+      "payload": {
+        "valorTotal": 100
+      }
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793844888288_h5ac",
+    "timestamp": "2026-11-05T02:14:48.288Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793844888273",
+    "brizexOrderId": "BRZ_1793844888280",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Agendado",
+    "tipoOperacao": "atualizacao",
+    "sucesso": true,
+    "mensagem": "Pedido LOGZZ_AUDIT_1793844888273 atualizado com sucesso para o status [Agendado].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793844888281_qdcu",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Agendado"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793844888283_w0nr",
+    "timestamp": "2026-11-05T02:14:48.283Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793844888273",
+    "brizexOrderId": "BRZ_1793844888280",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "aviso_status",
+    "sucesso": true,
+    "mensagem": "Pedido mantido: Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+    "detalhes": {
+      "upzapId": "upz_ord_1793844888281_qdcu",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "analise_de_credito_externa",
+      "statusWarning": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793844888282_xhef",
+    "timestamp": "2026-11-05T02:14:48.282Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793844888273",
+    "brizexOrderId": "BRZ_1793844888280",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "criacao",
+    "sucesso": true,
+    "mensagem": "Novo pedido LOGZZ_AUDIT_1793844888273 registrado com sucesso no status [Em Separação].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793844888281_qdcu",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Em Separação"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793844888270_k1g4",
+    "timestamp": "2026-11-05T02:14:48.270Z",
+    "tipoOperacao": "erro_validacao",
+    "sucesso": false,
+    "mensagem": "Campo obrigatório ausente: identificador do pedido na Logzz (logzzOrderId / id_logzz).",
+    "detalhes": {
+      "payload": {
+        "valorTotal": 100
+      }
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793841735630_1l85",
+    "timestamp": "2026-11-05T01:22:15.630Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793841735620",
+    "brizexOrderId": "BRZ_1793841735623",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Agendado",
+    "tipoOperacao": "atualizacao",
+    "sucesso": true,
+    "mensagem": "Pedido LOGZZ_AUDIT_1793841735620 atualizado com sucesso para o status [Agendado].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793841735623_8c7k",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Agendado"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793841735625_6dej",
+    "timestamp": "2026-11-05T01:22:15.625Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793841735620",
+    "brizexOrderId": "BRZ_1793841735623",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "aviso_status",
+    "sucesso": true,
+    "mensagem": "Pedido mantido: Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+    "detalhes": {
+      "upzapId": "upz_ord_1793841735623_8c7k",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "analise_de_credito_externa",
+      "statusWarning": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793841735624_4aaq",
+    "timestamp": "2026-11-05T01:22:15.624Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793841735620",
+    "brizexOrderId": "BRZ_1793841735623",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "criacao",
+    "sucesso": true,
+    "mensagem": "Novo pedido LOGZZ_AUDIT_1793841735620 registrado com sucesso no status [Em Separação].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793841735623_8c7k",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Em Separação"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793841735619_m5s8",
+    "timestamp": "2026-11-05T01:22:15.619Z",
+    "tipoOperacao": "erro_validacao",
+    "sucesso": false,
+    "mensagem": "Campo obrigatório ausente: identificador do pedido na Logzz (logzzOrderId / id_logzz).",
+    "detalhes": {
+      "payload": {
+        "valorTotal": 100
+      }
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793841720534_pvv5",
+    "timestamp": "2026-11-05T01:22:00.534Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793841720525",
+    "brizexOrderId": "BRZ_1793841720527",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Agendado",
+    "tipoOperacao": "atualizacao",
+    "sucesso": true,
+    "mensagem": "Pedido LOGZZ_AUDIT_1793841720525 atualizado com sucesso para o status [Agendado].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793841720528_4p3c",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Agendado"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793841720530_wmd5",
+    "timestamp": "2026-11-05T01:22:00.530Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793841720525",
+    "brizexOrderId": "BRZ_1793841720527",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "aviso_status",
+    "sucesso": true,
+    "mensagem": "Pedido mantido: Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+    "detalhes": {
+      "upzapId": "upz_ord_1793841720528_4p3c",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "analise_de_credito_externa",
+      "statusWarning": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793841720529_7l3w",
+    "timestamp": "2026-11-05T01:22:00.529Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793841720525",
+    "brizexOrderId": "BRZ_1793841720527",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "criacao",
+    "sucesso": true,
+    "mensagem": "Novo pedido LOGZZ_AUDIT_1793841720525 registrado com sucesso no status [Em Separação].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793841720528_4p3c",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Em Separação"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793841720524_mwn0",
+    "timestamp": "2026-11-05T01:22:00.524Z",
+    "tipoOperacao": "erro_validacao",
+    "sucesso": false,
+    "mensagem": "Campo obrigatório ausente: identificador do pedido na Logzz (logzzOrderId / id_logzz).",
+    "detalhes": {
+      "payload": {
+        "valorTotal": 100
+      }
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793757947732_8sq5",
+    "timestamp": "2026-11-04T02:05:47.732Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793757947723",
+    "brizexOrderId": "BRZ_1793757947726",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Agendado",
+    "tipoOperacao": "atualizacao",
+    "sucesso": true,
+    "mensagem": "Pedido LOGZZ_AUDIT_1793757947723 atualizado com sucesso para o status [Agendado].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793757947726_z4qk",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Agendado"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793757947728_m2vm",
+    "timestamp": "2026-11-04T02:05:47.728Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793757947723",
+    "brizexOrderId": "BRZ_1793757947726",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "aviso_status",
+    "sucesso": true,
+    "mensagem": "Pedido mantido: Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+    "detalhes": {
+      "upzapId": "upz_ord_1793757947726_z4qk",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "analise_de_credito_externa",
+      "statusWarning": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793757947727_ba4g",
+    "timestamp": "2026-11-04T02:05:47.727Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793757947723",
+    "brizexOrderId": "BRZ_1793757947726",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "criacao",
+    "sucesso": true,
+    "mensagem": "Novo pedido LOGZZ_AUDIT_1793757947723 registrado com sucesso no status [Em Separação].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793757947726_z4qk",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Em Separação"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793757947722_p3qq",
+    "timestamp": "2026-11-04T02:05:47.722Z",
+    "tipoOperacao": "erro_validacao",
+    "sucesso": false,
+    "mensagem": "Campo obrigatório ausente: identificador do pedido na Logzz (logzzOrderId / id_logzz).",
+    "detalhes": {
+      "payload": {
+        "valorTotal": 100
+      }
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793753964568_gpl8",
+    "timestamp": "2026-11-04T00:59:24.568Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793753964560",
+    "brizexOrderId": "BRZ_1793753964563",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Agendado",
+    "tipoOperacao": "atualizacao",
+    "sucesso": true,
+    "mensagem": "Pedido LOGZZ_AUDIT_1793753964560 atualizado com sucesso para o status [Agendado].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793753964563_5126",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Agendado"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793753964565_7ar9",
+    "timestamp": "2026-11-04T00:59:24.565Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793753964560",
+    "brizexOrderId": "BRZ_1793753964563",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "aviso_status",
+    "sucesso": true,
+    "mensagem": "Pedido mantido: Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+    "detalhes": {
+      "upzapId": "upz_ord_1793753964563_5126",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "analise_de_credito_externa",
+      "statusWarning": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793753964564_liy3",
+    "timestamp": "2026-11-04T00:59:24.564Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793753964560",
+    "brizexOrderId": "BRZ_1793753964563",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "criacao",
+    "sucesso": true,
+    "mensagem": "Novo pedido LOGZZ_AUDIT_1793753964560 registrado com sucesso no status [Em Separação].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793753964563_5126",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Em Separação"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793753964559_m3bv",
+    "timestamp": "2026-11-04T00:59:24.559Z",
+    "tipoOperacao": "erro_validacao",
+    "sucesso": false,
+    "mensagem": "Campo obrigatório ausente: identificador do pedido na Logzz (logzzOrderId / id_logzz).",
+    "detalhes": {
+      "payload": {
+        "valorTotal": 100
+      }
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793753575732_r8wo",
+    "timestamp": "2026-11-04T00:52:55.732Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793753575724",
+    "brizexOrderId": "BRZ_1793753575726",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Agendado",
+    "tipoOperacao": "atualizacao",
+    "sucesso": true,
+    "mensagem": "Pedido LOGZZ_AUDIT_1793753575724 atualizado com sucesso para o status [Agendado].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793753575727_gi5l",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Agendado"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793753575728_pe4j",
+    "timestamp": "2026-11-04T00:52:55.728Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793753575724",
+    "brizexOrderId": "BRZ_1793753575726",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "aviso_status",
+    "sucesso": true,
+    "mensagem": "Pedido mantido: Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+    "detalhes": {
+      "upzapId": "upz_ord_1793753575727_gi5l",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "analise_de_credito_externa",
+      "statusWarning": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793753575727_havo",
+    "timestamp": "2026-11-04T00:52:55.727Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793753575724",
+    "brizexOrderId": "BRZ_1793753575726",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "criacao",
+    "sucesso": true,
+    "mensagem": "Novo pedido LOGZZ_AUDIT_1793753575724 registrado com sucesso no status [Em Separação].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793753575727_gi5l",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Em Separação"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793753575723_s1wr",
+    "timestamp": "2026-11-04T00:52:55.723Z",
+    "tipoOperacao": "erro_validacao",
+    "sucesso": false,
+    "mensagem": "Campo obrigatório ausente: identificador do pedido na Logzz (logzzOrderId / id_logzz).",
+    "detalhes": {
+      "payload": {
+        "valorTotal": 100
+      }
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793577027021_k0u0",
+    "timestamp": "2026-11-01T23:50:27.021Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793577027010",
+    "brizexOrderId": "BRZ_1793577027013",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Agendado",
+    "tipoOperacao": "atualizacao",
+    "sucesso": true,
+    "mensagem": "Pedido LOGZZ_AUDIT_1793577027010 atualizado com sucesso para o status [Agendado].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793577027014_g0wt",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Agendado"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793577027016_4spl",
+    "timestamp": "2026-11-01T23:50:27.016Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793577027010",
+    "brizexOrderId": "BRZ_1793577027013",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "aviso_status",
+    "sucesso": true,
+    "mensagem": "Pedido mantido: Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+    "detalhes": {
+      "upzapId": "upz_ord_1793577027014_g0wt",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "analise_de_credito_externa",
+      "statusWarning": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793577027015_q3a5",
+    "timestamp": "2026-11-01T23:50:27.015Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793577027010",
+    "brizexOrderId": "BRZ_1793577027013",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "criacao",
+    "sucesso": true,
+    "mensagem": "Novo pedido LOGZZ_AUDIT_1793577027010 registrado com sucesso no status [Em Separação].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793577027014_g0wt",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Em Separação"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793577027010_qf5s",
+    "timestamp": "2026-11-01T23:50:27.010Z",
+    "tipoOperacao": "erro_validacao",
+    "sucesso": false,
+    "mensagem": "Campo obrigatório ausente: identificador do pedido na Logzz (logzzOrderId / id_logzz).",
+    "detalhes": {
+      "payload": {
+        "valorTotal": 100
+      }
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793573225882_9lja",
+    "timestamp": "2026-11-01T22:47:05.882Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793573225876",
+    "brizexOrderId": "BRZ_1793573225878",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Agendado",
+    "tipoOperacao": "atualizacao",
+    "sucesso": true,
+    "mensagem": "Pedido LOGZZ_AUDIT_1793573225876 atualizado com sucesso para o status [Agendado].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793573225878_1m0z",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Agendado"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793573225880_zh8x",
+    "timestamp": "2026-11-01T22:47:05.880Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793573225876",
+    "brizexOrderId": "BRZ_1793573225878",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "aviso_status",
+    "sucesso": true,
+    "mensagem": "Pedido mantido: Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança.",
+    "detalhes": {
+      "upzapId": "upz_ord_1793573225878_1m0z",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "analise_de_credito_externa",
+      "statusWarning": "Status recebido não documentado: 'analise_de_credito_externa'. Status atual [Em Separação] mantido com segurança."
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793573225879_p1u5",
+    "timestamp": "2026-11-01T22:47:05.879Z",
+    "logzzOrderId": "LOGZZ_AUDIT_1793573225876",
+    "brizexOrderId": "BRZ_1793573225878",
+    "clienteNome": "Renata Vasconcelos",
+    "clienteTelefone": "5511977776655",
+    "statusLogistico": "Em Separação",
+    "tipoOperacao": "criacao",
+    "sucesso": true,
+    "mensagem": "Novo pedido LOGZZ_AUDIT_1793573225876 registrado com sucesso no status [Em Separação].",
+    "detalhes": {
+      "upzapId": "upz_ord_1793573225878_1m0z",
+      "valorTotal": 167.9,
+      "itensCount": 1,
+      "rawStatusReceived": "Em Separação"
+    },
+    "ipOrigem": "127.0.0.1"
+  },
+  {
+    "id": "synclog_1793573225875_qqhb",
+    "timestamp": "2026-11-01T22:47:05.875Z",
+    "tipoOperacao": "erro_validacao",
+    "sucesso": false,
+    "mensagem": "Campo obrigatório ausente: identificador do pedido na Logzz (logzzOrderId / id_logzz).",
+    "detalhes": {
+      "payload": {
+        "valorTotal": 100
+      }
+    },
+    "ipOrigem": "127.0.0.1"
+  }
+]

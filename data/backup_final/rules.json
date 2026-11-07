@@ -1,0 +1,186 @@
+[
+  {
+    "id": "REG_004",
+    "nome": "INTERESSE NO PRODUTO",
+    "categoria": "Produto",
+    "prioridade": "Alta",
+    "palavras": [
+      "quero",
+      "quero comprar",
+      "tenho interesse",
+      "gostei",
+      "gostei do produto",
+      "quero saber mais",
+      "me interessa",
+      "como compro",
+      "quero adquirir",
+      "vou querer",
+      "tenho interesse no produto"
+    ],
+    "resposta": "Claro! 😊 Vou te explicar direitinho como funciona. Temos opções de tamanhos e cores, e você pode escolher a melhor opção para você. 💙",
+    "delay": 1.5,
+    "condicao": "Mensagem contendo palavras-chave cadastradas",
+    "acoes": [
+      {
+        "id": "act_1787659200000_1",
+        "tipo": "texto",
+        "conteudo": "Claro! 😊 Vou te explicar direitinho como funciona. Temos opções de tamanhos e cores, e você pode escolher a melhor opção para você. 💙"
+      }
+    ]
+  },
+  {
+    "id": "REG_003",
+    "nome": "Nova Regra Sequencial",
+    "categoria": "Casos Especiais",
+    "prioridade": "Alta",
+    "palavras": [
+      "CARO"
+    ],
+    "resposta": "NÃO TÁ!!!!!!!!!!!!!!!!!",
+    "delay": 1.5,
+    "condicao": "Mensagem contendo palavras-chave cadastradas",
+    "acoes": [
+      {
+        "id": "act_1787622678123_1",
+        "tipo": "texto",
+        "conteudo": "NÃO TÁ!!!!!!!!!!!!!!!!!"
+      }
+    ]
+  },
+  {
+    "id": "REG_002",
+    "nome": "PRODUTO ",
+    "categoria": "Produto",
+    "prioridade": "Alta",
+    "palavras": [
+      "PRODUTO"
+    ],
+    "resposta": "ESSE É O NOSSO PRODUTO!!!!!!!!!",
+    "delay": 9,
+    "condicao": "Mensagem contendo palavras-chave cadastradas",
+    "midiaAnexada": "produto-lateral-Photoroom.png",
+    "acoes": [
+      {
+        "id": "act_1787622550171_1",
+        "tipo": "texto",
+        "conteudo": "ESSE É O NOSSO PRODUTO!!!!!!!!!",
+        "arquivo": ""
+      },
+      {
+        "id": "act_1787622575145",
+        "tipo": "imagem",
+        "conteudo": "",
+        "fileId": "lib-1787658296495-n5bw",
+        "arquivo": "produto-lateral-Photoroom.png"
+      }
+    ]
+  },
+  {
+    "id": "REG_001",
+    "nome": "BOAS VINDAS",
+    "categoria": "Produto",
+    "prioridade": "Alta",
+    "palavras": [
+      "oi",
+      "olá",
+      "ola",
+      "oie",
+      "oii",
+      "oiii",
+      "oiiii",
+      "oiee",
+      "oieee",
+      "oláá",
+      "olaaa",
+      "olááá",
+      "olaá",
+      "bom dia",
+      "boa tarde",
+      "boa noite",
+      "b dia",
+      "b tarde",
+      "b noite",
+      "e aí",
+      "eai",
+      "e ai",
+      "eae",
+      "eaí",
+      "hey",
+      "hello",
+      "hi",
+      "opa",
+      "opaa",
+      "opaaa",
+      "opaê",
+      "salve",
+      "salvee",
+      "salveee",
+      "fala",
+      "fala aí",
+      "fala ai",
+      "falaa",
+      "falaa aí",
+      "tudo bem",
+      "tudo bom",
+      "tudo bem?",
+      "tudo bom?",
+      "como você está",
+      "como vc está",
+      "como vc ta",
+      "como você tá",
+      "como vc tá",
+      "cheguei",
+      "cheguei aqui",
+      "vim falar",
+      "vim conversar",
+      "vim saber",
+      "quero saber",
+      "queria saber",
+      "preciso de ajuda",
+      "pode me ajudar",
+      "me ajuda",
+      "tem alguém aí",
+      "tem alguem ai",
+      "tem atendente",
+      "atende aí",
+      "atende ai",
+      "alguém aí",
+      "alguem ai"
+    ],
+    "resposta": "Oiii! 😍 Tudo bem com você?\nSeja muito bem-vinda à UpZap! ✨\nEstou aqui para te ajudar. Me conta, como posso te ajudar hoje? 💙",
+    "delay": 1.5,
+    "condicao": "Mensagem contendo palavras-chave cadastradas",
+    "midiaAnexada": "GERE_UM_VIDEO_DE_UM_PERSONAGEM.mp4",
+    "acoes": [
+      {
+        "id": "act_1787622335692_1",
+        "tipo": "texto",
+        "conteudo": "Oiii! 😍 Tudo bem com você?\nSeja muito bem-vinda à UpZap! ✨\nEstou aqui para te ajudar. Me conta, como posso te ajudar hoje? 💙"
+      },
+      {
+        "id": "act_1787622375309",
+        "tipo": "audio",
+        "fileId": "lib-1787658288796-jpnh",
+        "arquivo": "sigmamusicart-football-football-music-551346.mp3"
+      },
+      {
+        "id": "act_1787622377201",
+        "tipo": "imagem",
+        "fileId": "lib-1787658296495-n5bw",
+        "arquivo": "produto-lateral-Photoroom.png"
+      },
+      {
+        "id": "act_1787622378623",
+        "tipo": "pdf",
+        "fileId": "lib-1787658315114-kef5",
+        "arquivo": "aulas_obmep_v1.pdf"
+      },
+      {
+        "id": "act_1787622380431",
+        "tipo": "video",
+        "fileId": "lib-1787658526428-ezi2",
+        "arquivo": "GERE_UM_VIDEO_DE_UM_PERSONAGEM.mp4"
+      }
+    ]
+  }
+]

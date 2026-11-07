@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "soundEnabled": true,
+  "soundVolume": 0.75,
+  "notifyOnDisconnect": true,
+  "notifyOnReconnect": true,
+  "notifyOnServerStop": true,
+  "notifyOnCriticalErrors": true,
+  "notifyOnBrizexError": true,
+  "notifyOnLoops": true
+}

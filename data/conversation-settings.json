@@ -1,0 +1,8 @@
+{
+  "closedConversationAction": "reopen",
+  "autoReopenOnUserMessage": true,
+  "sendPostCloseWarning": false,
+  "closedConversationMessage": "Seu atendimento foi concluído. Caso precise de novo suporte, aguarde que um atendente entrará em contato em breve.",
+  "autoCloseOnLastRule": false,
+  "updatedAt": "2026-10-29T16:00:00.000Z"
+}

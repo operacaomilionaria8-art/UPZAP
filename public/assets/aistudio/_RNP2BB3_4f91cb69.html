@@ -1,0 +1,3030 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpZap — Flow Builder</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f8f9fb;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f3f6;
+            --border-light: #e4e7ec;
+            --border-medium: #d0d5dd;
+            --text-primary: #1a1d23;
+            --text-secondary: #5f6b7a;
+            --text-tertiary: #8b95a5;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #eff6ff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* ===== TOP BAR ===== */
+        .topbar {
+            height: 56px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 16px;
+            z-index: 100;
+            position: relative;
+        }
+
+        .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+
+        .topbar-brand .logo-mark {
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .topbar-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--border-light);
+            flex-shrink: 0;
+        }
+
+        .topbar-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+
+        .topbar-flow-name {
+            font-size: 13px;
+            color: var(--text-secondary);
+            background: var(--bg-tertiary);
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            flex-shrink: 0;
+        }
+
+        .topbar-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--success);
+            flex-shrink: 0;
+        }
+
+        .topbar-status .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+
+        .topbar-status.dirty .dot {
+            background: var(--warning);
+        }
+
+        .topbar-status.dirty {
+            color: var(--warning);
+        }
+
+        .topbar-spacer {
+            flex: 1;
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 500;
+            font-family: var(--font);
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-color: var(--border-medium);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border-color: transparent;
+        }
+
+        .btn-ghost:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+            border-color: var(--success);
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .btn-icon {
+            padding: 6px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== MAIN LAYOUT ===== */
+        .app-layout {
+            display: flex;
+            height: calc(100vh - 56px);
+            overflow: hidden;
+        }
+
+        /* ===== LEFT PANEL ===== */
+        .left-panel {
+            width: 260px;
+            min-width: 260px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: width 0.2s ease, min-width 0.2s ease;
+        }
+
+        .left-panel.collapsed {
+            width: 0;
+            min-width: 0;
+            overflow: hidden;
+            border-right: none;
+        }
+
+        .panel-header {
+            padding: 16px 16px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .panel-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 12px 16px;
+        }
+
+        .panel-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .panel-scroll::-webkit-scrollbar-thumb {
+            background: var(--border-medium);
+            border-radius: 10px;
+        }
+
+        .block-library-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+            cursor: grab;
+            margin-bottom: 6px;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .block-library-item:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .block-library-item:active {
+            cursor: grabbing;
+        }
+
+        .block-library-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .block-library-item[data-type="rule"] .block-library-icon { background: #fef3c7; color: #b45309; }
+        .block-library-item[data-type="message"] .block-library-icon { background: #dbeafe; color: #2563eb; }
+        .block-library-item[data-type="media"] .block-library-icon { background: #fce7f3; color: #be185d; }
+        .block-library-item[data-type="menu"] .block-library-icon { background: #e0e7ff; color: #4338ca; }
+        .block-library-item[data-type="end"] .block-library-icon { background: #d1fae5; color: #047857; }
+
+        .block-library-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .block-library-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .block-library-desc {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            line-height: 1.3;
+            margin-top: 1px;
+        }
+
+        .rules-section {
+            margin-top: 8px;
+        }
+
+        .rule-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+            margin-bottom: 4px;
+            cursor: grab;
+            font-size: 12px;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .rule-chip:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .rule-chip:active {
+            cursor: grabbing;
+        }
+
+        .rule-chip .kw {
+            color: var(--text-tertiary);
+            font-size: 11px;
+        }
+
+        .empty-state-panel {
+            padding: 20px 16px;
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .empty-state-panel .icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+            opacity: 0.5;
+        }
+
+        /* ===== CANVAS ===== */
+        .canvas-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-primary);
+        }
+
+        .canvas-grid {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, #d0d5dd 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.6;
+        }
+
+        .canvas-viewport {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        .canvas-viewport:active {
+            cursor: grabbing;
+        }
+
+        .canvas-world {
+            position: absolute;
+            transform-origin: 0 0;
+            width: 1px;
+            height: 1px;
+        }
+
+        /* Connections SVG layer */
+        .connections-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .connections-svg path {
+            fill: none;
+            stroke: #94a3b8;
+            stroke-width: 2;
+            pointer-events: stroke;
+        }
+
+        .connections-svg path.connection-hover {
+            stroke: var(--accent);
+        }
+
+        .connections-svg path.connection-broken {
+            stroke: var(--danger);
+            stroke-dasharray: 6 4;
+        }
+
+        .connections-svg path.connection-active {
+            stroke: var(--accent);
+            stroke-width: 2.5;
+        }
+
+        .connections-svg circle.arrowhead {
+            fill: #94a3b8;
+        }
+
+        .connections-svg circle.arrowhead.active {
+            fill: var(--accent);
+        }
+
+        .connections-svg circle.arrowhead.broken {
+            fill: var(--danger);
+        }
+
+        /* Block cards */
+        .flow-block {
+            position: absolute;
+            width: 220px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            cursor: grab;
+            user-select: none;
+            transition: box-shadow 0.15s ease, border-color 0.15s ease;
+            z-index: 1;
+        }
+
+        .flow-block:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-medium);
+        }
+
+        .flow-block.selected {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.15), var(--shadow-md);
+            z-index: 2;
+        }
+
+        .flow-block.dragging {
+            cursor: grabbing;
+            box-shadow: var(--shadow-lg);
+            z-index: 10;
+        }
+
+        .flow-block.incomplete {
+            border-color: var(--warning);
+        }
+
+        .flow-block .block-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px 8px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .flow-block .block-type-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .flow-block[data-type="rule"] .block-type-icon { background: #fef3c7; color: #b45309; }
+        .flow-block[data-type="message"] .block-type-icon { background: #dbeafe; color: #2563eb; }
+        .flow-block[data-type="media"] .block-type-icon { background: #fce7f3; color: #be185d; }
+        .flow-block[data-type="menu"] .block-type-icon { background: #e0e7ff; color: #4338ca; }
+        .flow-block[data-type="end"] .block-type-icon { background: #d1fae5; color: #047857; }
+
+        .flow-block .block-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .flow-block .block-more {
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .flow-block .block-more:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .flow-block .block-body {
+            padding: 8px 12px 10px;
+            font-size: 11.5px;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            min-height: 36px;
+        }
+
+        .flow-block .block-body .menu-options-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .flow-block .block-body .menu-option-line {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+        }
+
+        .flow-block .block-body .menu-option-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            background: var(--bg-tertiary);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        /* Connectors */
+        .connector {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid var(--border-medium);
+            background: var(--bg-secondary);
+            cursor: crosshair;
+            z-index: 3;
+            transition: all 0.15s ease;
+        }
+
+        .connector:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+            transform: scale(1.2);
+        }
+
+        .connector.input {
+            left: -7px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .connector.output {
+            right: -7px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .connector.output:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .connector.connected {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .connector.menu-output {
+            right: -7px;
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Canvas controls */
+        .canvas-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 4px;
+            box-shadow: var(--shadow-md);
+            z-index: 20;
+        }
+
+        .canvas-controls .ctrl-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 15px;
+            transition: all 0.15s ease;
+        }
+
+        .canvas-controls .ctrl-btn:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .canvas-controls .zoom-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            min-width: 40px;
+            text-align: center;
+            user-select: none;
+        }
+
+        .canvas-controls .ctrl-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--border-light);
+            margin: 0 2px;
+        }
+
+        /* Canvas hint */
+        .canvas-hint {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 11px;
+            color: var(--text-tertiary);
+            background: rgba(255,255,255,0.85);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(4px);
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        /* ===== RIGHT PANEL ===== */
+        .right-panel {
+            width: 300px;
+            min-width: 300px;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: width 0.2s ease, min-width 0.2s ease;
+        }
+
+        .right-panel.collapsed {
+            width: 0;
+            min-width: 0;
+            overflow: hidden;
+            border-left: none;
+        }
+
+        .right-panel .panel-header {
+            padding: 16px 16px 12px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .right-panel .panel-header h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .right-panel .panel-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        .right-panel .panel-body::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .right-panel .panel-body::-webkit-scrollbar-thumb {
+            background: var(--border-medium);
+            border-radius: 10px;
+        }
+
+        .empty-config {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: var(--text-tertiary);
+            padding: 20px;
+            gap: 8px;
+        }
+
+        .empty-config .icon {
+            font-size: 32px;
+            opacity: 0.4;
+        }
+
+        .empty-config p {
+            font-size: 12.5px;
+            line-height: 1.6;
+        }
+
+        /* Form elements */
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-family: var(--font);
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+            outline: none;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 72px;
+            line-height: 1.5;
+        }
+
+        .form-hint {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        .form-divider {
+            height: 1px;
+            background: var(--border-light);
+            margin: 16px 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 10.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-rule { background: #fef3c7; color: #b45309; }
+        .badge-message { background: #dbeafe; color: #2563eb; }
+        .badge-media { background: #fce7f3; color: #be185d; }
+        .badge-menu { background: #e0e7ff; color: #4338ca; }
+        .badge-end { background: #d1fae5; color: #047857; }
+
+        /* Menu option rows in config */
+        .menu-option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            padding: 8px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            margin-bottom: 6px;
+            background: var(--bg-primary);
+        }
+
+        .menu-option-row .opt-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .menu-option-row .opt-fields {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu-option-row .opt-label-input {
+            width: 100%;
+            padding: 5px 8px;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: var(--font);
+            outline: none;
+        }
+
+        .menu-option-row .opt-label-input:focus {
+            border-color: var(--accent);
+        }
+
+        .menu-option-row .opt-target-select {
+            width: 100%;
+            padding: 5px 8px;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            font-size: 11px;
+            font-family: var(--font);
+            color: var(--text-secondary);
+            outline: none;
+            background: var(--bg-secondary);
+        }
+
+        .menu-option-row .opt-remove {
+            width: 22px;
+            height: 22px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: var(--text-tertiary);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .menu-option-row .opt-remove:hover {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+
+        .add-option-btn {
+            width: 100%;
+            padding: 7px;
+            border: 1px dashed var(--border-medium);
+            border-radius: var(--radius-sm);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .add-option-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        /* Media library items */
+        .media-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .media-item:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .media-item.selected {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .media-item .media-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .media-item .media-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .media-item .media-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .media-item .media-format {
+            font-size: 10px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+        }
+
+        /* Rule selector in config */
+        .rule-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .rule-selector-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 12px;
+        }
+
+        .rule-selector-item:hover {
+            border-color: var(--accent);
+        }
+
+        .rule-selector-item.active {
+            border-color: var(--accent);
+            background: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .rule-selector-item .kw-list {
+            font-size: 10.5px;
+            color: var(--text-tertiary);
+            font-weight: 400;
+        }
+
+        /* ===== MODALS ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(2px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 520px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: modalIn 0.2s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(8px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .modal-header h2 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            color: var(--text-tertiary);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-footer {
+            padding: 12px 20px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        /* Test flow modal */
+        .test-flow-container {
+            background: #e5ddd5;
+            border-radius: var(--radius-md);
+            padding: 16px;
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .test-bubble {
+            max-width: 85%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.45;
+            word-wrap: break-word;
+            animation: bubbleIn 0.25s ease;
+        }
+
+        @keyframes bubbleIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .test-bubble.bot {
+            background: #fff;
+            color: #1a1d23;
+            align-self: flex-start;
+            border-top-left-radius: 2px;
+        }
+
+        .test-bubble.user {
+            background: #d9fdd3;
+            color: #1a1d23;
+            align-self: flex-end;
+            border-top-right-radius: 2px;
+        }
+
+        .test-bubble .bubble-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .test-options {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 4px;
+        }
+
+        .test-option-btn {
+            padding: 8px 12px;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 12.5px;
+            font-weight: 500;
+            font-family: var(--font);
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.15s ease;
+        }
+
+        .test-option-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .test-input-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .test-input-row input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid var(--border-medium);
+            border-radius: 20px;
+            font-size: 13px;
+            font-family: var(--font);
+            outline: none;
+        }
+
+        .test-input-row input:focus {
+            border-color: var(--accent);
+        }
+
+        .test-end-badge {
+            align-self: center;
+            font-size: 11px;
+            color: var(--text-tertiary);
+            background: rgba(255,255,255,0.7);
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin: 4px 0;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--text-primary);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transition: all 0.25s ease;
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Dropdown menu for block actions */
+        .block-dropdown {
+            position: fixed;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-md);
+            padding: 4px;
+            z-index: 500;
+            min-width: 130px;
+            display: none;
+        }
+
+        .block-dropdown.open {
+            display: block;
+        }
+
+        .block-dropdown button {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            width: 100%;
+            padding: 6px 10px;
+            border: none;
+            background: transparent;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: var(--font);
+            color: var(--text-primary);
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .block-dropdown button:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .block-dropdown button.danger {
+            color: var(--danger);
+        }
+
+        .block-dropdown button.danger:hover {
+            background: #fee2e2;
+        }
+
+        /* Connection mode indicator */
+        .connection-mode-indicator {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            box-shadow: var(--shadow-md);
+            z-index: 50;
+            display: none;
+            pointer-events: none;
+        }
+
+        .connection-mode-indicator.active {
+            display: block;
+        }
+
+        /* Floating panel toggles for small screens */
+        .panel-toggle {
+            display: none;
+            position: absolute;
+            z-index: 30;
+        }
+
+        @media (max-width: 1100px) {
+            .left-panel {
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 40;
+                box-shadow: var(--shadow-lg);
+            }
+            .left-panel.collapsed {
+                width: 0;
+                min-width: 0;
+                box-shadow: none;
+            }
+            .right-panel {
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 40;
+                box-shadow: var(--shadow-lg);
+            }
+            .right-panel.collapsed {
+                width: 0;
+                min-width: 0;
+                box-shadow: none;
+            }
+            .panel-toggle {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .topbar {
+                padding: 0 12px;
+                gap: 10px;
+            }
+            .topbar-flow-name,
+            .topbar-divider {
+                display: none;
+            }
+            .topbar-actions .btn span.btn-label {
+                display: none;
+            }
+            .left-panel,
+            .right-panel {
+                width: 240px;
+                min-width: 240px;
+            }
+            .flow-block {
+                width: 190px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<header class="topbar">
+    <div class="topbar-brand">
+        <div class="logo-mark">U</div>
+        <span>UpZap</span>
+    </div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-title">Flow Builder</div>
+    <div class="topbar-flow-name" id="flowName">Atendimento Comercial</div>
+    <div class="topbar-status" id="saveStatus">
+        <span class="dot"></span>
+        <span id="saveStatusText">Salvo</span>
+    </div>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-actions">
+        <button class="btn btn-ghost btn-icon" id="toggleLeftPanel" title="Alternar painel de blocos">☰</button>
+        <button class="btn btn-secondary" id="btnSave">
+            <span>💾</span>
+            <span class="btn-label">Salvar</span>
+        </button>
+        <button class="btn btn-secondary" id="btnTest">
+            <span>▶</span>
+            <span class="btn-label">Testar fluxo</span>
+        </button>
+        <button class="btn btn-primary" id="btnPublish">
+            <span>🚀</span>
+            <span class="btn-label">Publicar</span>
+        </button>
+        <button class="btn btn-ghost btn-icon" id="toggleRightPanel" title="Alternar painel de configuração">⚙</button>
+    </div>
+</header>
+
+<!-- ===== APP LAYOUT ===== -->
+<div class="app-layout">
+
+    <!-- LEFT PANEL -->
+    <aside class="left-panel" id="leftPanel">
+        <div class="panel-header">
+            <span>Blocos</span>
+        </div>
+        <div class="panel-scroll">
+            <div class="block-library-item" data-type="rule" draggable="true">
+                <div class="block-library-icon">⚡</div>
+                <div class="block-library-info">
+                    <div class="block-library-name">Regra</div>
+                    <div class="block-library-desc">Identifica palavra-chave</div>
+                </div>
+            </div>
+            <div class="block-library-item" data-type="message" draggable="true">
+                <div class="block-library-icon">💬</div>
+                <div class="block-library-info">
+                    <div class="block-library-name">Mensagem</div>
+                    <div class="block-library-desc">Texto para o cliente</div>
+                </div>
+            </div>
+            <div class="block-library-item" data-type="media" draggable="true">
+                <div class="block-library-icon">🖼</div>
+                <div class="block-library-info">
+                    <div class="block-library-name">Mídia</div>
+                    <div class="block-library-desc">Arquivo da biblioteca</div>
+                </div>
+            </div>
+            <div class="block-library-item" data-type="menu" draggable="true">
+                <div class="block-library-icon">🔢</div>
+                <div class="block-library-info">
+                    <div class="block-library-name">Menu numerado</div>
+                    <div class="block-library-desc">Opções digitadas</div>
+                </div>
+            </div>
+            <div class="block-library-item" data-type="end" draggable="true">
+                <div class="block-library-icon">⏹</div>
+                <div class="block-library-info">
+                    <div class="block-library-name">Encerramento</div>
+                    <div class="block-library-desc">Finaliza o atendimento</div>
+                </div>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <div class="panel-header" style="padding: 0 0 8px;">
+                <span>Regras cadastradas</span>
+            </div>
+            <div class="rules-section" id="rulesList">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- CANVAS -->
+    <div class="canvas-container" id="canvasContainer">
+        <div class="canvas-grid" id="canvasGrid"></div>
+        <div class="canvas-viewport" id="canvasViewport">
+            <div class="canvas-world" id="canvasWorld">
+                <svg class="connections-svg" id="connectionsSvg"></svg>
+                <!-- Blocks will be appended here -->
+            </div>
+        </div>
+
+        <div class="connection-mode-indicator" id="connectionIndicator">
+            Clique em um bloco de destino para conectar
+        </div>
+
+        <div class="canvas-controls">
+            <button class="ctrl-btn" id="zoomOut" title="Zoom out">−</button>
+            <span class="zoom-label" id="zoomLabel">100%</span>
+            <button class="ctrl-btn" id="zoomIn" title="Zoom in">+</button>
+            <div class="ctrl-divider"></div>
+            <button class="ctrl-btn" id="fitView" title="Ajustar à tela">⊡</button>
+            <button class="ctrl-btn" id="centerView" title="Centralizar fluxo">⌖</button>
+            <div class="ctrl-divider"></div>
+            <button class="ctrl-btn" id="toggleGrid" title="Alternar grade">⋮⋮</button>
+        </div>
+
+        <div class="canvas-hint">
+            Arraste blocos • Conecte pelas bolinhas • Scroll para zoom
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <aside class="right-panel" id="rightPanel">
+        <div class="panel-header">
+            <h3>Configuração do bloco</h3>
+        </div>
+        <div class="panel-body" id="configPanelBody">
+            <div class="empty-config">
+                <div class="icon">⚙</div>
+                <p>Selecione um bloco no canvas para editar suas configurações.</p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- ===== MODAL: TEST FLOW ===== -->
+<div class="modal-overlay" id="testModalOverlay">
+    <div class="modal" style="max-width: 480px;">
+        <div class="modal-header">
+            <h2>▶ Testar fluxo</h2>
+            <button class="modal-close" id="testModalClose">×</button>
+        </div>
+        <div class="modal-body" style="padding: 16px;">
+            <div class="test-flow-container" id="testFlowContainer">
+                <!-- Test conversation -->
+            </div>
+            <div class="test-input-row" id="testInputRow" style="display: none;">
+                <input type="text" id="testInput" placeholder="Digite sua resposta...">
+                <button class="btn btn-primary btn-sm" id="testSend">Enviar</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary btn-sm" id="testRestart">Reiniciar</button>
+            <button class="btn btn-secondary btn-sm" id="testCloseBtn">Fechar</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MODAL: PUBLISH (prototype) ===== -->
+<div class="modal-overlay" id="publishModalOverlay">
+    <div class="modal" style="max-width: 420px;">
+        <div class="modal-header">
+            <h2>🚀 Publicar fluxo</h2>
+            <button class="modal-close" id="publishModalClose">×</button>
+        </div>
+        <div class="modal-body">
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px;">
+                Este é um protótipo visual. A publicação real do fluxo será integrada ao backend do UpZap.
+            </p>
+            <div style="background: var(--bg-tertiary); border-radius: var(--radius-sm); padding: 12px; font-size: 12px; color: var(--text-tertiary);">
+                <strong style="color: var(--text-secondary);">Status do protótipo:</strong><br>
+                ✔ Fluxo montado com <span id="publishBlockCount">0</span> blocos<br>
+                ✔ Dados demonstrativos (não enviados ao backend)<br>
+                ✖ Integração com WhatsApp em tempo real
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary btn-sm" id="publishCancel">Cancelar</button>
+            <button class="btn btn-primary btn-sm" id="publishConfirm">Entendi</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Block dropdown -->
+<div class="block-dropdown" id="blockDropdown">
+    <button id="ddEdit">✏ Editar</button>
+    <button id="ddDuplicate">⧉ Duplicar</button>
+    <button class="danger" id="ddDelete">🗑 Excluir</button>
+</div>
+
+<script>
+/* ============================================================
+   UPZAP FLOW BUILDER — PROTOTYPE
+   Single-file interactive flow editor
+   ============================================================ */
+
+(function() {
+    'use strict';
+
+    // ===== DEMO DATA =====
+    const DEMO_RULES = [
+        { id: 'rule-1', keywords: ['preço', 'valor', 'quanto custa'], response: 'Olá! Nosso plano custa R$ 99/mês. Posso te mostrar os detalhes?' },
+        { id: 'rule-2', keywords: ['suporte', 'ajuda', 'problema'], response: 'Claro! Me conta o que está acontecendo que eu te ajudo.' },
+        { id: 'rule-3', keywords: ['oi', 'olá', 'bom dia', 'boa tarde'], response: 'Olá! Seja bem-vindo ao UpZap. Como posso te ajudar?' }
+    ];
+
+    const DEMO_MEDIA = [
+        { id: 'media-1', name: 'tabela-precos.pdf', format: 'PDF', icon: '📄' },
+        { id: 'media-2', name: 'apresentacao.mp4', format: 'MP4', icon: '🎬' },
+        { id: 'media-3', name: 'logo-upzap.png', format: 'PNG', icon: '🖼' },
+        { id: 'media-4', name: 'audio-boas-vindas.ogg', format: 'OGG', icon: '🎵' }
+    ];
+
+    // ===== STATE =====
+    let state = {
+        blocks: [],       // { id, type, x, y, title, config: {...}, ruleId? }
+        connections: [],  // { id, fromBlockId, fromPort, toBlockId }
+        viewport: { x: 0, y: 0, zoom: 1 },
+        selectedBlockId: null,
+        gridVisible: true
+    };
+
+    // Ports: for normal blocks: 'output'; for menu: 'out-0', 'out-1', ...
+    // Connections store fromPort index for menu options (0-based) or 'output'
+
+    let connectionMode = null; // { fromBlockId, fromPort }
+    let isDirty = false;
+    let dragState = null;
+    let blockDropdownTarget = null;
+
+    // ===== DOM REFS =====
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => document.querySelectorAll(sel);
+
+    const canvasViewport = $('#canvasViewport');
+    const canvasWorld = $('#canvasWorld');
+    const canvasGrid = $('#canvasGrid');
+    const connectionsSvg = $('#connectionsSvg');
+    const configPanelBody = $('#configPanelBody');
+    const rulesList = $('#rulesList');
+    const leftPanel = $('#leftPanel');
+    const rightPanel = $('#rightPanel');
+    const saveStatus = $('#saveStatus');
+    const saveStatusText = $('#saveStatusText');
+    const blockDropdown = $('#blockDropdown');
+    const toastEl = $('#toast');
+    const connectionIndicator = $('#connectionIndicator');
+
+    // ===== UTILS =====
+    let idCounter = 0;
+    function uid(prefix) {
+        idCounter++;
+        return (prefix || 'id') + '-' + Date.now() + '-' + idCounter;
+    }
+
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str == null ? '' : String(str);
+        return div.innerHTML;
+    }
+
+    function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add('show');
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(() => toastEl.classList.remove('show'), 2200);
+    }
+
+    function markDirty() {
+        isDirty = true;
+        saveStatus.classList.add('dirty');
+        saveStatusText.textContent = 'Alterações pendentes';
+    }
+
+    function markClean() {
+        isDirty = false;
+        saveStatus.classList.remove('dirty');
+        saveStatusText.textContent = 'Salvo';
+    }
+
+    // ===== TYPE META =====
+    const TYPE_META = {
+        rule:    { label: 'Regra',         icon: '⚡', badge: 'badge-rule' },
+        message: { label: 'Mensagem',      icon: '💬', badge: 'badge-message' },
+        media:   { label: 'Mídia',         icon: '🖼', badge: 'badge-media' },
+        menu:    { label: 'Menu numerado', icon: '🔢', badge: 'badge-menu' },
+        end:     { label: 'Encerramento',  icon: '⏹', badge: 'badge-end' }
+    };
+
+    // ===== BLOCK CREATION =====
+    function createBlock(type, x, y, overrides) {
+        const meta = TYPE_META[type];
+        const block = {
+            id: uid('block'),
+            type: type,
+            x: x != null ? x : 100,
+            y: y != null ? y : 100,
+            title: meta.label,
+            config: {}
+        };
+
+        if (type === 'rule') {
+            const rule = DEMO_RULES[0];
+            block.ruleId = rule ? rule.id : null;
+            block.title = rule ? 'Regra: ' + rule.keywords[0] : 'Regra';
+            block.config = {
+                keywords: rule ? [...rule.keywords] : [],
+                response: rule ? rule.response : ''
+            };
+        } else if (type === 'message') {
+            block.title = 'Mensagem';
+            block.config = { text: 'Olá! Como podemos te ajudar hoje?' };
+        } else if (type === 'media') {
+            block.title = 'Mídia';
+            block.config = { mediaId: DEMO_MEDIA[0] ? DEMO_MEDIA[0].id : null };
+        } else if (type === 'menu') {
+            block.title = 'Menu numerado';
+            block.config = {
+                headerText: 'Escolha uma opção:',
+                options: [
+                    { label: 'Ver preços', targetBlockId: null },
+                    { label: 'Saber mais', targetBlockId: null }
+                ]
+            };
+        } else if (type === 'end') {
+            block.title = 'Encerramento';
+            block.config = { message: 'Atendimento encerrado. Obrigado!' };
+        }
+
+        if (overrides) Object.assign(block, overrides);
+        return block;
+    }
+
+    // ===== SEED DEMO FLOW =====
+    function seedDemoFlow() {
+        state.blocks = [];
+
+        const r1 = createBlock('rule', 80, 120);
+        r1.id = 'block-rule-entry';
+        r1.title = 'Regra: preço';
+        r1.ruleId = 'rule-1';
+        r1.config = { keywords: ['preço', 'valor', 'quanto custa'], response: DEMO_RULES[0].response };
+
+        const m1 = createBlock('message', 380, 100);
+        m1.id = 'block-msg-welcome';
+        m1.title = 'Mensagem de apresentação';
+        m1.config = { text: 'Olá! Seja bem-vindo à UpZap. Vou te mostrar como podemos ajudar.' };
+
+        const menu1 = createBlock('menu', 680, 60);
+        menu1.id = 'block-menu-main';
+        menu1.title = 'Menu principal';
+        menu1.config = {
+            headerText: 'Escolha uma opção:',
+            options: [
+                { label: 'Ver preços', targetBlockId: 'block-media-price' },
+                { label: 'Saber mais', targetBlockId: 'block-end-1' }
+            ]
+        };
+
+        const med1 = createBlock('media', 1000, 20);
+        med1.id = 'block-media-price';
+        med1.title = 'Tabela de preços';
+        med1.config = { mediaId: 'media-1' };
+
+        const end1 = createBlock('end', 1000, 260);
+        end1.id = 'block-end-1';
+        end1.title = 'Encerramento';
+        end1.config = { message: 'Atendimento encerrado. Obrigado pelo contato!' };
+
+        state.blocks = [r1, m1, menu1, med1, end1];
+
+        state.connections = [
+            { id: uid('conn'), fromBlockId: r1.id, fromPort: 'output', toBlockId: m1.id },
+            { id: uid('conn'), fromBlockId: m1.id, fromPort: 'output', toBlockId: menu1.id },
+            { id: uid('conn'), fromBlockId: menu1.id, fromPort: 'out-0', toBlockId: med1.id },
+            { id: uid('conn'), fromBlockId: menu1.id, fromPort: 'out-1', toBlockId: end1.id }
+        ];
+
+        state.viewport = { x: 40, y: 40, zoom: 0.85 };
+    }
+
+    // ===== PERSISTENCE =====
+    const STORAGE_KEY = 'upzap-flow-builder-v1';
+
+    function saveToStorage() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            markClean();
+            showToast('Fluxo salvo localmente');
+        } catch (e) {
+            showToast('Erro ao salvar: armazenamento indisponível');
+        }
+    }
+
+    function loadFromStorage() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return false;
+            const parsed = JSON.parse(raw);
+            if (parsed && Array.isArray(parsed.blocks)) {
+                state = parsed;
+                if (!state.viewport) state.viewport = { x: 0, y: 0, zoom: 1 };
+                if (state.gridVisible == null) state.gridVisible = true;
+                return true;
+            }
+        } catch (e) { /* ignore */ }
+        return false;
+    }
+
+    // ===== RENDER: RULES PANEL =====
+    function renderRulesList() {
+        rulesList.innerHTML = '';
+        if (DEMO_RULES.length === 0) {
+            rulesList.innerHTML = '<div class="empty-state-panel"><div class="icon">📋</div>Nenhuma regra cadastrada.<br>Crie uma regra na aba Regras.</div>';
+            return;
+        }
+        DEMO_RULES.forEach(rule => {
+            const chip = document.createElement('div');
+            chip.className = 'rule-chip';
+            chip.draggable = true;
+            chip.dataset.ruleId = rule.id;
+            chip.innerHTML = `
+                <span style="font-size:13px;">⚡</span>
+                <div style="flex:1;min-width:0;">
+                    <div style="font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(rule.keywords[0] || 'Regra')}</div>
+                    <div class="kw">${rule.keywords.map(escapeHtml).join(', ')}</div>
+                </div>
+            `;
+            chip.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', 'rule:' + rule.id);
+                e.dataTransfer.effectAllowed = 'copy';
+            });
+            chip.addEventListener('click', () => {
+                // Add a rule block using this rule
+                addBlockFromRule(rule.id);
+            });
+            rulesList.appendChild(chip);
+        });
+    }
+
+    function addBlockFromRule(ruleId) {
+        const rule = DEMO_RULES.find(r => r.id === ruleId);
+        if (!rule) return;
+        const w = canvasViewport.getBoundingClientRect();
+        const world = screenToWorld(w.left + w.width / 2 - 110, w.top + w.height / 2 - 40);
+        const existingRuleBlock = state.blocks.find(b => b.type === 'rule' && b.ruleId === ruleId);
+        if (existingRuleBlock) {
+            showToast('Esta regra já está representada no fluxo');
+            selectBlock(existingRuleBlock.id);
+            return;
+        }
+        const block = createBlock('rule', world.x, world.y);
+        block.ruleId = rule.id;
+        block.title = 'Regra: ' + (rule.keywords[0] || rule.id);
+        block.config = { keywords: [...rule.keywords], response: rule.response };
+        state.blocks.push(block);
+        markDirty();
+        renderAll();
+        selectBlock(block.id);
+        showToast('Bloco de regra adicionado');
+    }
+
+    // ===== RENDER: CANVAS =====
+    function renderAll() {
+        renderBlocks();
+        renderConnections();
+        renderRulesList();
+        updateZoomLabel();
+        applyViewport();
+        updateSaveStatusUI();
+    }
+
+    function updateSaveStatusUI() {
+        if (isDirty) {
+            saveStatus.classList.add('dirty');
+            saveStatusText.textContent = 'Alterações pendentes';
+        } else {
+            saveStatus.classList.remove('dirty');
+            saveStatusText.textContent = 'Salvo';
+        }
+    }
+
+    function applyViewport() {
+        const v = state.viewport;
+        canvasWorld.style.transform = `translate(${v.x}px, ${v.y}px) scale(${v.zoom})`;
+        updateZoomLabel();
+    }
+
+    function updateZoomLabel() {
+        const label = $('#zoomLabel');
+        if (label) label.textContent = Math.round(state.viewport.zoom * 100) + '%';
+    }
+
+    function renderBlocks() {
+        // Remove existing block DOM (keep svg)
+        Array.from(canvasWorld.children).forEach(child => {
+            if (child.classList && child.classList.contains('flow-block')) child.remove();
+        });
+
+        state.blocks.forEach(block => {
+            const el = document.createElement('div');
+            el.className = 'flow-block';
+            el.dataset.blockId = block.id;
+            el.dataset.type = block.type;
+            el.style.left = block.x + 'px';
+            el.style.top = block.y + 'px';
+            if (state.selectedBlockId === block.id) el.classList.add('selected');
+            if (isBlockIncomplete(block)) el.classList.add('incomplete');
+
+            const meta = TYPE_META[block.type];
+            let bodyHtml = '';
+
+            if (block.type === 'rule') {
+                const kw = (block.config.keywords || []).join(', ') || 'Sem palavras-chave';
+                const resp = block.config.response || '';
+                bodyHtml = `<div style="font-size:11px;color:var(--text-tertiary);margin-bottom:3px;">🔑 ${escapeHtml(kw)}</div>
+                            <div>${escapeHtml(resp.slice(0, 60))}${resp.length > 60 ? '…' : ''}</div>`;
+            } else if (block.type === 'message') {
+                const text = block.config.text || '';
+                bodyHtml = escapeHtml(text.slice(0, 80)) + (text.length > 80 ? '…' : '');
+            } else if (block.type === 'media') {
+                const media = DEMO_MEDIA.find(m => m.id === block.config.mediaId);
+                if (media) {
+                    bodyHtml = `<div style="display:flex;align-items:center;gap:6px;">
+                        <span style="font-size:16px;">${media.icon}</span>
+                        <div><div style="font-weight:500;color:var(--text-primary);font-size:11.5px;">${escapeHtml(media.name)}</div>
+                        <div style="font-size:10px;color:var(--text-tertiary);">${media.format}</div></div>
+                    </div>`;
+                } else {
+                    bodyHtml = '<span style="color:var(--warning);">Nenhum arquivo selecionado</span>';
+                }
+            } else if (block.type === 'menu') {
+                const opts = block.config.options || [];
+                bodyHtml = `<div style="font-size:11px;color:var(--text-tertiary);margin-bottom:4px;">${escapeHtml(block.config.headerText || '')}</div>
+                            <div class="menu-options-preview">
+                            ${opts.map((o, i) => `<div class="menu-option-line"><span class="menu-option-num">${i + 1}</span><span>${escapeHtml(o.label)}</span></div>`).join('')}
+                            </div>`;
+            } else if (block.type === 'end') {
+                bodyHtml = escapeHtml(block.config.message || 'Encerramento');
+            }
+
+            el.innerHTML = `
+                <div class="block-header">
+                    <div class="block-type-icon">${meta.icon}</div>
+                    <div class="block-title">${escapeHtml(block.title)}</div>
+                    <button class="block-more" data-block-id="${block.id}">⋮</button>
+                </div>
+                <div class="block-body">${bodyHtml}</div>
+            `;
+
+            // Input connector (not for rule blocks — rule is entry point, but still allow input? We allow input for all except rule? Actually spec: rule is entry. Let's allow input for all except rule to keep clean; but we'll still render input for rule to allow chaining? Better: rule is start, no input. Others have input. Menu has multiple outputs.)
+            if (block.type !== 'rule') {
+                const inputConn = document.createElement('div');
+                inputConn.className = 'connector input';
+                inputConn.dataset.port = 'input';
+                inputConn.dataset.blockId = block.id;
+                inputConn.title = 'Entrada';
+                el.appendChild(inputConn);
+            }
+
+            // Output connector(s)
+            if (block.type === 'menu') {
+                const opts = block.config.options || [];
+                opts.forEach((opt, i) => {
+                    const out = document.createElement('div');
+                    out.className = 'connector output menu-output';
+                    out.dataset.port = 'out-' + i;
+                    out.dataset.blockId = block.id;
+                    out.title = 'Saída: opção ' + (i + 1);
+                    // Position vertically distributed
+                    out.style.top = (30 + (i * (100 / Math.max(opts.length, 1)) * 0.55)) + '%';
+                    el.appendChild(out);
+                });
+            } else if (block.type !== 'end') {
+                const outConn = document.createElement('div');
+                outConn.className = 'connector output';
+                outConn.dataset.port = 'output';
+                outConn.dataset.blockId = block.id;
+                outConn.title = 'Saída';
+                el.appendChild(outConn);
+            }
+
+            // Events
+            el.addEventListener('mousedown', onBlockMouseDown);
+            el.addEventListener('click', (e) => {
+                if (e.target.classList.contains('block-more')) return;
+                if (e.target.classList.contains('connector')) return;
+                selectBlock(block.id);
+            });
+
+            const moreBtn = el.querySelector('.block-more');
+            moreBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openBlockDropdown(block.id, moreBtn);
+            });
+
+            // Connector events
+            el.querySelectorAll('.connector').forEach(conn => {
+                conn.addEventListener('mousedown', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    if (conn.classList.contains('input')) return; // inputs are drop targets
+                    startConnection(block.id, conn.dataset.port, e);
+                });
+                conn.addEventListener('mouseup', (e) => {
+                    if (conn.classList.contains('input')) {
+                        e.stopPropagation();
+                        finishConnection(block.id);
+                    }
+                });
+            });
+
+            canvasWorld.appendChild(el);
+        });
+
+        // Draw connections after blocks exist
+        renderConnections();
+    }
+
+    function isBlockIncomplete(block) {
+        if (block.type === 'rule') {
+            return !block.ruleId || !(block.config.keywords || []).length || !block.config.response;
+        }
+        if (block.type === 'message') {
+            return !block.config.text || !block.config.text.trim();
+        }
+        if (block.type === 'media') {
+            return !block.config.mediaId;
+        }
+        if (block.type === 'menu') {
+            const opts = block.config.options || [];
+            return opts.length === 0 || opts.some(o => !o.targetBlockId);
+        }
+        if (block.type === 'end') {
+            return false;
+        }
+        return false;
+    }
+
+    // ===== CONNECTIONS RENDERING =====
+    function getPortPosition(blockId, port) {
+        const el = canvasWorld.querySelector(`.flow-block[data-block-id="${blockId}"]`);
+        if (!el) return null;
+        const block = state.blocks.find(b => b.id === blockId);
+        if (!block) return null;
+
+        // Calculate relative to world coordinates (block.x + offset within block)
+        const rect = el.getBoundingClientRect();
+        const worldRect = canvasWorld.getBoundingClientRect();
+        const scale = state.viewport.zoom;
+
+        // Use offset dimensions to avoid transform issues
+        const blockW = el.offsetWidth;
+        const blockH = el.offsetHeight;
+
+        if (port === 'input') {
+            return { x: block.x, y: block.y + blockH / 2 };
+        }
+        if (port === 'output') {
+            return { x: block.x + blockW, y: block.y + blockH / 2 };
+        }
+        if (port.startsWith('out-')) {
+            const idx = parseInt(port.split('-')[1]);
+            const opts = block.config.options || [];
+            const n = Math.max(opts.length, 1);
+            const yOffset = blockH * (0.3 + (idx * (0.55 / Math.max(n - 1, 1))));
+            // Better: distribute evenly in body area
+            const headerH = 46;
+            const bodyH = blockH - headerH;
+            const step = bodyH / (n + 1);
+            return { x: block.x + blockW, y: block.y + headerH + step * (idx + 1) };
+        }
+        return { x: block.x, y: block.y };
+    }
+
+    function renderConnections() {
+        // Remove existing paths/circles
+        while (connectionsSvg.firstChild) connectionsSvg.removeChild(connectionsSvg.firstChild);
+
+        // Set SVG viewBox to cover world content roughly (we use overflow visible anyway)
+        // We'll position paths using absolute world coords.
+
+        state.connections.forEach(conn => {
+            const fromBlock = state.blocks.find(b => b.id === conn.fromBlockId);
+            const toBlock = state.blocks.find(b => b.id === conn.toBlockId);
+            if (!fromBlock || !toBlock) return;
+
+            const from = getPortPosition(conn.fromBlockId, conn.fromPort);
+            const to = getPortPosition(conn.toBlockId, 'input');
+            if (!from || !to) return;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const d = bezierPath(from.x, from.y, to.x, to.y);
+            path.setAttribute('d', d);
+            path.dataset.connId = conn.id;
+
+            const isBroken = !toBlock || (toBlock.type === 'rule');
+            if (isBroken) path.classList.add('connection-broken');
+            if (isConnectionActive(conn)) path.classList.add('connection-active');
+
+            connectionsSvg.appendChild(path);
+
+            // Arrowhead
+            const angle = Math.atan2(to.y - from.y, to.x - from.x);
+            const arrowX = to.x - 10 * Math.cos(angle);
+            const arrowY = to.y - 10 * Math.sin(angle);
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', arrowX);
+            circle.setAttribute('cy', arrowY);
+            circle.setAttribute('r', 4);
+            circle.setAttribute('class', 'arrowhead' + (isBroken ? ' broken' : (isConnectionActive(conn) ? ' active' : '')));
+            connectionsSvg.appendChild(circle);
+        });
+    }
+
+    function isConnectionActive(conn) {
+        // Highlight connections from selected block
+        return state.selectedBlockId && conn.fromBlockId === state.selectedBlockId;
+    }
+
+    function bezierPath(x1, y1, x2, y2) {
+        const dx = Math.max(40, Math.abs(x2 - x1) * 0.5);
+        const c1x = x1 + dx;
+        const c1y = y1;
+        const c2x = x2 - dx;
+        const c2y = y2;
+        return `M ${x1} ${y1} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${x2} ${y2}`;
+    }
+
+    // ===== CONNECTION CREATION =====
+    function startConnection(blockId, port, event) {
+        connectionMode = { fromBlockId: blockId, fromPort: port };
+        connectionIndicator.classList.add('active');
+        connectionIndicator.textContent = 'Clique em um bloco de destino para conectar';
+        canvasViewport.style.cursor = 'crosshair';
+    }
+
+    function finishConnection(toBlockId) {
+        if (!connectionMode) return;
+        const { fromBlockId, fromPort } = connectionMode;
+        if (fromBlockId === toBlockId) {
+            cancelConnection();
+            return;
+        }
+        const toBlock = state.blocks.find(b => b.id === toBlockId);
+        if (!toBlock) { cancelConnection(); return; }
+        if (toBlock.type === 'rule') {
+            showToast('Blocos de regra não podem receber conexões (são pontos de entrada)');
+            cancelConnection();
+            return;
+        }
+
+        // Prevent duplicate exact connection
+        const exists = state.connections.some(c =>
+            c.fromBlockId === fromBlockId && c.fromPort === fromPort && c.toBlockId === toBlockId
+        );
+        if (exists) {
+            showToast('Conexão já existe');
+            cancelConnection();
+            return;
+        }
+
+        // If menu option already has a target, replace it
+        if (fromPort.startsWith('out-')) {
+            const idx = parseInt(fromPort.split('-')[1]);
+            const fromBlock = state.blocks.find(b => b.id === fromBlockId);
+            if (fromBlock && fromBlock.type === 'menu') {
+                const opt = fromBlock.config.options[idx];
+                if (opt) opt.targetBlockId = toBlockId;
+            }
+            // Remove existing connection from same port
+            state.connections = state.connections.filter(c => !(c.fromBlockId === fromBlockId && c.fromPort === fromPort));
+        } else {
+            // Normal output: replace existing connection from this port (single output)
+            state.connections = state.connections.filter(c => !(c.fromBlockId === fromBlockId && c.fromPort === fromPort));
+        }
+
+        state.connections.push({
+            id: uid('conn'),
+            fromBlockId,
+            fromPort,
+            toBlockId
+        });
+
+        cancelConnection();
+        markDirty();
+        renderAll();
+        selectBlock(state.selectedBlockId);
+    }
+
+    function cancelConnection() {
+        connectionMode = null;
+        connectionIndicator.classList.remove('active');
+        canvasViewport.style.cursor = '';
+    }
+
+    // ===== BLOCK DRAG =====
+    function onBlockMouseDown(e) {
+        if (e.target.classList.contains('connector')) return;
+        if (e.target.classList.contains('block-more')) return;
+        if (e.target.tagName === 'BUTTON') return;
+
+        const blockEl = e.currentTarget;
+        const blockId = blockEl.dataset.blockId;
+        selectBlock(blockId);
+
+        const block = state.blocks.find(b => b.id === blockId);
+        if (!block) return;
+
+        const startX = e.clientX;
+        const startY = e.clientY;
+        const origX = block.x;
+        const origY = block.y;
+        const zoom = state.viewport.zoom;
+
+        blockEl.classList.add('dragging');
+        dragState = { blockId, startX, startY, origX, origY, zoom, moved: false };
+
+        function onMove(ev) {
+            const dx = (ev.clientX - startX) / zoom;
+            const dy = (ev.clientY - startY) / zoom;
+            if (Math.abs(dx) > 1 || Math.abs(dy) > 1) dragState.moved = true;
+            block.x = origX + dx;
+            block.y = origY + dy;
+            blockEl.style.left = block.x + 'px';
+            blockEl.style.top = block.y + 'px';
+            renderConnections();
+        }
+
+        function onUp() {
+            blockEl.classList.remove('dragging');
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
+            if (dragState && dragState.moved) markDirty();
+            dragState = null;
+        }
+
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+    }
+
+    // ===== CANVAS PAN =====
+    let panState = null;
+    canvasViewport.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.flow-block')) return;
+        if (e.target.closest('.connector')) return;
+        if (e.button !== 0) return;
+
+        panState = {
+            startX: e.clientX,
+            startY: e.clientY,
+            origX: state.viewport.x,
+            origY: state.viewport.y
+        };
+        canvasViewport.style.cursor = 'grabbing';
+
+        function onMove(ev) {
+            state.viewport.x = panState.origX + (ev.clientX - panState.startX);
+            state.viewport.y = panState.origY + (ev.clientY - panState.startY);
+            applyViewport();
+        }
+        function onUp() {
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
+            panState = null;
+            canvasViewport.style.cursor = '';
+        }
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+
+        // Deselect when clicking empty canvas
+        if (!e.target.closest('.flow-block')) {
+            selectBlock(null);
+        }
+    });
+
+    // Click on input connector (mouseup fallback)
+    canvasViewport.addEventListener('mouseup', (e) => {
+        const inputConn = e.target.closest('.connector.input');
+        if (inputConn && connectionMode) {
+            finishConnection(inputConn.dataset.blockId);
+        }
+    });
+
+    // Zoom with wheel
+    canvasViewport.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const rect = canvasViewport.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        const oldZoom = state.viewport.zoom;
+        const delta = e.deltaY > 0 ? -0.1 : 0.1;
+        const newZoom = Math.min(2, Math.max(0.25, oldZoom + delta));
+        if (newZoom === oldZoom) return;
+
+        // Zoom toward mouse
+        const worldX = (mouseX - state.viewport.x) / oldZoom;
+        const worldY = (mouseY - state.viewport.y) / oldZoom;
+        state.viewport.zoom = newZoom;
+        state.viewport.x = mouseX - worldX * newZoom;
+        state.viewport.y = mouseY - worldY * newZoom;
+        applyViewport();
+        renderConnections();
+    }, { passive: false });
+
+    // ===== ZOOM CONTROLS =====
+    function zoomBy(factor) {
+        const v = state.viewport;
+        const rect = canvasViewport.getBoundingClientRect();
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const worldX = (cx - v.x) / v.zoom;
+        const worldY = (cy - v.y) / v.zoom;
+        v.zoom = Math.min(2, Math.max(0.25, v.zoom * factor));
+        v.x = cx - worldX * v.zoom;
+        v.y = cy - worldY * v.zoom;
+        applyViewport();
+        renderConnections();
+    }
+
+    $('#zoomIn').addEventListener('click', () => zoomBy(1.2));
+    $('#zoomOut').addEventListener('click', () => zoomBy(1 / 1.2));
+
+    $('#fitView').addEventListener('click', fitView);
+    $('#centerView').addEventListener('click', centerView);
+
+    function getBounds() {
+        if (!state.blocks.length) return null;
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        state.blocks.forEach(b => {
+            minX = Math.min(minX, b.x);
+            minY = Math.min(minY, b.y);
+            maxX = Math.max(maxX, b.x + 240);
+            maxY = Math.max(maxY, b.y + 140);
+        });
+        return { minX, minY, maxX, maxY };
+    }
+
+    function fitView() {
+        const bounds = getBounds();
+        if (!bounds) {
+            state.viewport = { x: 40, y: 40, zoom: 1 };
+            applyViewport();
+            return;
+        }
+        const padding = 60;
+        const rect = canvasViewport.getBoundingClientRect();
+        const w = bounds.maxX - bounds.minX + padding * 2;
+        const h = bounds.maxY - bounds.minY + padding * 2;
+        const zoom = Math.min(rect.width / w, rect.height / h, 1.2);
+        state.viewport.zoom = Math.max(0.25, zoom);
+        state.viewport.x = (rect.width - (bounds.maxX - bounds.minX) * zoom) / 2 - bounds.minX * zoom;
+        state.viewport.y = (rect.height - (bounds.maxY - bounds.minY) * zoom) / 2 - bounds.minY * zoom;
+        applyViewport();
+        renderConnections();
+        showToast('Visão ajustada');
+    }
+
+    function centerView() {
+        const bounds = getBounds();
+        if (!bounds) return;
+        const rect = canvasViewport.getBoundingClientRect();
+        const zoom = state.viewport.zoom;
+        const cx = (bounds.minX + bounds.maxX) / 2;
+        const cy = (bounds.minY + bounds.maxY) / 2;
+        state.viewport.x = rect.width / 2 - cx * zoom;
+        state.viewport.y = rect.height / 2 - cy * zoom;
+        applyViewport();
+        renderConnections();
+    }
+
+    $('#toggleGrid').addEventListener('click', () => {
+        state.gridVisible = !state.gridVisible;
+        canvasGrid.style.display = state.gridVisible ? '' : 'none';
+        markDirty();
+    });
+
+    // ===== SELECTION & CONFIG =====
+    function selectBlock(blockId) {
+        state.selectedBlockId = blockId;
+        // Update selection class
+        canvasWorld.querySelectorAll('.flow-block').forEach(el => {
+            el.classList.toggle('selected', el.dataset.blockId === blockId);
+        });
+        renderConnections();
+        renderConfigPanel();
+        if (blockId) {
+            // Auto-open right panel on small screens
+            if (window.innerWidth <= 1100) rightPanel.classList.remove('collapsed');
+        }
+    }
+
+    function renderConfigPanel() {
+        const blockId = state.selectedBlockId;
+        if (!blockId) {
+            configPanelBody.innerHTML = `<div class="empty-config">
+                <div class="icon">⚙</div>
+                <p>Selecione um bloco no canvas para editar suas configurações.</p>
+            </div>`;
+            return;
+        }
+        const block = state.blocks.find(b => b.id === blockId);
+        if (!block) {
+            configPanelBody.innerHTML = `<div class="empty-config"><p>Bloco não encontrado.</p></div>`;
+            return;
+        }
+
+        const meta = TYPE_META[block.type];
+        let html = `
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span class="badge ${meta.badge}">${meta.icon} ${meta.label}</span>
+                ${isBlockIncomplete(block) ? '<span class="badge" style="background:#fef3c7;color:#b45309;">⚠ Incompleto</span>' : ''}
+            </div>
+        `;
+
+        if (block.type === 'rule') {
+            html += renderRuleConfig(block);
+        } else if (block.type === 'message') {
+            html += renderMessageConfig(block);
+        } else if (block.type === 'media') {
+            html += renderMediaConfig(block);
+        } else if (block.type === 'menu') {
+            html += renderMenuConfig(block);
+        } else if (block.type === 'end') {
+            html += renderEndConfig(block);
+        }
+
+        html += `<div class="form-divider"></div>
+            <div style="font-size:11px;color:var(--text-tertiary);line-height:1.5;">
+                ID: ${escapeHtml(block.id)}
+            </div>`;
+
+        configPanelBody.innerHTML = html;
+        bindConfigEvents(block);
+    }
+
+    function renderRuleConfig(block) {
+        const rule = DEMO_RULES.find(r => r.id === block.ruleId);
+        let html = `<div class="form-group">
+            <label class="form-label">Regra vinculada</label>
+            <div class="rule-selector">`;
+        DEMO_RULES.forEach(r => {
+            const active = r.id === block.ruleId;
+            const isUsed = state.blocks.some(b => b.id !== block.id && b.type === 'rule' && b.ruleId === r.id);
+            html += `<div class="rule-selector-item ${active ? 'active' : ''}" data-rule-id="${r.id}" style="${isUsed ? 'opacity:0.5;' : ''}">
+                <span>⚡</span>
+                <div style="flex:1;min-width:0;">
+                    <div>${escapeHtml(r.keywords[0] || r.id)}</div>
+                    <div class="kw-list">${r.keywords.map(escapeHtml).join(', ')}</div>
+                </div>
+                ${isUsed ? '<span style="font-size:9px;color:var(--warning);">em uso</span>' : ''}
+            </div>`;
+        });
+        html += `</div></div>`;
+
+        html += `<div class="form-group">
+            <label class="form-label">Palavras-chave</label>
+            <input class="form-input" id="cfgKeywords" value="${escapeHtml((block.config.keywords || []).join(', '))}" placeholder="preço, valor, quanto custa">
+            <div class="form-hint">Separe por vírgula. A edição atualiza a mesma regra original.</div>
+        </div>`;
+
+        html += `<div class="form-group">
+            <label class="form-label">Texto de resposta</label>
+            <textarea class="form-textarea" id="cfgResponse" placeholder="Mensagem enviada ao cliente">${escapeHtml(block.config.response || '')}</textarea>
+            <div class="form-hint">${rule ? 'Vinculado à regra "' + escapeHtml(rule.keywords[0]) + '"' : 'Selecione uma regra acima'}</div>
+        </div>`;
+
+        return html;
+    }
+
+    function renderMessageConfig(block) {
+        return `<div class="form-group">
+            <label class="form-label">Conteúdo da mensagem</label>
+            <textarea class="form-textarea" id="cfgMessageText" placeholder="Digite o texto da mensagem">${escapeHtml(block.config.text || '')}</textarea>
+            <div class="form-hint">${(block.config.text || '').length} caracteres</div>
+        </div>`;
+    }
+
+    function renderMediaConfig(block) {
+        let html = `<div class="form-group">
+            <label class="form-label">Arquivo da biblioteca</label>
+            <div id="mediaList">`;
+        DEMO_MEDIA.forEach(m => {
+            const selected = m.id === block.config.mediaId;
+            html += `<div class="media-item ${selected ? 'selected' : ''}" data-media-id="${m.id}">
+                <div class="media-icon">${m.icon}</div>
+                <div class="media-info">
+                    <div class="media-name">${escapeHtml(m.name)}</div>
+                    <div class="media-format">${m.format}</div>
+                </div>
+                ${selected ? '<span style="color:var(--accent);font-size:14px;">✓</span>' : ''}
+            </div>`;
+        });
+        html += `</div><div class="form-hint">Dados demonstrativos da Biblioteca UpZap.</div></div>`;
+        return html;
+    }
+
+    function renderMenuConfig(block) {
+        const opts = block.config.options || [];
+        let html = `<div class="form-group">
+            <label class="form-label">Texto de introdução</label>
+            <input class="form-input" id="cfgMenuHeader" value="${escapeHtml(block.config.headerText || '')}" placeholder="Escolha uma opção:">
+        </div>`;
+
+        html += `<div class="form-group">
+            <label class="form-label">Opções numeradas</label>
+            <div id="menuOptionsList">`;
+        opts.forEach((opt, i) => {
+            html += `<div class="menu-option-row" data-opt-index="${i}">
+                <div class="opt-num">${i + 1}</div>
+                <div class="opt-fields">
+                    <input class="opt-label-input" data-opt-index="${i}" value="${escapeHtml(opt.label)}" placeholder="Texto da opção">
+                    <select class="opt-target-select" data-opt-index="${i}">
+                        <option value="">— Sem destino —</option>
+                        ${state.blocks.filter(b => b.id !== block.id && b.type !== 'rule').map(b => {
+                            const m = TYPE_META[b.type];
+                            return `<option value="${b.id}" ${opt.targetBlockId === b.id ? 'selected' : ''}>${m.icon} ${escapeHtml(b.title)}</option>`;
+                        }).join('')}
+                    </select>
+                </div>
+                <button class="opt-remove" data-opt-index="${i}" title="Remover opção">×</button>
+            </div>`;
+        });
+        html += `</div>
+            <button class="add-option-btn" id="addMenuOption">+ Adicionar opção</button>
+        </div>`;
+
+        return html;
+    }
+
+    function renderEndConfig(block) {
+        return `<div class="form-group">
+            <label class="form-label">Mensagem de encerramento</label>
+            <textarea class="form-textarea" id="cfgEndMessage" placeholder="Mensagem final">${escapeHtml(block.config.message || '')}</textarea>
+            <div class="form-hint">Este bloco finaliza o caminho de execução.</div>
+        </div>`;
+    }
+
+    function bindConfigEvents(block) {
+        if (block.type === 'rule') {
+            configPanelBody.querySelectorAll('.rule-selector-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const ruleId = item.dataset.ruleId;
+                    const rule = DEMO_RULES.find(r => r.id === ruleId);
+                    if (!rule) return;
+                    const isUsed = state.blocks.some(b => b.id !== block.id && b.type === 'rule' && b.ruleId === ruleId);
+                    if (isUsed) {
+                        showToast('Esta regra já está em uso em outro bloco');
+                        return;
+                    }
+                    block.ruleId = ruleId;
+                    block.title = 'Regra: ' + (rule.keywords[0] || ruleId);
+                    block.config.keywords = [...rule.keywords];
+                    block.config.response = rule.response;
+                    markDirty();
+                    renderAll();
+                    selectBlock(block.id);
+                });
+            });
+            const kwInput = $('#cfgKeywords');
+            if (kwInput) {
+                kwInput.addEventListener('input', () => {
+                    block.config.keywords = kwInput.value.split(',').map(s => s.trim()).filter(Boolean);
+                    // Update original rule record (in real backend this would be a PATCH)
+                    const rule = DEMO_RULES.find(r => r.id === block.ruleId);
+                    if (rule) rule.keywords = [...block.config.keywords];
+                    block.title = 'Regra: ' + (block.config.keywords[0] || block.ruleId);
+                    markDirty();
+                    renderBlocks();
+                    renderRulesList();
+                });
+            }
+            const respInput = $('#cfgResponse');
+            if (respInput) {
+                respInput.addEventListener('input', () => {
+                    block.config.response = respInput.value;
+                    const rule = DEMO_RULES.find(r => r.id === block.ruleId);
+                    if (rule) rule.response = respInput.value;
+                    markDirty();
+                    renderBlocks();
+                });
+            }
+        } else if (block.type === 'message') {
+            const ta = $('#cfgMessageText');
+            if (ta) {
+                ta.addEventListener('input', () => {
+                    block.config.text = ta.value;
+                    markDirty();
+                    renderBlocks();
+                    // Update hint
+                    const hint = ta.parentElement.querySelector('.form-hint');
+                    if (hint) hint.textContent = ta.value.length + ' caracteres';
+                });
+            }
+        } else if (block.type === 'media') {
+            configPanelBody.querySelectorAll('.media-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    block.config.mediaId = item.dataset.mediaId;
+                    markDirty();
+                    renderBlocks();
+                    renderConfigPanel();
+                });
+            });
+        } else if (block.type === 'menu') {
+            const headerInput = $('#cfgMenuHeader');
+            if (headerInput) {
+                headerInput.addEventListener('input', () => {
+                    block.config.headerText = headerInput.value;
+                    markDirty();
+                    renderBlocks();
+                });
+            }
+            configPanelBody.querySelectorAll('.opt-label-input').forEach(inp => {
+                inp.addEventListener('input', () => {
+                    const idx = parseInt(inp.dataset.optIndex);
+                    if (block.config.options[idx]) {
+                        block.config.options[idx].label = inp.value;
+                        markDirty();
+                        renderBlocks();
+                    }
+                });
+            });
+            configPanelBody.querySelectorAll('.opt-target-select').forEach(sel => {
+                sel.addEventListener('change', () => {
+                    const idx = parseInt(sel.dataset.optIndex);
+                    if (block.config.options[idx]) {
+                        block.config.options[idx].targetBlockId = sel.value || null;
+                        // Update connections
+                        state.connections = state.connections.filter(c => !(c.fromBlockId === block.id && c.fromPort === 'out-' + idx));
+                        if (sel.value) {
+                            state.connections.push({
+                                id: uid('conn'),
+                                fromBlockId: block.id,
+                                fromPort: 'out-' + idx,
+                                toBlockId: sel.value
+                            });
+                        }
+                        markDirty();
+                        renderBlocks();
+                        renderConnections();
+                    }
+                });
+            });
+            configPanelBody.querySelectorAll('.opt-remove').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.dataset.optIndex);
+                    block.config.options.splice(idx, 1);
+                    // Rebuild menu connections (shift indices)
+                    const menuConns = state.connections.filter(c => c.fromBlockId === block.id && c.fromPort.startsWith('out-'));
+                    const otherConns = state.connections.filter(c => !(c.fromBlockId === block.id && c.fromPort.startsWith('out-')));
+                    const newConns = [];
+                    block.config.options.forEach((opt, i) => {
+                        if (opt.targetBlockId) {
+                            newConns.push({ id: uid('conn'), fromBlockId: block.id, fromPort: 'out-' + i, toBlockId: opt.targetBlockId });
+                        }
+                    });
+                    state.connections = otherConns.concat(newConns);
+                    markDirty();
+                    renderBlocks();
+                    renderConfigPanel();
+                });
+            });
+            const addBtn = $('#addMenuOption');
+            if (addBtn) {
+                addBtn.addEventListener('click', () => {
+                    block.config.options.push({ label: 'Nova opção', targetBlockId: null });
+                    markDirty();
+                    renderBlocks();
+                    renderConfigPanel();
+                });
+            }
+        } else if (block.type === 'end') {
+            const ta = $('#cfgEndMessage');
+            if (ta) {
+                ta.addEventListener('input', () => {
+                    block.config.message = ta.value;
+                    markDirty();
+                    renderBlocks();
+                });
+            }
+        }
+    }
+
+    // ===== BLOCK DROPDOWN =====
+    function openBlockDropdown(blockId, anchorEl) {
+        blockDropdownTarget = blockId;
+        const rect = anchorEl.getBoundingClientRect();
+        blockDropdown.style.left = rect.left + 'px';
+        blockDropdown.style.top = (rect.bottom + 4) + 'px';
+        blockDropdown.classList.add('open');
+    }
+
+    function closeBlockDropdown() {
+        blockDropdown.classList.remove('open');
+        blockDropdownTarget = null;
+    }
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.block-dropdown') && !e.target.classList.contains('block-more')) {
+            closeBlockDropdown();
+        }
+    });
+
+    $('#ddEdit').addEventListener('click', () => {
+        if (blockDropdownTarget) {
+            selectBlock(blockDropdownTarget);
+            rightPanel.classList.remove('collapsed');
+        }
+        closeBlockDropdown();
+    });
+
+    $('#ddDuplicate').addEventListener('click', () => {
+        const block = state.blocks.find(b => b.id === blockDropdownTarget);
+        if (block) {
+            const copy = JSON.parse(JSON.stringify(block));
+            copy.id = uid('block');
+            copy.x += 30;
+            copy.y += 30;
+            copy.title = block.title + ' (cópia)';
+            // Clear rule link uniqueness: if rule block, don't duplicate ruleId to avoid conflict
+            if (copy.type === 'rule') {
+                copy.ruleId = null;
+                copy.title = 'Regra (cópia)';
+            }
+            state.blocks.push(copy);
+            markDirty();
+            renderAll();
+            selectBlock(copy.id);
+            showToast('Bloco duplicado');
+        }
+        closeBlockDropdown();
+    });
+
+    $('#ddDelete').addEventListener('click', () => {
+        deleteBlock(blockDropdownTarget);
+        closeBlockDropdown();
+    });
+
+    function deleteBlock(blockId) {
+        if (!blockId) return;
+        state.blocks = state.blocks.filter(b => b.id !== blockId);
+        state.connections = state.connections.filter(c => c.fromBlockId !== blockId && c.toBlockId !== blockId);
+        // Also clear menu option targets pointing to deleted block
+        state.blocks.forEach(b => {
+            if (b.type === 'menu' && b.config.options) {
+                b.config.options.forEach(o => {
+                    if (o.targetBlockId === blockId) o.targetBlockId = null;
+                });
+            }
+        });
+        if (state.selectedBlockId === blockId) state.selectedBlockId = null;
+        markDirty();
+        renderAll();
+        renderConfigPanel();
+        showToast('Bloco excluído');
+    }
+
+    // Delete key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Delete' || e.key === 'Backspace') {
+            const active = document.activeElement;
+            if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.tagName === 'SELECT')) return;
+            if (state.selectedBlockId) {
+                deleteBlock(state.selectedBlockId);
+            }
+        }
+        if (e.key === 'Escape') {
+            cancelConnection();
+            closeBlockDropdown();
+            selectBlock(null);
+        }
+    });
+
+    // ===== DRAG FROM LIBRARY =====
+    canvasViewport.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'copy';
+    });
+
+    canvasViewport.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const data = e.dataTransfer.getData('text/plain');
+        if (!data) return;
+        const rect = canvasViewport.getBoundingClientRect();
+        const world = screenToWorld(e.clientX - rect.left, e.clientY - rect.top);
+
+        if (data.startsWith('rule:')) {
+            const ruleId = data.split(':')[1];
+            const rule = DEMO_RULES.find(r => r.id === ruleId);
+            if (!rule) return;
+            const existing = state.blocks.find(b => b.type === 'rule' && b.ruleId === ruleId);
+            if (existing) {
+                showToast('Esta regra já está no fluxo');
+                selectBlock(existing.id);
+                return;
+            }
+            const block = createBlock('rule', world.x - 110, world.y - 40);
+            block.ruleId = rule.id;
+            block.title = 'Regra: ' + (rule.keywords[0] || ruleId);
+            block.config = { keywords: [...rule.keywords], response: rule.response };
+            state.blocks.push(block);
+            markDirty();
+            renderAll();
+            selectBlock(block.id);
+        } else {
+            // From library block item
+            const type = data;
+            if (!TYPE_META[type]) return;
+            const block = createBlock(type, world.x - 110, world.y - 40);
+            // Rule type from library without specific rule: pick first unused rule
+            if (type === 'rule') {
+                const usedRuleIds = state.blocks.filter(b => b.type === 'rule').map(b => b.ruleId);
+                const available = DEMO_RULES.find(r => !usedRuleIds.includes(r.id));
+                if (available) {
+                    block.ruleId = available.id;
+                    block.title = 'Regra: ' + (available.keywords[0] || available.id);
+                    block.config = { keywords: [...available.keywords], response: available.response };
+                } else {
+                    showToast('Todas as regras já estão no fluxo. Edite uma regra existente.');
+                }
+            }
+            state.blocks.push(block);
+            markDirty();
+            renderAll();
+            selectBlock(block.id);
+        }
+    });
+
+    // Also allow dragstart on library items
+    document.querySelectorAll('.block-library-item').forEach(item => {
+        item.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', item.dataset.type);
+            e.dataTransfer.effectAllowed = 'copy';
+        });
+    });
+
+    // ===== COORDINATE HELPERS =====
+    function screenToWorld(sx, sy) {
+        // sx, sy relative to canvasViewport
+        return {
+            x: (sx - state.viewport.x) / state.viewport.zoom,
+            y: (sy - state.viewport.y) / state.viewport.zoom
+        };
+    }
+
+    // ===== TOP BAR ACTIONS =====
+    $('#btnSave').addEventListener('click', saveToStorage);
+
+    $('#btnTest').addEventListener('click', openTestFlow);
+    $('#btnPublish').addEventListener('click', openPublishModal);
+
+    $('#toggleLeftPanel').addEventListener('click', () => {
+        leftPanel.classList.toggle('collapsed');
+    });
+    $('#toggleRightPanel').addEventListener('click', () => {
+        rightPanel.classList.toggle('collapsed');
+    });
+
+    // ===== TEST FLOW MODE =====
+    let testSession = null;
+    const testModalOverlay = $('#testModalOverlay');
+    const testFlowContainer = $('#testFlowContainer');
+    const testInputRow = $('#testInputRow');
+
+    function openTestFlow() {
+        // Find entry rule block
+        const entryBlocks = state.blocks.filter(b => b.type === 'rule');
+        if (entryBlocks.length === 0) {
+            showToast('Adicione uma regra de entrada antes de testar');
+            return;
+        }
+        testSession = {
+            currentBlockId: entryBlocks[0].id,
+            history: []
+        };
+        testModalOverlay.classList.add('open');
+        testFlowContainer.innerHTML = '';
+        testInputRow.style.display = 'none';
+        runTestStep(testSession.currentBlockId);
+    }
+
+    function runTestStep(blockId) {
+        const block = state.blocks.find(b => b.id === blockId);
+        if (!block) {
+            addTestEnd('Bloco não encontrado no fluxo.');
+            return;
+        }
+
+        if (block.type === 'end') {
+            addTestBubble('bot', '⏹ Encerramento', block.config.message || 'Atendimento encerrado.');
+            addTestEnd('— Fim do fluxo —');
+            return;
+        }
+
+        if (block.type === 'rule') {
+            addTestBubble('bot', '⚡ Regra identificada', `Palavras-chave: ${(block.config.keywords || []).join(', ')}\nResposta: ${block.config.response || '(vazia)'}`);
+            const next = getNextBlock(block.id, 'output');
+            if (next) {
+                setTimeout(() => runTestStep(next), 500);
+            } else {
+                addTestEnd('A regra não está conectada a um próximo bloco.');
+            }
+            return;
+        }
+
+        if (block.type === 'message') {
+            addTestBubble('bot', '💬 Mensagem', block.config.text || '(vazia)');
+            const next = getNextBlock(block.id, 'output');
+            if (next) {
+                setTimeout(() => runTestStep(next), 500);
+            } else {
+                addTestEnd('A mensagem não está conectada a um próximo bloco.');
+            }
+            return;
+        }
+
+        if (block.type === 'media') {
+            const media = DEMO_MEDIA.find(m => m.id === block.config.mediaId);
+            const label = media ? `${media.icon} ${media.name} (${media.format})` : 'Nenhum arquivo selecionado';
+            addTestBubble('bot', '🖼 Mídia enviada', label);
+            const next = getNextBlock(block.id, 'output');
+            if (next) {
+                setTimeout(() => runTestStep(next), 500);
+            } else {
+                addTestEnd('A mídia não está conectada a um próximo bloco.');
+            }
+            return;
+        }
+
+        if (block.type === 'menu') {
+            const opts = block.config.options || [];
+            if (opts.length === 0) {
+                addTestBubble('bot', '🔢 Menu', block.config.headerText || 'Menu sem opções.');
+                addTestEnd('Menu sem opções.');
+                return;
+            }
+            addTestBubble('bot', '🔢 Menu numerado', block.config.headerText || 'Escolha uma opção:');
+            // Show options as clickable buttons
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'test-options';
+            opts.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'test-option-btn';
+                btn.textContent = `${i + 1}. ${opt.label}`;
+                btn.addEventListener('click', () => {
+                    if (!opt.targetBlockId) {
+                        addTestBubble('user', 'Opção ' + (i + 1), opt.label);
+                        addTestEnd('Esta opção não tem destino configurado.');
+                        return;
+                    }
+                    addTestBubble('user', 'Opção ' + (i + 1), opt.label);
+                    // Remove option buttons
+                    optionsDiv.remove();
+                    setTimeout(() => runTestStep(opt.targetBlockId), 400);
+                });
+                optionsDiv.appendChild(btn);
+            });
+            testFlowContainer.appendChild(optionsDiv);
+            scrollTestToBottom();
+            return;
+        }
+    }
+
+    function getNextBlock(blockId, port) {
+        const conn = state.connections.find(c => c.fromBlockId === blockId && c.fromPort === port);
+        return conn ? conn.toBlockId : null;
+    }
+
+    function addTestBubble(sender, label, text) {
+        const bubble = document.createElement('div');
+        bubble.className = 'test-bubble ' + sender;
+        bubble.innerHTML = `<div class="bubble-label">${escapeHtml(label)}</div>${escapeHtml(text).replace(/\n/g, '<br>')}`;
+        testFlowContainer.appendChild(bubble);
+        scrollTestToBottom();
+    }
+
+    function addTestEnd(text) {
+        const el = document.createElement('div');
+        el.className = 'test-end-badge';
+        el.textContent = text;
+        testFlowContainer.appendChild(el);
+        scrollTestToBottom();
+    }
+
+    function scrollTestToBottom() {
+        testFlowContainer.scrollTop = testFlowContainer.scrollHeight;
+    }
+
+    $('#testModalClose').addEventListener('click', closeTestFlow);
+    $('#testCloseBtn').addEventListener('click', closeTestFlow);
+    $('#testRestart').addEventListener('click', () => {
+        testFlowContainer.innerHTML = '';
+        openTestFlow();
+    });
+    testModalOverlay.addEventListener('click', (e) => {
+        if (e.target === testModalOverlay) closeTestFlow();
+    });
+
+    function closeTestFlow() {
+        testModalOverlay.classList.remove('open');
+        testSession = null;
+    }
+
+    // ===== PUBLISH MODAL =====
+    const publishModalOverlay = $('#publishModalOverlay');
+    $('#btnPublish').addEventListener('click', () => {
+        $('#publishBlockCount').textContent = state.blocks.length;
+        publishModalOverlay.classList.add('open');
+    });
+    $('#publishModalClose').addEventListener('click', () => publishModalOverlay.classList.remove('open'));
+    $('#publishCancel').addEventListener('click', () => publishModalOverlay.classList.remove('open'));
+    $('#publishConfirm').addEventListener('click', () => {
+        publishModalOverlay.classList.remove('open');
+        showToast('Protótipo: publicação simulada (sem backend)');
+    });
+    publishModalOverlay.addEventListener('click', (e) => {
+        if (e.target === publishModalOverlay) publishModalOverlay.classList.remove('open');
+    });
+
+    // ===== INIT =====
+    function init() {
+        const loaded = loadFromStorage();
+        if (!loaded) {
+            seedDemoFlow();
+        }
+        // Ensure viewport is sane
+        if (!state.viewport) state.viewport = { x: 40, y: 40, zoom: 1 };
+        if (state.viewport.zoom == null) state.viewport.zoom = 1;
+
+        canvasGrid.style.display = state.gridVisible !== false ? '' : 'none';
+
+        renderAll();
+        applyViewport();
+        markClean();
+
+        // Handle window resize for connection redraw
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                renderConnections();
+            }, 100);
+        });
+
+        // Initial toast
+        setTimeout(() => showToast(loaded ? 'Fluxo restaurado do armazenamento local' : 'Protótipo carregado com dados demonstrativos'), 400);
+    }
+
+    init();
+
+    // Expose for debugging (optional)
+    window.__upzapFlow = { state, renderAll, saveToStorage };
+
+})();
+</script>
+</body>
+</html>

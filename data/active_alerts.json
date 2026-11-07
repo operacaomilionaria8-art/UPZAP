@@ -1,0 +1,414 @@
+{
+  "active": [
+    {
+      "id": "alert_1793576936261_5wya",
+      "key": "brizex_err_test",
+      "severity": "warning",
+      "title": "Brizex Indisponível",
+      "description": "Erro 503 na API Brizex.",
+      "origin": "brizex",
+      "status": "active",
+      "createdAt": "2026-11-01T23:48:56.261Z",
+      "soundEvent": "brizex_indisponivel",
+      "recoverySoundEvent": "integracao_restabelecida",
+      "details": {
+        "lastOccurrenceAt": "2026-11-05T02:14:42.105Z"
+      }
+    },
+    {
+      "id": "alert_1793576936262_hypi",
+      "key": "flow_fail_test",
+      "severity": "error",
+      "title": "Falha em Fluxo",
+      "description": "Erro na execução do nó de condição.",
+      "origin": "automacao",
+      "status": "active",
+      "createdAt": "2026-11-01T23:48:56.262Z",
+      "soundEvent": "fluxo_falhou",
+      "details": {
+        "lastOccurrenceAt": "2026-11-05T02:14:42.105Z"
+      }
+    },
+    {
+      "id": "alert_1793576936262_rr76",
+      "key": "order_sync_fail_test",
+      "severity": "error",
+      "title": "Falha na Sincronização de Pedido",
+      "description": "Pedido #998877 não sincronizou.",
+      "origin": "brizex",
+      "status": "active",
+      "createdAt": "2026-11-01T23:48:56.262Z",
+      "soundEvent": "pedido_sincronizacao_falhou",
+      "details": {
+        "lastOccurrenceAt": "2026-11-05T02:14:42.106Z"
+      }
+    },
+    {
+      "id": "alert_1793922532296_qlte",
+      "key": "error_audit_1793922532295_3yaeo",
+      "severity": "error",
+      "title": "Erro do Sistema: Exceção Fatal Não Tratada",
+      "description": "listen EADDRINUSE: address already in use 0.0.0.0:8080",
+      "origin": "sistema",
+      "status": "active",
+      "createdAt": "2026-11-05T23:48:52.296Z",
+      "recommendedAction": "Inspecione a linha do tempo técnica ou reinicie o processo se necessário.",
+      "soundEvent": "erro_critico",
+      "recoverySoundEvent": "reconexao_concluida"
+    },
+    {
+      "id": "alert_1793922532297_dq4o",
+      "key": "server_shutdown",
+      "severity": "critical",
+      "title": "Servidor UpZap Interrompido",
+      "description": "Processo encerrado. Motivo: Exceção fatal não tratada: listen EADDRINUSE: address already in use 0.0.0.0:8080",
+      "origin": "sistema",
+      "status": "active",
+      "createdAt": "2026-11-05T23:48:52.297Z",
+      "recommendedAction": "Reinicie o servidor Node/PM2 para retomar o atendimento."
+    }
+  ],
+  "resolved": [
+    {
+      "id": "alert_1793844996540_czs1",
+      "key": "whatsapp_disconnected",
+      "severity": "warning",
+      "title": "Queda de Conexão WhatsApp",
+      "description": "Conexão caiu (código 515). Reconexão agendada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-05T02:16:36.540Z",
+      "details": {
+        "attempt": 1,
+        "isDrop": true
+      },
+      "recommendedAction": "O UpZap está tentando restabelecer a conexão automaticamente. Aguarde ou clique em Forçar Reconexão.",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-05T02:16:36.540Z",
+      "recoveryResult": "WhatsApp restabelecido: +5511999998888"
+    },
+    {
+      "id": "alert_1793844996537_ef5a",
+      "key": "test_conn_drop",
+      "severity": "critical",
+      "title": "Falha de Conexão Crítica",
+      "description": "Conexão perdida com o provedor (repetição).",
+      "origin": "rede",
+      "status": "resolved",
+      "createdAt": "2026-11-05T02:16:36.537Z",
+      "details": {
+        "lastOccurrenceAt": "2026-11-05T02:16:36.538Z"
+      },
+      "recommendedAction": "Aguarde o restabelecimento automático.",
+      "recoverySoundEvent": "reconexao_concluida",
+      "resolvedAt": "2026-11-05T02:16:36.538Z",
+      "recoveryResult": "Conexão restaurada com sucesso."
+    },
+    {
+      "id": "alert_1793844882104_k0l5",
+      "key": "wa_disconnect_test",
+      "severity": "critical",
+      "title": "WhatsApp Desconectado",
+      "description": "Sessão desconectada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-05T02:14:42.103Z",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-05T02:14:42.107Z",
+      "recoveryResult": "Sessão restabelecida com sucesso"
+    },
+    {
+      "id": "alert_1793841737800_02gf",
+      "key": "whatsapp_disconnected",
+      "severity": "warning",
+      "title": "Queda de Conexão WhatsApp",
+      "description": "Conexão caiu (código 515). Reconexão agendada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-05T01:22:17.800Z",
+      "details": {
+        "attempt": 1,
+        "isDrop": true
+      },
+      "recommendedAction": "O UpZap está tentando restabelecer a conexão automaticamente. Aguarde ou clique em Forçar Reconexão.",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-05T01:22:17.800Z",
+      "recoveryResult": "WhatsApp restabelecido: +5511999998888"
+    },
+    {
+      "id": "alert_1793841737798_x7v0",
+      "key": "test_conn_drop",
+      "severity": "critical",
+      "title": "Falha de Conexão Crítica",
+      "description": "Conexão perdida com o provedor (repetição).",
+      "origin": "rede",
+      "status": "resolved",
+      "createdAt": "2026-11-05T01:22:17.798Z",
+      "details": {
+        "lastOccurrenceAt": "2026-11-05T01:22:17.798Z"
+      },
+      "recommendedAction": "Aguarde o restabelecimento automático.",
+      "recoverySoundEvent": "reconexao_concluida",
+      "resolvedAt": "2026-11-05T01:22:17.798Z",
+      "recoveryResult": "Conexão restaurada com sucesso."
+    },
+    {
+      "id": "alert_1793841734557_x0yj",
+      "key": "wa_disconnect_test",
+      "severity": "critical",
+      "title": "WhatsApp Desconectado",
+      "description": "Sessão desconectada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-05T01:22:14.556Z",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-05T01:22:14.557Z",
+      "recoveryResult": "Sessão restabelecida com sucesso"
+    },
+    {
+      "id": "alert_1793841722416_k1mo",
+      "key": "wa_disconnect_test",
+      "severity": "critical",
+      "title": "WhatsApp Desconectado",
+      "description": "Sessão desconectada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-05T01:22:02.415Z",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-05T01:22:02.417Z",
+      "recoveryResult": "Sessão restabelecida com sucesso"
+    },
+    {
+      "id": "alert_1793752988181_jtb5",
+      "key": "whatsapp_disconnected",
+      "severity": "warning",
+      "title": "Queda de Conexão WhatsApp",
+      "description": "Conexão caiu (código 515). Reconexão agendada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-04T00:43:08.181Z",
+      "details": {
+        "attempt": 1,
+        "maxAttempts": 10,
+        "delaySeconds": 3,
+        "maxBackoff": 60,
+        "statusCode": 408,
+        "isDrop": true,
+        "lastOccurrenceAt": "2026-11-05T01:22:01.326Z"
+      },
+      "recommendedAction": "O UpZap está tentando restabelecer a conexão automaticamente. Aguarde ou clique em Forçar Reconexão.",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-05T01:22:01.327Z",
+      "recoveryResult": "WhatsApp restabelecido: +5511999998888"
+    },
+    {
+      "id": "alert_1793841721324_okou",
+      "key": "test_conn_drop",
+      "severity": "critical",
+      "title": "Falha de Conexão Crítica",
+      "description": "Conexão perdida com o provedor (repetição).",
+      "origin": "rede",
+      "status": "resolved",
+      "createdAt": "2026-11-05T01:22:01.324Z",
+      "details": {
+        "lastOccurrenceAt": "2026-11-05T01:22:01.325Z"
+      },
+      "recommendedAction": "Aguarde o restabelecimento automático.",
+      "recoverySoundEvent": "reconexao_concluida",
+      "resolvedAt": "2026-11-05T01:22:01.325Z",
+      "recoveryResult": "Conexão restaurada com sucesso."
+    },
+    {
+      "id": "alert_1793757943587_ezx4",
+      "key": "wa_disconnect_test",
+      "severity": "critical",
+      "title": "WhatsApp Desconectado",
+      "description": "Sessão desconectada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-04T02:05:43.586Z",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-04T02:05:43.588Z",
+      "recoveryResult": "Sessão restabelecida com sucesso"
+    },
+    {
+      "id": "alert_1793753963667_wjl6",
+      "key": "wa_disconnect_test",
+      "severity": "critical",
+      "title": "WhatsApp Desconectado",
+      "description": "Sessão desconectada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-04T00:59:23.666Z",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-04T00:59:23.668Z",
+      "recoveryResult": "Sessão restabelecida com sucesso"
+    },
+    {
+      "id": "alert_1793753576770_jye3",
+      "key": "wa_disconnect_test",
+      "severity": "critical",
+      "title": "WhatsApp Desconectado",
+      "description": "Sessão desconectada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-04T00:52:56.770Z",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-04T00:52:56.771Z",
+      "recoveryResult": "Sessão restabelecida com sucesso"
+    },
+    {
+      "id": "alert_1793635092033_jq8m",
+      "key": "wa_disconnect_test",
+      "severity": "critical",
+      "title": "WhatsApp Desconectado",
+      "description": "Sessão desconectada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-02T15:58:12.032Z",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-02T15:58:12.033Z",
+      "recoveryResult": "Sessão restabelecida com sucesso"
+    },
+    {
+      "id": "alert_1793577023232_hcr6",
+      "key": "wa_disconnect_test",
+      "severity": "critical",
+      "title": "WhatsApp Desconectado",
+      "description": "Sessão desconectada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-01T23:50:23.231Z",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-01T23:50:23.232Z",
+      "recoveryResult": "Sessão restabelecida com sucesso"
+    },
+    {
+      "id": "alert_1793576961110_qgbc",
+      "key": "whatsapp_disconnected",
+      "severity": "warning",
+      "title": "Queda de Conexão WhatsApp",
+      "description": "Conexão caiu (código 515). Reconexão agendada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-01T23:49:21.110Z",
+      "details": {
+        "attempt": 1,
+        "isDrop": true
+      },
+      "recommendedAction": "O UpZap está tentando restabelecer a conexão automaticamente. Aguarde ou clique em Forçar Reconexão.",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-01T23:49:21.111Z",
+      "recoveryResult": "WhatsApp restabelecido: +5511999998888"
+    },
+    {
+      "id": "alert_1793576961107_2ndx",
+      "key": "test_conn_drop",
+      "severity": "critical",
+      "title": "Falha de Conexão Crítica",
+      "description": "Conexão perdida com o provedor (repetição).",
+      "origin": "rede",
+      "status": "resolved",
+      "createdAt": "2026-11-01T23:49:21.107Z",
+      "details": {
+        "lastOccurrenceAt": "2026-11-01T23:49:21.108Z"
+      },
+      "recommendedAction": "Aguarde o restabelecimento automático.",
+      "recoverySoundEvent": "reconexao_concluida",
+      "resolvedAt": "2026-11-01T23:49:21.109Z",
+      "recoveryResult": "Conexão restaurada com sucesso."
+    },
+    {
+      "id": "alert_1793576955920_inzx",
+      "key": "wa_disconnect_test",
+      "severity": "critical",
+      "title": "WhatsApp Desconectado",
+      "description": "Sessão desconectada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-01T23:49:15.920Z",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-01T23:49:15.921Z",
+      "recoveryResult": "Sessão restabelecida com sucesso"
+    },
+    {
+      "id": "alert_1793576936260_cvn3",
+      "key": "wa_disconnect_test",
+      "severity": "critical",
+      "title": "WhatsApp Desconectado",
+      "description": "Sessão desconectada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-01T23:48:56.259Z",
+      "soundEvent": "whatsapp_desconectado",
+      "recoverySoundEvent": "whatsapp_reconectado",
+      "resolvedAt": "2026-11-01T23:48:56.263Z",
+      "recoveryResult": "Sessão restabelecida com sucesso"
+    },
+    {
+      "id": "alert_1793576443821_xi23",
+      "key": "whatsapp_disconnected",
+      "severity": "warning",
+      "title": "Queda de Conexão WhatsApp",
+      "description": "Evento de teste real: conexão com o WhatsApp caiu (código 515). Reconexão agendada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-01T23:40:43.821Z",
+      "details": {
+        "attempt": 1,
+        "maxAttempts": 10,
+        "isDrop": true,
+        "delaySeconds": 3
+      },
+      "recommendedAction": "O UpZap está tentando restabelecer a conexão automaticamente. Aguarde ou clique em Forçar Reconexão.",
+      "resolvedAt": "2026-11-01T23:40:46.910Z",
+      "recoveryResult": "Problema resolvido com sucesso pelo sistema ou operador."
+    },
+    {
+      "id": "alert_1793573214637_dosk",
+      "key": "whatsapp_disconnected",
+      "severity": "warning",
+      "title": "Queda de Conexão WhatsApp",
+      "description": "Conexão caiu (código 515). Reconexão agendada.",
+      "origin": "whatsapp",
+      "status": "resolved",
+      "createdAt": "2026-11-01T22:46:54.637Z",
+      "details": {
+        "attempt": 1,
+        "isDrop": true
+      },
+      "recommendedAction": "O UpZap está tentando restabelecer a conexão automaticamente. Aguarde ou clique em Forçar Reconexão.",
+      "resolvedAt": "2026-11-01T22:46:54.637Z",
+      "recoveryResult": "WhatsApp restabelecido: +5511999998888"
+    },
+    {
+      "id": "alert_1793573214633_9nzk",
+      "key": "test_conn_drop",
+      "severity": "critical",
+      "title": "Falha de Conexão Crítica",
+      "description": "Conexão perdida com o provedor (repetição).",
+      "origin": "rede",
+      "status": "resolved",
+      "createdAt": "2026-11-01T22:46:54.632Z",
+      "details": {
+        "lastOccurrenceAt": "2026-11-01T22:46:54.633Z"
+      },
+      "recommendedAction": "Aguarde o restabelecimento automático.",
+      "resolvedAt": "2026-11-01T22:46:54.635Z",
+      "recoveryResult": "Conexão restaurada com sucesso."
+    }
+  ]
+}

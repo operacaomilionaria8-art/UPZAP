@@ -1,0 +1,204 @@
+[
+  {
+    "id": "rule_precos_kits",
+    "nome": "Preços e Kits",
+    "name": "Preços e Kits",
+    "prioridade": "Crítica",
+    "priority": "P1",
+    "categoria": "Comercial",
+    "estadoConversa": "active",
+    "palavras": [
+      "preco",
+      "preço",
+      "valor",
+      "valores",
+      "quanto custa",
+      "tabela",
+      "kits",
+      "kit"
+    ],
+    "todasPalavras": [
+      "preco",
+      "preço",
+      "valor",
+      "valores",
+      "quanto custa",
+      "tabela",
+      "kits",
+      "kit"
+    ],
+    "tipoAcao": "executar_fluxo",
+    "fluxoId": "flow_precos_kits",
+    "fluxoNome": "Preços e Kits",
+    "acoes": [
+      {
+        "id": "act_pk",
+        "tipo": "executar_fluxo",
+        "fluxoId": "flow_precos_kits",
+        "fluxoNome": "Preços e Kits"
+      }
+    ]
+  },
+  {
+    "id": "rule_tamanhos_cores",
+    "nome": "Tamanhos e Cores",
+    "name": "Tamanhos e Cores",
+    "prioridade": "Alta",
+    "priority": "P2",
+    "categoria": "Produto",
+    "estadoConversa": "active",
+    "palavras": [
+      "tamanho",
+      "tamanhos",
+      "cor",
+      "cores",
+      "medida",
+      "medidas",
+      "bege",
+      "preto",
+      "tabela de medidas"
+    ],
+    "todasPalavras": [
+      "tamanho",
+      "tamanhos",
+      "cor",
+      "cores",
+      "medida",
+      "medidas",
+      "bege",
+      "preto",
+      "tabela de medidas"
+    ],
+    "tipoAcao": "executar_fluxo",
+    "fluxoId": "flow_tamanhos_cores",
+    "fluxoNome": "Tamanhos e Cores",
+    "acoes": [
+      {
+        "id": "act_tc",
+        "tipo": "executar_fluxo",
+        "fluxoId": "flow_tamanhos_cores",
+        "fluxoNome": "Tamanhos e Cores"
+      }
+    ]
+  },
+  {
+    "id": "rule_pagamento_entrega",
+    "nome": "Pagamento e Entrega",
+    "name": "Pagamento e Entrega",
+    "prioridade": "Alta",
+    "priority": "P2",
+    "categoria": "Comercial",
+    "estadoConversa": "active",
+    "palavras": [
+      "frete",
+      "entrega",
+      "pagamento",
+      "pix",
+      "cartao",
+      "cartão",
+      "parcela",
+      "prazo",
+      "envio"
+    ],
+    "todasPalavras": [
+      "frete",
+      "entrega",
+      "pagamento",
+      "pix",
+      "cartao",
+      "cartão",
+      "parcela",
+      "prazo",
+      "envio"
+    ],
+    "tipoAcao": "executar_fluxo",
+    "fluxoId": "flow_pagamento_entrega",
+    "fluxoNome": "Pagamento e Entrega",
+    "acoes": [
+      {
+        "id": "act_pe",
+        "tipo": "executar_fluxo",
+        "fluxoId": "flow_pagamento_entrega",
+        "fluxoNome": "Pagamento e Entrega"
+      }
+    ]
+  },
+  {
+    "id": "rule_finalizar_compra",
+    "nome": "Finalizar Compra",
+    "name": "Finalizar Compra",
+    "prioridade": "Crítica",
+    "priority": "P1",
+    "categoria": "Pedido",
+    "estadoConversa": "active",
+    "palavras": [
+      "comprar",
+      "quero comprar",
+      "link",
+      "checkout",
+      "fechar pedido",
+      "finalizar",
+      "pagar"
+    ],
+    "todasPalavras": [
+      "comprar",
+      "quero comprar",
+      "link",
+      "checkout",
+      "fechar pedido",
+      "finalizar",
+      "pagar"
+    ],
+    "tipoAcao": "executar_fluxo",
+    "fluxoId": "flow_finalizar_compra",
+    "fluxoNome": "Finalizar Compra",
+    "acoes": [
+      {
+        "id": "act_fc",
+        "tipo": "executar_fluxo",
+        "fluxoId": "flow_finalizar_compra",
+        "fluxoNome": "Finalizar Compra"
+      }
+    ]
+  },
+  {
+    "id": "rule_menu_inicio",
+    "nome": "Menu Principal",
+    "name": "Menu Principal",
+    "prioridade": "Média",
+    "priority": "P3",
+    "categoria": "Atendimento",
+    "estadoConversa": "active",
+    "palavras": [
+      "menu",
+      "inicio",
+      "início",
+      "opcoes",
+      "opções",
+      "comeco",
+      "começo",
+      "voltar"
+    ],
+    "todasPalavras": [
+      "menu",
+      "inicio",
+      "início",
+      "opcoes",
+      "opções",
+      "comeco",
+      "começo",
+      "voltar"
+    ],
+    "tipoAcao": "executar_fluxo",
+    "fluxoId": "flow_boas_vindas",
+    "fluxoNome": "Boas-vindas Principal",
+    "acoes": [
+      {
+        "id": "act_bv",
+        "tipo": "executar_fluxo",
+        "fluxoId": "flow_boas_vindas",
+        "fluxoNome": "Boas-vindas Principal"
+      }
+    ]
+  }
+]
